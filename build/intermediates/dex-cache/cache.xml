@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-65b2d36b74907b7481b6a53db50fbd1185168400.jar" />
+    </item>
+    <item
+        jar="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/pre-dexed/debug/classes-8b89a5075cf4fa4d7f3b456647a684d553e2ca5c.jar" />
+    </item>
+    <item
+        jar="/Users/Ujval/dev/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-0ebda033b68a03991ce698a26c2476aa73e0b2ee.jar" />
+    </item>
+    <item
+        jar="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/pre-dexed/debug/classes-d3df7a40f1b0ae0c5b1bbd057339586a269d1bfa.jar" />
+    </item>
+    <item
+        jar="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/pre-dexed/debug/classes-e2b25fd157e33ac23a124ca82a922f7a98e31fa4.jar" />
+    </item>
+
+</items>
