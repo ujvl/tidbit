@@ -64,7 +64,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        ((MainActivity)getActivity()).getSupportActionBar().hide();
+        ((InitialActivity) getActivity()).getSupportActionBar();
         View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
         // Set up the login form.

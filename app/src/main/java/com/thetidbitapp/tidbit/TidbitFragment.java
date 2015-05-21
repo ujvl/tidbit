@@ -55,7 +55,7 @@ public class TidbitFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-        ((MainActivity)getActivity()).getSupportActionBar().show();
+//        ((MainActivity) getActivity()).getSupportActionBar().show();
         super.onCreate(savedInstanceState);
 
         /*if (getArguments() != null) {
