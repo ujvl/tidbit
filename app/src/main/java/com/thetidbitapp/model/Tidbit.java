@@ -1,6 +1,7 @@
 package com.thetidbitapp.model;
 
-import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Ujval on 2/22/15.
@@ -8,24 +9,25 @@ import java.util.GregorianCalendar;
 public class Tidbit {
 
     private String name;
-    private GregorianCalendar datetime;
+    private Date datetime;
     private String location;
-    private boolean hasFreeFood;
     private String food;
     private String description;
+    private int attendence;
+    private boolean userAttending;
 
-    public Tidbit(String s, GregorianCalendar g, String loc, boolean b) {
+//    private static SimpleDateFormat dateFormater = new SimpleDateFormat("mm dd yy at tt");
+
+    public Tidbit(String s, Date d, String loc) {
         this.name = s;
         this.location = loc;
-        this.datetime = g;
-        this.hasFreeFood = b;
+        this.datetime = d;
     }
 
-    public Tidbit(String s, GregorianCalendar g, String loc, boolean b, String f, String descr) {
+    public Tidbit(String s, Date d, String loc, String f, String descr) {
         this.name = s;
         this.location = loc;
-        this.datetime = g;
-        this.hasFreeFood = b;
+        this.datetime = d;
         this.food = f;
         this.description = descr;
     }
@@ -34,25 +36,15 @@ public class Tidbit {
         return name;
     }
 
-    public String getDate() {
-        //TODO
-        return "Feb 1st 12 - 4 pm";
-    }
+    public String getDate() { return "date here";/*dateFormater.format(datetime);*/ }
 
-    public String getLocation() {
-        return location;
-    }
+    public String getLocation() { return location; }
 
-    public boolean hasFreeFood() {
-        return hasFreeFood;
-    }
+    public boolean hasFreeFood() { return food == null; }
 
-    public String getFood() {
-        return hasFreeFood? food : "";
-    }
+    public String getFood() { return food; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
+
 }
 

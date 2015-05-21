@@ -47,6 +47,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
      */
     private UserLoginTask mAuthTask = null;
     private OnLoginListener loginListener;
+
     // UI references.
     private EditText mEmailView;
     private EditText mPasswordView;

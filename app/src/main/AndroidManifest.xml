@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.thetidbitapp.tidbit" >
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Tidd">
+        android:theme="@style/Theme.Tidd" >
         <activity
-            android:name="com.thetidbitapp.tidbit.MainActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize"
-            android:label="@string/app_name">
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan|adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".InitialActivity"
+            android:label="@string/title_activity_initial" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

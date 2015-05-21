@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ddd">
 
     <LinearLayout
         android:layout_width="0dip"
@@ -10,17 +11,20 @@
         android:orientation="vertical"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="80">
+        android:layout_margin="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="80"
+        android:background="#fff"
+        android:elevation="4dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/theme_color_dark"
+            android:textColor="@color/theme_color"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:id="@+id/tidbit_name"/>
 
         <TextView
@@ -29,7 +33,6 @@
             android:layout_weight="50"
             android:textSize="18sp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:textColor="@color/theme_color_gray"
             android:id="@+id/tidbit_datetime"/>
 
@@ -45,12 +48,12 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_action_next_item"/>
+    <!--<ImageView-->
+        <!--android:layout_width="0dip"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="20"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:src="@drawable/ic_action_next_item"/>-->
 
 
 </LinearLayout>
