@@ -22,11 +22,11 @@ public class InitialActivity extends ActionBarActivity implements LoginFragment.
         if (savedInstanceState == null) {
             login = new LoginFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, login).commit();
+                    .add(R.id.container_initial, login).commit();
         }
         else {
             login = (LoginFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.container);
+                    .findFragmentById(R.id.container_initial);
         }
     }
 
