@@ -39,7 +39,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            "a@a.com:hello", "bar@example.com:world"
     };
 
     /**

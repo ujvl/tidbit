@@ -18,10 +18,11 @@ public class Tidbit {
 
 //    private static SimpleDateFormat dateFormater = new SimpleDateFormat("mm dd yy at tt");
 
-    public Tidbit(String s, Date d, String loc) {
-        this.name = s;
+    public Tidbit(String name, Date date, String loc, String food) {
+        this.name = name;
         this.location = loc;
-        this.datetime = d;
+        this.datetime = date;
+        this.food = food;
     }
 
     public Tidbit(String s, Date d, String loc, String f, String descr) {
@@ -36,7 +37,7 @@ public class Tidbit {
         return name;
     }
 
-    public String getDate() { return "date here";/*dateFormater.format(datetime);*/ }
+    public String getDatetime() { return "Mar 12th 1:00 pm - 3:00 pm";/*dateFormater.format(datetime);*/ }
 
     public String getLocation() { return location; }
 

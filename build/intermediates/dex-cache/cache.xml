@@ -9,6 +9,13 @@
         <dex dex="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-65b2d36b74907b7481b6a53db50fbd1185168400.jar" />
     </item>
     <item
+        jar="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.0.9/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ed2ab55be78d5d54ac9060d70d65a4573ae3d2ec">
+        <dex dex="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/pre-dexed/debug/classes-fbfe273072f7ae5df83aae41cbafe73b5630974c.jar" />
+    </item>
+    <item
         jar="/Users/Ujval/dev/AndroidStudioProjects/tidbit/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
         jumboMode="false"
         revision="21.1.2"

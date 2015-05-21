@@ -2,26 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ddd">
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:orientation="vertical"
+        android:src="@drawable/test_picture"
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="80"
-        android:background="#fff"
-        android:elevation="4dp">
+        android:layout_weight="60"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/theme_color"
             android:paddingTop="5dp"
@@ -31,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:paddingTop="5dp"
             android:textColor="@color/theme_color_gray"
             android:id="@+id/tidbit_datetime"/>
@@ -40,20 +44,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"
             android:textColor="@color/theme_color_gray"
             android:id="@+id/tidbit_loc"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:textSize="14sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/theme_color_gray"
+            android:id="@+id/tidbit_food"/>
+
     </LinearLayout>
 
-    <!--<ImageView-->
-        <!--android:layout_width="0dip"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="20"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:src="@drawable/ic_action_next_item"/>-->
+    <ImageView
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="20"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_action_next_item"/>
 
 
 </LinearLayout>

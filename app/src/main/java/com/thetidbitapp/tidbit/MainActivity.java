@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.astuetz.PagerSlidingTabStrip;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -24,6 +26,9 @@ public class MainActivity extends ActionBarActivity {
 
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
+
+        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        pagerSlidingTabStrip.setViewPager(pager);
 
     }
 
