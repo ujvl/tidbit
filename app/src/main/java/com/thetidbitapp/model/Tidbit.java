@@ -1,6 +1,5 @@
 package com.thetidbitapp.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,16 +12,17 @@ public class Tidbit {
     private String location;
     private String food;
     private String description;
-    private int attendence;
+    private int numAttendees;
     private boolean userAttending;
 
 //    private static SimpleDateFormat dateFormater = new SimpleDateFormat("mm dd yy at tt");
 
-    public Tidbit(String name, Date date, String loc, String food) {
+    public Tidbit(String name, Date date, String loc, String food, int att) {
         this.name = name;
         this.location = loc;
         this.datetime = date;
         this.food = food;
+        this.numAttendees = att;
     }
 
     public Tidbit(String s, Date d, String loc, String f, String descr) {
@@ -33,19 +33,21 @@ public class Tidbit {
         this.description = descr;
     }
 
-    public String getName() {
+    public String eventName() {
         return name;
     }
 
-    public String getDatetime() { return "Mar 12th 1:00 pm - 3:00 pm";/*dateFormater.format(datetime);*/ }
+    public String datetime() { return "Mar 12th at 1:00 pm";/*dateFormater.format(datetime);*/ }
 
-    public String getLocation() { return location; }
+    public String location() { return location; }
 
     public boolean hasFreeFood() { return food == null; }
 
-    public String getFood() { return food; }
+    public String food() { return food; }
 
-    public String getDescription() { return description; }
+    public String description() { return description; }
+
+    public int numberAttending() { return numAttendees; }
 
 }
 

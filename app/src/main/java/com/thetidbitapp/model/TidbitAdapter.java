@@ -36,12 +36,14 @@ public class TidbitAdapter extends ArrayAdapter<Tidbit> {
         TextView tvTime = (TextView) convertView.findViewById(R.id.tidbit_datetime);
         TextView tvLoc = (TextView) convertView.findViewById(R.id.tidbit_loc);
         TextView tvFood = (TextView) convertView.findViewById(R.id.tidbit_food);
+        TextView tvAtt = (TextView) convertView.findViewById(R.id.tidbit_attendees);
 
         // Populate the data into the template view using the data object
-        tvName.setText(tidbit.getName());
-        tvTime.setText(tidbit.getDatetime());
-        tvLoc.setText(tidbit.getLocation());
-        tvFood.setText("Food: " +tidbit.getFood() +" (free)");
+        tvName.setText(tidbit.eventName());
+        tvTime.setText(tidbit.datetime());
+        tvLoc.setText(tidbit.location());
+        tvFood.setText("Food: " +tidbit.food() +" (free)");
+        tvAtt.setText("Attending: " +tidbit.numberAttending());
 
         return convertView;
     }

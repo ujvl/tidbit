@@ -4,29 +4,22 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.balysv.materialripple.MaterialRippleLayout;
+
 
 public class LoginFragment extends android.support.v4.app.Fragment {
 
@@ -83,6 +76,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         });
 
         Button mEmailSignInButton = (Button) rootView.findViewById(R.id.email_sign_in_button);
+        MaterialRippleLayout.on(mEmailSignInButton).rippleColor(Color.BLACK).create();
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

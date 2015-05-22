@@ -1,16 +1,21 @@
 package com.thetidbitapp.tidbit;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Outline;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.model.TidbitAdapter;
 
@@ -66,28 +71,33 @@ public class TidbitFragment extends Fragment {
         }*/
 
         tidbits = new ArrayList<>();
-        tidbits.add(new Tidbit("Ma burfday", new Date(), "Evans hall, UC Berkeley, CA", "Sliver"));
-        tidbits.add(new Tidbit("TEDxBerkeley", new Date(), "Soda hall, UC Berkeley, CA", "Top Dog"));
-        tidbits.add(new Tidbit("Lol free food", new Date(), "Wheeler hall, UC Berkeley, CA", "Other"));
-        tidbits.add(new Tidbit("Google Tech talk", new Date(), "Wheeler hall, UC Berkeley, CA", "Top Dog"));
-        tidbits.add(new Tidbit("420 free dope", new Date(), "Memorial Glade, My ass, CA", "Sliver"));
-        tidbits.add(new Tidbit("Engineering Week", new Date(), "Dope hall, VA", "Sushi"));
-        tidbits.add(new Tidbit("Free ReDbUlL", new Date(), "Cory hall, Moon", "Pizza"));
+        tidbits.add(new Tidbit("Ma burfday", new Date(), "Evans hall, UC Berkeley, CA", "Sliver", 123));
+        tidbits.add(new Tidbit("TEDxBerkeley", new Date(), "Soda hall, UC Berkeley, CA", "Top Dog", 234));
+        tidbits.add(new Tidbit("Lol free food", new Date(), "Wheeler hall, UC Berkeley, CA", "Other", 53));
+        tidbits.add(new Tidbit("Google Tech talk", new Date(), "Wheeler hall, UC Berkeley, CA", "Top Dog", 63));
+        tidbits.add(new Tidbit("420 free dope", new Date(), "Memorial Glade, My ass, CA", "Sliver", 27));
+        tidbits.add(new Tidbit("Engineering Week", new Date(), "Dope hall, VA", "Sushi", 293));
+        tidbits.add(new Tidbit("Free ReDbUlL", new Date(), "Cory hall, Moon", "Pizza", 46));
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.fragment_tidbit, container, false);
+
+        // Handle item clicks
         ListView tidbitListView = (ListView) rootView.findViewById(R.id.tidbits_list);
         tidbitListView.setAdapter(new TidbitAdapter(getActivity(), tidbits));
-
         tidbitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
         });
+
+        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fab.attachToListView(tidbitListView);
 
         return rootView;
     }
