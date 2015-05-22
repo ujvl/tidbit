@@ -12,9 +12,9 @@
         android:layout_height="48dp"
         android:layout_below="@+id/toolbar"
         android:background="@color/theme_color"
-        android:textColorPrimary="#fff"
+        android:textColorPrimary="@color/white"
         app:pstsDividerColor="@color/theme_color"
-        app:pstsIndicatorColor="#fff"
+        app:pstsIndicatorColor="@color/white"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
         app:pstsUnderlineHeight="0dp"/>
