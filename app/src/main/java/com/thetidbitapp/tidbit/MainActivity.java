@@ -17,14 +17,13 @@ import com.astuetz.PagerSlidingTabStrip;
  */
 public class MainActivity extends ActionBarActivity {
 
-    private ViewPager pager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pager = (ViewPager) findViewById(R.id.pager);
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
 
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
@@ -42,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
         public Fragment getItem(int pos) {
             switch(pos) {
                 case 0:
-                    return TidbitFragment.newInstance("FirstFragment", "Instance 1");
+                    return FeedFragment.newInstance("Feed fragment", "Instance 1");
                 case 1:
                     return TidbitFragment.newInstance("SecondFragment", "Instance 1");
                 case 2:

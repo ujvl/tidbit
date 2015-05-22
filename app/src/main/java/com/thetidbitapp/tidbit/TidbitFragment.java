@@ -62,7 +62,6 @@ public class TidbitFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
-//        ((MainActivity) getActivity()).getSupportActionBar().show();
         super.onCreate(savedInstanceState);
 
         /*if (getArguments() != null) {
@@ -92,7 +91,7 @@ public class TidbitFragment extends Fragment {
         tidbitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                // TODO go to the tidbit
             }
         });
 

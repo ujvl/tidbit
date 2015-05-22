@@ -33,4 +33,7 @@ dependencies {
 
     //ripple
     compile 'com.balysv:material-ripple:1.0.2'
+
+    //Round ImageView
+   compile 'com.pkmmte.view:circularimageview:1.1'
 }
