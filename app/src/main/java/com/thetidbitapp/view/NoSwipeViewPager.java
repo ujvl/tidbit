@@ -10,6 +10,8 @@ import android.view.MotionEvent;
  */
 public class NoSwipeViewPager extends ViewPager {
 
+    int childId;
+
     public NoSwipeViewPager(Context context) {
         super(context);
     }
@@ -34,5 +36,9 @@ public class NoSwipeViewPager extends ViewPager {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return false;
+    }
+
+    public void setChildId(int id) {
+        childId = id;
     }
 }

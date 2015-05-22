@@ -62,7 +62,7 @@ public class FeedFragment extends Fragment {
 
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.feed_tabs);
         pagerSlidingTabStrip.setViewPager(pager);
-
+        
         return rootView;
     }
 
