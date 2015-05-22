@@ -5,9 +5,5 @@
     <color name="theme_color_dark">#641C39</color>
     <color name="theme_color_light_gray">#ff708985</color>
     <color name="theme_color_gray">#4E5F5C</color>
-
-
-    <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
     
 </resources>

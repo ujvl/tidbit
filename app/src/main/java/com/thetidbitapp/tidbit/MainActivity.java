@@ -17,9 +17,8 @@ import com.astuetz.PagerSlidingTabStrip;
  */
 public class MainActivity extends ActionBarActivity {
 
-    @Overrided
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -41,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
         public Fragment getItem(int pos) {
             switch(pos) {
                 case 0:
-                    return FeedFragment.newInstance("Feed fragment", "Instance 1");
+                    return TidbitFragment.newInstance("FirstFragment", "Instance 1");
                 case 1:
                     return TidbitFragment.newInstance("SecondFragment", "Instance 1");
                 case 2:

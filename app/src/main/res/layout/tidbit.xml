@@ -11,15 +11,7 @@
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
         android:src="@drawable/test_picture"
-        android:scaleType="centerCrop"
-        android:id="@+id/tidbit_img"/>
-
-    <!--<com.thetidbitapp.view.RoundedImageView-->
-        <!--android:layout_width="92dp"-->
-        <!--android:layout_height="92dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:src="@drawable/test_picture"/>-->
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="0dip"
@@ -81,5 +73,6 @@
         android:src="@drawable/test_check"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"/>
+
 
 </LinearLayout>
