@@ -17,7 +17,7 @@ import com.astuetz.PagerSlidingTabStrip;
  */
 public class MainActivity extends ActionBarActivity {
 
-    @Override
+    @Overrided
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
