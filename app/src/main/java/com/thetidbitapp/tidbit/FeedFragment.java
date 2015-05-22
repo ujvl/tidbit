@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.thetidbitapp.view.NoSwipeViewPager;
+import com.thetidbitapp.view.InterceptingViewPager;
 
 public class FeedFragment extends Fragment {
 
@@ -57,12 +57,12 @@ public class FeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        NoSwipeViewPager pager = (NoSwipeViewPager) rootView.findViewById(R.id.feed_pager);
+        ViewPager pager = (ViewPager) rootView.findViewById(R.id.feed_pager);
         pager.setAdapter(new FeedPagerAdapter(getChildFragmentManager()));
 
-        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.feed_tabs);
-        pagerSlidingTabStrip.setViewPager(pager);
-        
+        PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.feed_tabs);
+        tabStrip.setViewPager(pager);
+
         return rootView;
     }
 

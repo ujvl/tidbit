@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.thetidbitapp.view.InterceptingViewPager;
 
 /**
  * A login screen that offers login via email/password.

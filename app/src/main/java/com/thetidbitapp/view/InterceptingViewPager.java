@@ -8,29 +8,21 @@ import android.view.MotionEvent;
 /**
  * Created by Ujval on 5/23/15.
  */
-public class NoSwipeViewPager extends ViewPager {
+public class InterceptingViewPager extends ViewPager {
 
-    int childId;
+    private int childId;
 
-    public NoSwipeViewPager(Context context) {
+    public InterceptingViewPager(Context context) {
         super(context);
     }
 
-    public NoSwipeViewPager(Context context, AttributeSet attrs) {
+    public InterceptingViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        if (childId > 0) {
-            ViewPager childPager = (ViewPager) findViewById(childId);
-
-            if (childPager != null) {
-                childPager.requestDisallowInterceptTouchEvent(true);
-            }
-
-        }
-        return super.onInterceptTouchEvent(event);
+        return true;
     }
 
     @Override
