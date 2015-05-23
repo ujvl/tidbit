@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="theme_color">#98325B</color>
-    <color name="theme_color_bright">#ffa83764</color>
-    <color name="theme_color_dark">#641C39</color>
+    <color name="theme_color">#FF890D</color>
+    <color name="theme_color_bright">#FFA342</color>
+    <color name="theme_color_dark">#F27D02</color>
+    <color name="theme_color_darker">#A75907</color>
     <color name="theme_color_light_gray">#ff708985</color>
     <color name="theme_color_gray">#4E5F5C</color>
 
