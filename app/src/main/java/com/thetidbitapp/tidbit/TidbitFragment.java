@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.melnykov.fab.FloatingActionButton;
 import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.model.TidbitAdapter;

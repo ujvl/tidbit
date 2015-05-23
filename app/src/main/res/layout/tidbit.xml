@@ -1,78 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<com.balysv.materialripple.MaterialRippleLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    app:mrl_rippleInAdapter="true"
+    app:mrl_rippleOverlay="true">
 
-    <ImageView
-        android:layout_width="0dip"
-        android:layout_height="92dp"
-        android:layout_weight="25"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/test_picture"
-        android:scaleType="centerCrop"
-        android:id="@+id/tidbit_img"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/white">
 
-    <!--<com.thetidbitapp.view.RoundedImageView-->
+        <ImageView
+            android:id="@+id/tidbit_img"
+            android:layout_width="0dip"
+            android:layout_height="92dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="25"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_picture" />
+
+        <!--<com.thetidbitapp.view.RoundedImageView-->
         <!--android:layout_width="92dp"-->
         <!--android:layout_height="92dp"-->
         <!--android:layout_marginLeft="10dp"-->
         <!--android:layout_gravity="center"-->
         <!--android:src="@drawable/test_picture"/>-->
 
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_weight="60"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:paddingLeft="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/theme_color"
-            android:id="@+id/tidbit_name"/>
+            android:layout_gravity="center"
+            android:layout_weight="60"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="15dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:paddingTop="5dp"
-            android:textColor="@color/theme_color_gray"
-            android:id="@+id/tidbit_datetime"/>
+            <TextView
+                android:id="@+id/tidbit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/theme_color"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:paddingTop="5dp"
-            android:textColor="@color/theme_color_gray"
-            android:id="@+id/tidbit_loc"/>
+            <TextView
+                android:id="@+id/tidbit_datetime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:textColor="@color/theme_color_gray"
+                android:textSize="14sp" />
 
-        <TextView
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tidbit_loc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:textColor="@color/theme_color_gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tidbit_attendees"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:textColor="@color/theme_color_gray"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:paddingTop="5dp"
-            android:textColor="@color/theme_color_gray"
-            android:id="@+id/tidbit_attendees"/>
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="15"
+            android:src="@drawable/test_check" />
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight="15"
-        android:layout_gravity="center"
-        android:src="@drawable/test_check"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"/>
-
-</LinearLayout>
+</com.balysv.materialripple.MaterialRippleLayout>
