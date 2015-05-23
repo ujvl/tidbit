@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.thetidbitapp.view.InterceptingViewPager;
+import com.thetidbitapp.view.NoPageTransformer;
 
 public class FeedFragment extends Fragment {
 
@@ -59,6 +59,7 @@ public class FeedFragment extends Fragment {
 
         ViewPager pager = (ViewPager) rootView.findViewById(R.id.feed_pager);
         pager.setAdapter(new FeedPagerAdapter(getChildFragmentManager()));
+        pager.setPageTransformer(false, new NoPageTransformer());
 
         PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.feed_tabs);
         tabStrip.setViewPager(pager);

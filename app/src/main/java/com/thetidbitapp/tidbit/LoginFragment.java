@@ -32,7 +32,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "a@a.com:hello", "bar@example.com:world"
+            "a@a.com:a", "bar@example.com:world"
     };
 
     /**
@@ -167,7 +167,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 0;
     }
 
     /**

@@ -61,14 +61,6 @@
             android:textSize="14sp"
             android:paddingTop="5dp"
             android:textColor="@color/theme_color_gray"
-            android:id="@+id/tidbit_food"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="14sp"
-            android:paddingTop="5dp"
-            android:textColor="@color/theme_color_gray"
             android:id="@+id/tidbit_attendees"/>
 
     </LinearLayout>
