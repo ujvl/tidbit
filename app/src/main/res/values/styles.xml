@@ -18,4 +18,22 @@
         <!--<item name="android:colorAccent">@color/accent</item>-->
     <!--</style>-->
 
+    <style name="HeadingStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/theme_color_darker</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginLeft">@dimen/heading_marginLeft</item>
+        <item name="android:layout_marginTop">@dimen/heading_marginTop</item>
+    </style>
+
+    <style name="TidbitContentStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/theme_color_gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

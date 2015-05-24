@@ -8,8 +8,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tidbits_list"
-        android:/>
+        android:id="@+id/tidbits_list"/>
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"

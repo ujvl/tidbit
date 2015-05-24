@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
                 case 1:
                     return "Bitmap";
                 case 2:
-                    return "My Tidbit";
+                    return "Your Tidbits";
                 case 3:
                     return "Settings";
                 default:
