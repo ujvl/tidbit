@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.thetidbitapp.view.NoPageTransformer;
+import com.thetidbitapp.view.CustomSpeedViewPager;
 
 public class FeedFragment extends Fragment {
 
@@ -57,9 +56,9 @@ public class FeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        ViewPager pager = (ViewPager) rootView.findViewById(R.id.feed_pager);
+        CustomSpeedViewPager pager = (CustomSpeedViewPager) rootView.findViewById(R.id.feed_pager);
         pager.setAdapter(new FeedPagerAdapter(getChildFragmentManager()));
-        pager.setPageTransformer(false, new NoPageTransformer());
+        pager.changeScrollSpeed(0.01); // Hacky fix to make it seem like there's no animation
 
         PagerSlidingTabStrip tabStrip = (PagerSlidingTabStrip) rootView.findViewById(R.id.feed_tabs);
         tabStrip.setViewPager(pager);

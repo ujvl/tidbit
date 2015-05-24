@@ -20,7 +20,7 @@
         app:pstsShouldExpand="true"
         app:pstsUnderlineHeight="0dp"/>
 
-    <android.support.v4.view.ViewPager
+    <com.thetidbitapp.view.CustomSpeedViewPager
         android:id="@+id/feed_pager"
         tools:context="TidbitFragment"
         android:layout_width="match_parent"
