@@ -38,5 +38,8 @@ dependencies {
     compile 'com.pkmmte.view:circularimageview:1.1'
 
     // Super List View
-    compile 'com.quentindommerc.superlistview:library:1.5.1-SNAPSHOT'
+    compile 'com.quentindommerc.superlistview:library:1.5.2'
+
+    // Material Shadow
+    compile 'com.github.dmytrodanylyk.shadow-layout:library:1.0.3'
 }

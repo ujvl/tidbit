@@ -1,34 +1,76 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
     tools:context="com.thetidbitapp.tidbit.OverflowFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         style="@style/HeadingStyle"
         android:text="Settings"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_profile"/>
+
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_notif"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_margin="4dp"
+        android:background="?android:attr/listDivider"/>
 
     <TextView
         style="@style/HeadingStyle"
         android:text="Share the love" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_share"/>
+
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_rate"/>
+
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_fb_like"/>
+
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_feedback"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_margin="4dp"
+        android:background="?android:attr/listDivider"/>
 
     <TextView
         style="@style/HeadingStyle"
         android:text="Important stuff" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_about"/>
 
-</LinearLayout>
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_rules"/>
+
+    <include
+        layout="@layout/overflow_item"
+        android:id="@+id/ov_item_contact"/>
+
+    </LinearLayout>
+
+</ScrollView>

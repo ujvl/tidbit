@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
                 case 2:
                     return TidbitFragment.newInstance("ThirdFragment", "Instance 1");
                 case 3:
-                    return TidbitFragment.newInstance("ThirdFragment", "Instance 2");
+                    return OverflowFragment.newInstance("ThirdFragment", "Instance 2");
                 default:
                     throw new IllegalStateException("you done fd up -- 4 pages available");
             }

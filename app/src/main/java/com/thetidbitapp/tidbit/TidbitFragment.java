@@ -1,22 +1,16 @@
 package com.thetidbitapp.tidbit;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Outline;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.balysv.materialripple.MaterialRippleLayout;
 import com.melnykov.fab.FloatingActionButton;
+import com.quentindommerc.superlistview.SuperListview;
 import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.model.TidbitAdapter;
 
@@ -95,7 +89,7 @@ public class TidbitFragment extends Fragment {
         tidbitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO go to the tidbit
+                // TODO go to tidbit
             }
         });
 
