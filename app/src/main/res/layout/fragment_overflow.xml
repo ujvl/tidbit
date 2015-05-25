@@ -12,65 +12,50 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <TextView
-        style="@style/HeadingStyle"
-        android:text="Settings"/>
+        <TextView style="@style/HeadingStyle"
+            android:text="Settings"/>
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_profile"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_profile"/>
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_notif"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_notif"/>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_margin="4dp"
-        android:background="?android:attr/listDivider"/>
+        <include layout="@layout/divider"/>
 
-    <TextView
-        style="@style/HeadingStyle"
-        android:text="Share the love" />
+        <TextView style="@style/HeadingStyle"
+            android:text="Share the love" />
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_share"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_share"/>
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_rate"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_rate"/>
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_fb_like"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_fb_like"/>
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_feedback"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_feedback"/>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_margin="4dp"
-        android:background="?android:attr/listDivider"/>
+        <include layout="@layout/divider"/>
 
-    <TextView
-        style="@style/HeadingStyle"
-        android:text="Important stuff" />
+        <TextView style="@style/HeadingStyle"
+            android:text="Important stuff" />
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_about"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_about"/>
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_rules"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_rules"/>
 
-    <include
-        layout="@layout/overflow_item"
-        android:id="@+id/ov_item_contact"/>
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_contact"/>
+
+        <include layout="@layout/divider"/>
+
+        <include layout="@layout/overflow_item"
+            android:id="@+id/ov_item_sign_out"/>
 
     </LinearLayout>
 

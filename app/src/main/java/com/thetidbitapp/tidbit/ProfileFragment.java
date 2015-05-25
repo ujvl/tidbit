@@ -1,6 +1,7 @@
 package com.thetidbitapp.tidbit;
 
-
+import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class OverflowFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_PARAM1 = "param1";
@@ -18,16 +19,19 @@ public class OverflowFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public OverflowFragment() { }
+    //private OnFragmentInteractionListener mListener;
 
-    public static OverflowFragment newInstance(String param1, String param2) {
-        OverflowFragment fragment = new OverflowFragment();
+    // TODO: Rename and change types and number of parameters
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
+
+    public ProfileFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,19 +44,9 @@ public class OverflowFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_overflow, container, false);
-
-        setText(rootView, R.id.ov_item_profile, R.string.profile_setting);
-        setText(rootView, R.id.ov_item_notif, R.string.notif_setting);
-        setText(rootView, R.id.ov_item_share, R.string.share);
-        setText(rootView, R.id.ov_item_rate, R.string.rate);
-        setText(rootView, R.id.ov_item_fb_like, R.string.like);
-        setText(rootView, R.id.ov_item_feedback, R.string.feedback);
-        setText(rootView, R.id.ov_item_about, R.string.about);
-        setText(rootView, R.id.ov_item_rules, R.string.rules);
-        setText(rootView, R.id.ov_item_contact, R.string.contact);
-        setText(rootView, R.id.ov_item_sign_out, R.string.sign_out);
-
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        setText(rootView, R.id.prof_item_your_posts, R.string.users_posts);
+        setText(rootView, R.id.prof_item_saved, R.string.saved_posts);
         return rootView;
     }
 
@@ -61,9 +55,26 @@ public class OverflowFragment extends Fragment {
                 .setText(getActivity().getText(strId));
     }
 
-    private void setListener(View root, int viewId, View.OnClickListener l) {
-        root.findViewById(viewId).setOnClickListener(l);
+    /*@Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        }
+        catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement callback");
+        }
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        public void onFragmentInteraction(Uri uri);
+    }*/
 
 }

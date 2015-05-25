@@ -37,7 +37,7 @@
         <item name="android:textSize">@dimen/std_text_size</item>
     </style>
 
-    <style name="OverflowItemStyle" parent="@android:style/TextAppearance.Medium">
+    <style name="LinLayoutItemStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/std_med_text_size</item>
     </style>

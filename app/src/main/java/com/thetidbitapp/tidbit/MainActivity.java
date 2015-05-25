@@ -47,9 +47,9 @@ public class MainActivity extends ActionBarActivity {
                 case 0:
                     return FeedFragment.newInstance("Feed fragment", "Instance 1");
                 case 1:
-                    return TidbitFragment.newInstance("SecondFragment", "Instance 1");
+                    return ProfileFragment.newInstance("SecondFragment", "Instance 1");
                 case 2:
-                    return TidbitFragment.newInstance("ThirdFragment", "Instance 1");
+                    return ProfileFragment.newInstance("ThirdFragment", "Instance 1");
                 case 3:
                     return OverflowFragment.newInstance("ThirdFragment", "Instance 2");
                 default:

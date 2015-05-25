@@ -8,4 +8,25 @@
     <string name="title_activity_initial">Tidbit</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- Headers -->
+    <string name="settings_heading">Settings</string>
+    <string name="share_heading">Share the love</string>
+    <string name="important_heading">Important stuff</string>
+
+    <!-- Overflow Items -->
+    <string name="profile_setting">Profile</string>
+    <string name="notif_setting">Notifications</string>
+    <string name="share">Share Tidbit</string>
+    <string name="rate">Rate Tidbit</string>
+    <string name="like">Like us on Facebook</string>
+    <string name="feedback">Give us feedback</string>
+    <string name="about">About</string>
+    <string name="rules">Rules</string>
+    <string name="contact">Contact us</string>
+    <string name="sign_out">Sign out</string>
+
+    <!-- Profile Items -->
+    <string name="users_posts">Your posts</string>
+    <string name="saved_posts">Saved posts</string>
+
 </resources>
