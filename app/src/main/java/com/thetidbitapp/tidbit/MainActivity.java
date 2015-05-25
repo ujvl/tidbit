@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.ActionBarActivity;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.google.android.gms.internal.ic;
 import com.thetidbitapp.view.BlockedViewPager;
 
 /**
@@ -28,7 +29,13 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    private class MainPagerAdapter extends FragmentPagerAdapter {
+    private class MainPagerAdapter extends FragmentPagerAdapter
+        implements PagerSlidingTabStrip.IconTabProvider {
+
+        final int[] ICONS = new int[]{
+                R.drawable.ic_menu_home, R.drawable.ic_action_map,
+                R.drawable.ic_action_person, R.drawable.ic_action_menu
+        };
 
         public MainPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -50,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-        @Override
+        /*@Override
         public CharSequence getPageTitle(int pos) {
             switch(pos) {
                 case 0:
@@ -64,11 +71,16 @@ public class MainActivity extends ActionBarActivity {
                 default:
                     throw new IllegalStateException("you done fd up -- 4 pages available");
             }
-        }
+        }*/
 
         @Override
         public int getCount() {
             return 4;
+        }
+
+        @Override
+        public int getPageIconResId(int i) {
+            return ICONS[i];
         }
     }
 }

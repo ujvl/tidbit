@@ -14,7 +14,7 @@
         android:layout_below="@+id/toolbar"
         android:background="@color/white"
         android:textColorPrimary="@color/black"
-        app:pstsDividerColor="@color/theme_color"
+        app:pstsDividerColor="@color/white"
         app:pstsIndicatorColor="@color/theme_color"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
