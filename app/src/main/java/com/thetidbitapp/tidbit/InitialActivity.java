@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.facebook.CallbackManager;
-
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.FacebookSdk;
 
 public class InitialActivity extends ActionBarActivity implements FBLoginFragment.OnLoginListener {
 
@@ -16,35 +17,25 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
-        // check if logged in -- go to main; otherwise go to login TODO
+        // Checks if user is already logged in -- then proceed to app directly
+        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
+                if (newAccessToken != null) {
+                    onLogin();
+                }
+            }
+        };
 
-        FBLoginFragment login;
-        if (savedInstanceState == null) {
-            login = new FBLoginFragment();
-        }
-        else {
-            login = (FBLoginFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.container_initial);
-        }
+        // Launch the login fragment otherwise
+        FBLoginFragment login = (savedInstanceState == null)? new FBLoginFragment() :
+                (FBLoginFragment) getSupportFragmentManager().findFragmentById(R.id.container_initial);
         getSupportFragmentManager().beginTransaction().add(R.id.container_initial, login).commit();
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_initial, menu);
-        return true;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
+    
     @Override
     public void onLogin() {
         Intent intent = new Intent(this, MainActivity.class);

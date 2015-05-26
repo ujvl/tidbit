@@ -22,15 +22,9 @@ public class FBLoginFragment extends Fragment {
 
     public FBLoginFragment() { }
 
-    public static FBLoginFragment newInstance() {
-        FBLoginFragment fragment = new FBLoginFragment();
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getActivity().getApplicationContext());
     }
 
     @Override
