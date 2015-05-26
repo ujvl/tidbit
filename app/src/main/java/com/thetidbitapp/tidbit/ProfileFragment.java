@@ -1,9 +1,8 @@
 package com.thetidbitapp.tidbit;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +50,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setText(View root, int viewId, int strId) {
-        ((TextView) (root.findViewById(viewId)).findViewById(R.id.overflow_item_text))
+        ((TextView) (root.findViewById(viewId)).findViewById(R.id.profile_item_text))
                 .setText(getActivity().getText(strId));
     }
 
