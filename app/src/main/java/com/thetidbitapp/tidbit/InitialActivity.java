@@ -3,50 +3,19 @@ package com.thetidbitapp.tidbit;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 
 
 public class InitialActivity extends ActionBarActivity implements FBLoginFragment.OnLoginListener {
-
-    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        setContentView(R.layout.fragment_fblogin);
-
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-
-        callbackManager = CallbackManager.Factory.create();
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.e("", "FUCKFUCKFUCK");
-                onLogin();
-            }
-
-            @Override
-            public void onCancel() {
-                Log.e("", "FUCKFUCKFUCKasdfasdf");
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                Log.e("", "FUCKFUCKFUCKasdfasdfasdfasdfsdf");
-            }
-        });
+        setContentView(R.layout.activity_initial);
 
         // check if logged in -- go to main; otherwise go to login TODO
 
@@ -58,7 +27,7 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
             login = (FBLoginFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.container_initial);
         }
-        //getSupportFragmentManager().beginTransaction().add(R.id.container_initial, login).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.container_initial, login).commit();
     }
 
     @Override
@@ -83,9 +52,4 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
         finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
 }
