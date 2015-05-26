@@ -7,12 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.ActionBarActivity;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.google.android.gms.internal.ic;
 import com.thetidbitapp.view.BlockedViewPager;
 
-/**
- * A login screen that offers login via email/password.
- */
 public class MainActivity extends ActionBarActivity {
 
     @Override

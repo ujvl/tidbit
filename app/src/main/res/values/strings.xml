@@ -28,5 +28,8 @@
     <!-- Profile Items -->
     <string name="users_posts">Your posts</string>
     <string name="saved_posts">Saved posts</string>
+    
+    <!-- fb app id -->
+    <string name="facebook_app_id">980180495326106</string>
 
 </resources>

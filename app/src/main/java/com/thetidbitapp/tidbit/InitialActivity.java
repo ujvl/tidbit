@@ -1,31 +1,31 @@
 package com.thetidbitapp.tidbit;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class InitialActivity extends ActionBarActivity implements LoginFragment.OnLoginListener {
+public class InitialActivity extends ActionBarActivity implements FBLoginFragment.OnLoginListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
 
         // check if logged in -- go to main; otherwise go to login TODO
 
-        LoginFragment login;
+        FBLoginFragment login;
         if (savedInstanceState == null) {
-            login = new LoginFragment();
+            //login = new LoginFragment();
+            login = new FBLoginFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container_initial, login).commit();
         }
         else {
-            login = (LoginFragment) getSupportFragmentManager()
+            login = (FBLoginFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.container_initial);
         }
     }

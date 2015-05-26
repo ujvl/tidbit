@@ -18,24 +18,23 @@ public class Tidbit {
 //    private static SimpleDateFormat dateFormater = new SimpleDateFormat("mm dd yy at tt");
 
     public Tidbit(String name, Date date, String loc, String food, int att) {
+        this(name, date, loc, food, "", att);
+    }
+
+    public Tidbit(String name, Date date, String loc, String food, String descr) {
+        this(name, date, loc, food, descr, 0);
+    }
+
+    public Tidbit(String name, Date date, String loc, String food, String descr, int att) {
         this.name = name;
         this.location = loc;
         this.datetime = date;
         this.food = food;
+        this.description = descr;
         this.numAttendees = att;
     }
 
-    public Tidbit(String s, Date d, String loc, String f, String descr) {
-        this.name = s;
-        this.location = loc;
-        this.datetime = d;
-        this.food = f;
-        this.description = descr;
-    }
-
-    public String eventName() {
-        return name;
-    }
+    public String eventName() { return name; }
 
     public String datetime() { return "Mar 12th at 1:00 pm";/*dateFormater.format(datetime);*/ }
 
