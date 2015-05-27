@@ -3,8 +3,6 @@ package com.thetidbitapp.tidbit;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -35,7 +33,7 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
         getSupportFragmentManager().beginTransaction().add(R.id.container_initial, login).commit();
 
     }
-    
+
     @Override
     public void onLogin() {
         Intent intent = new Intent(this, MainActivity.class);

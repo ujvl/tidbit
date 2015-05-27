@@ -76,9 +76,9 @@ public class FeedFragment extends Fragment {
         public Fragment getItem(int pos) {
             switch(pos) {
                 case 0:
-                    return TidbitFragment.newInstance("First fragment", "Instance 1");
+                    return TidbitsFragment.newInstance(TidbitsFragment.SortType.UPCOMING);
                 case 1:
-                    return TidbitFragment.newInstance("Second fragment", "Instance 2");
+                    return TidbitsFragment.newInstance(TidbitsFragment.SortType.POPULAR);
                 default:
                     throw new IllegalStateException("you done fd up -- 2 pages available");
             }

@@ -4,16 +4,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.internal.fr;
+
+import java.util.Arrays;
 
 public class FBLoginFragment extends Fragment {
 
@@ -30,23 +35,31 @@ public class FBLoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_fblogin, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_fblogin, container, false);
+        final LoginManager manager = LoginManager.getInstance();
 
-        LoginButton loginButton = (LoginButton) rootView.findViewById(R.id.login_button);
-        loginButton.setFragment(this);
+        Button loginButton = (Button) rootView.findViewById(R.id.login_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                manager.logInWithReadPermissions(FBLoginFragment.this, Arrays.asList("public_profile"));
+            }
+        });
 
         callbackManager = CallbackManager.Factory.create();
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        manager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                rootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
                 mListener.onLogin();
             }
 
             @Override
-            public void onCancel() { }
+            public void onCancel() {
+            }
 
             @Override
-            public void onError(FacebookException exception) { }
+            public void onError(FacebookException exception) {
+            }
         });
 
         return rootView;

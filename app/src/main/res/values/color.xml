@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="theme_color">#63A35C</color>
-    <color name="theme_color_bright">#8AF27F</color>
-    <color name="theme_color_dark">#45953D</color>
-    <color name="theme_color_darker">#23571E</color>
-    <color name="theme_color_light_gray">#ff708985</color>
-    <color name="theme_color_gray">#4E5F5C</color>
+    <color name="theme_bright">#8AF27F</color>
+    <color name="theme_dark">#45953D</color>
+    <color name="theme_darkerish">#ff377930</color>
+    <color name="theme_darker">#23571E</color>
+    <color name="theme_light_gray">#ff708985</color>
+    <color name="theme_gray">#4E5F5C</color>
 
+    <color name="theme_sec_bright">#ff00e3ff</color>
+    <color name="theme_sec">#00BBD2</color>
+    <color name="theme_sec_dark">#ff0098ab</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
