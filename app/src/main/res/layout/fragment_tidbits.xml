@@ -20,52 +20,55 @@
         app:cpb_min_sweep_angle="10"
         app:cpb_max_sweep_angle="300"/>
 
-    <RelativeLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tidbit_list_swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:id="@+id/tidbit_list_container">
+        android:layout_height="wrap_content"
+        android:visibility="invisible">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/tidbit_list_swipe_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/tidbits_list"
-                android:scrollbars="none"/>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/fab"
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="@dimen/std_margin"
-            android:layout_marginBottom="@dimen/std_margin"
-            android:layout_above="@+id/map_button"
-            android:src="@drawable/ic_action_new"
-            app:fab_colorNormal="@color/theme_sec"
-            app:fab_colorPressed="@color/theme_sec_dark"
-            app:fab_colorRipple="#ddd" />
+            android:id="@+id/tidbits_list"
+            android:scrollbars="none"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/std_margin"
+        android:layout_marginEnd="@dimen/std_margin"
+        android:layout_marginBottom="@dimen/std_margin"
+        android:layout_above="@+id/map_button_ripple"
+        android:src="@drawable/ic_action_new"
+        app:fab_colorNormal="@color/theme_sec"
+        app:fab_colorPressed="@color/theme_sec_dark"
+        app:fab_colorRipple="#ddd" />
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/map_button_ripple"
+        app:mrl_rippleOverlay="true"
+        app:mrl_rippleHover="true"
+        app:mrl_rippleColor="@color/theme_darker"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <ImageButton
+            android:id="@+id/map_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="6dp"
-            android:background="@color/theme"
-            android:visibility="visible"
-            android:src="@drawable/ic_action_map"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/map_button" />
+            android:background="@color/theme_dark"
+            android:src="@drawable/ic_action_map" />
 
-    </RelativeLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
 
 </RelativeLayout>

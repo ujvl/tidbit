@@ -18,6 +18,7 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener 
 
         BlockedViewPager pager = (BlockedViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
+        pager.setOffscreenPageLimit(2);
 
         PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         pagerSlidingTabStrip.setViewPager(pager);

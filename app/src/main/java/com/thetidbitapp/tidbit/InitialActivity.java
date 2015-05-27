@@ -3,10 +3,10 @@ package com.thetidbitapp.tidbit;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.FacebookSdk;
+import com.thetidbitapp.model.SessionManager;
 
 public class InitialActivity extends ActionBarActivity implements FBLoginFragment.OnLoginListener {
 
@@ -17,20 +17,14 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
         setContentView(R.layout.activity_initial);
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        // Checks if user is already logged in -- then proceed to app directly
-        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
-                if (newAccessToken != null) {
-                    onLogin();
-                }
-            }
-        };
+        Log.e("initial", new SessionManager(this).isLoggedIn() + " ----");
+        if (new SessionManager(this).isLoggedIn()) {
+            onLogin();
+        }
 
-        // Launch the login fragment otherwise
-        FBLoginFragment login = (savedInstanceState == null)? new FBLoginFragment() :
+        FBLoginFragment login = (savedInstanceState == null) ? new FBLoginFragment() :
                 (FBLoginFragment) getSupportFragmentManager().findFragmentById(R.id.container_initial);
-        getSupportFragmentManager().beginTransaction().add(R.id.container_initial, login).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_initial, login).commit();
 
     }
 

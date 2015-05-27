@@ -7,18 +7,17 @@
     android:orientation="vertical">
 
     <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@+id/toolbar"
-        android:background="@color/theme_dark"
-        android:textColorPrimary="@color/white"
-        android:elevation="5dp"
-        app:pstsDividerColor="@color/theme_dark"
-        app:pstsIndicatorColor="@color/white"
-        app:pstsIndicatorHeight="2dp"
-        app:pstsShouldExpand="true"
-        app:pstsUnderlineHeight="0dp"/>
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/toolbar"
+            android:background="@color/theme_dark"
+            android:elevation="5dp"
+            app:pstsDividerColor="@color/theme_dark"
+            app:pstsIndicatorColor="@color/white"
+            app:pstsIndicatorHeight="2dp"
+            app:pstsShouldExpand="true"
+            app:pstsUnderlineHeight="0dp"/>
 
     <com.thetidbitapp.view.BlockedViewPager
         android:id="@+id/pager"

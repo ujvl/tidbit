@@ -1,16 +1,24 @@
 package com.thetidbitapp.tidbit;
 
+import android.animation.ObjectAnimator;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.melnykov.fab.FloatingActionButton;
 import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.model.TidbitAdapter;
@@ -18,7 +26,7 @@ import com.thetidbitapp.model.TidbitAdapter;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class TidbitsFragment extends Fragment {
+public class TidbitsFragment extends Fragment implements AbsListView.OnScrollListener {
 
     private ListView mTidbitList;
     private TidbitAdapter mTidbitAdapter;
@@ -68,19 +76,37 @@ public class TidbitsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View root = inflater.inflate(R.layout.fragment_tidbits, container, false);
-
-        // Handle item clicks
         mTidbitList = (ListView) root.findViewById(R.id.tidbits_list);
 
+        // Load content
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 setupList();
                 root.findViewById(R.id.tidbit_progress_circle).setVisibility(View.GONE);
-                root.findViewById(R.id.tidbit_list_container).setVisibility(View.VISIBLE);
+                root.findViewById(R.id.tidbit_list_swipe_refresh).setVisibility(View.VISIBLE);
             }
         }, 2500);
 
+        // Set scroll listener
+        mTidbitList.setOnScrollListener(this);
+        mTidbitList.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                class YScrollDetector extends GestureDetector.SimpleOnGestureListener {
+                    @Override
+                    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                        Log.i("DISTANCE Y IS", distanceY + "");
+                        return distanceY > 0;
+                    }
+                }
+                GestureDetector d = new GestureDetector(getActivity(), new YScrollDetector());
+                Log.i("ABASDASDASDASD", d.onTouchEvent(event) + "");
+                return false;
+            }
+        });
+
+        // Handle item clicks
         mTidbitList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -122,6 +148,29 @@ public class TidbitsFragment extends Fragment {
     private void setupList() {
         mTidbitAdapter = new TidbitAdapter(getActivity(), mTidbits);
         mTidbitList.setAdapter(mTidbitAdapter);
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        Log.i("HIHIHIHIHIHIHHIHIHI","HIHIHJOHINKLJNL...");
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+        Log.i("HIHIHIHIHIHIHHIHIHI", "HIHIHJOHINKLJNL");
+
+        if (view.getId() == mTidbitList.getId()) {
+            final int currentFirstVisibleItem = mTidbitList.getFirstVisiblePosition();
+            if (firstVisibleItem > 1) {
+                Log.e("a", "scrolling down...");
+            } else {
+                Log.e("a", "scrolling up...");
+            }
+
+            //lastFirstItemVisited = currentFirstVisibleItem;
+        }
+
     }
 
     /*@Override

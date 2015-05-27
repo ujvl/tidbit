@@ -9,14 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.internal.fr;
+import com.thetidbitapp.model.SessionManager;
 
 import java.util.Arrays;
 
@@ -49,16 +49,20 @@ public class FBLoginFragment extends Fragment {
         manager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
                 rootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
+                new SessionManager(getActivity()).setLoggedIn(true);
+                Log.e("FBLOG",new SessionManager(getActivity()).isLoggedIn() + " _----__-_-" );
                 mListener.onLogin();
+
             }
 
             @Override
-            public void onCancel() {
-            }
+            public void onCancel() { }
 
             @Override
             public void onError(FacebookException exception) {
+                Toast.makeText(getActivity(), "There was an error logging in", Toast.LENGTH_LONG).show();
             }
         });
 

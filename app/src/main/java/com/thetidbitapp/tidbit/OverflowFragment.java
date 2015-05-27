@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
+import com.thetidbitapp.model.SessionManager;
 
 public class OverflowFragment extends Fragment {
 
@@ -37,6 +38,7 @@ public class OverflowFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 LoginManager.getInstance().logOut();
+                new SessionManager(getActivity()).setLoggedIn(false);
                 ((OnLogoutListener) getActivity()).onLogout();
             }
         });

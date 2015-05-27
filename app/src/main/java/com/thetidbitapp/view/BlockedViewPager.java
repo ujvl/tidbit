@@ -33,11 +33,6 @@ public class BlockedViewPager extends CustomSpeedViewPager {
         return gestureDetector.onTouchEvent(event) || super.onInterceptTouchEvent(event);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
-    }
-
     class XScrollDetector extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
