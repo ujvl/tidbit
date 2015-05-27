@@ -17,8 +17,9 @@ public class MainPagerAdapter extends FragmentPagerAdapter
         implements PagerSlidingTabStrip.IconTabProvider {
 
     final int[] ICONS = new int[]{
-            R.drawable.ic_menu_home, R.drawable.ic_action_map,
-            R.drawable.ic_action_person, R.drawable.ic_action_menu
+            R.drawable.ic_menu_home,
+            R.drawable.ic_action_person,
+            R.drawable.ic_action_menu
     };
 
     public MainPagerAdapter(FragmentManager fm) {
@@ -31,19 +32,17 @@ public class MainPagerAdapter extends FragmentPagerAdapter
             case 0:
                 return FeedFragment.newInstance("Feed fragment", "Instance 1");
             case 1:
-                return ProfileFragment.newInstance("SecondFragment", "Instance 1");
-            case 2:
                 return ProfileFragment.newInstance("ThirdFragment", "Instance 1");
-            case 3:
+            case 2:
                 return new OverflowFragment();
             default:
-                throw new IllegalStateException("only 4 pages available");
+                throw new IllegalStateException("only 3 pages available");
         }
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
     @Override

@@ -21,15 +21,16 @@ import java.util.Date;
 public class TidbitsFragment extends Fragment {
 
     private ListView mTidbitList;
+    private TidbitAdapter mTidbitAdapter;
+    private ArrayList<Tidbit> mTidbits;
+
+    private static final String SORT_PARAM = "sort_type";
+    private SortType mSortType;
+    private OnFragmentInteractionListener mListener;
 
     public enum SortType {
         UPCOMING, POPULAR;
     }
-
-    private static final String SORT_PARAM = "sort_type";
-
-    private OnFragmentInteractionListener mListener;
-    private ArrayList<Tidbit> mTidbits;
 
     public interface OnFragmentInteractionListener {
         public void onFragmentInteraction(Uri uri);
@@ -50,7 +51,7 @@ public class TidbitsFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            SortType howToSort = (SortType) getArguments().getSerializable(SORT_PARAM);
+            mSortType = (SortType) getArguments().getSerializable(SORT_PARAM);
             mTidbits = new ArrayList<>();
             mTidbits.add(new Tidbit("Ma burfday", new Date(), "Evans hall, UC Berkeley, CA", "Sliver", 123));
             mTidbits.add(new Tidbit("TEDxBerkeley", new Date(), "Soda hall, UC Berkeley, CA", "Top Dog", 234));
@@ -99,15 +100,17 @@ public class TidbitsFragment extends Fragment {
 
         // Set up Swipe to Refresh
         final SwipeRefreshLayout refresher = (SwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
-        refresher.setColorSchemeResources(R.color.theme_sec_bright, R.color.theme_sec, R.color.theme_sec_dark);
+        refresher.setColorSchemeResources(R.color.theme_sec_bright, R.color.theme_sec, R.color.theme_sec_darker);
         refresher.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                mTidbitAdapter.setAllItemsEnabled(false);
+                setupList();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setupList();
                         refresher.setRefreshing(false);
+                        mTidbitAdapter.setAllItemsEnabled(true);
                     }
                 }, 2500);
             }
@@ -117,7 +120,8 @@ public class TidbitsFragment extends Fragment {
     }
 
     private void setupList() {
-        mTidbitList.setAdapter(new TidbitAdapter(getActivity(), mTidbits));
+        mTidbitAdapter = new TidbitAdapter(getActivity(), mTidbits);
+        mTidbitList.setAdapter(mTidbitAdapter);
     }
 
     /*@Override

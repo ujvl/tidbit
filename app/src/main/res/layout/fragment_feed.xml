@@ -15,7 +15,7 @@
         android:background="@color/white"
         android:textColorPrimary="@color/black"
         app:pstsDividerColor="@color/white"
-        app:pstsIndicatorColor="@color/theme_color"
+        app:pstsIndicatorColor="@color/theme"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
         app:pstsUnderlineHeight="0dp"/>

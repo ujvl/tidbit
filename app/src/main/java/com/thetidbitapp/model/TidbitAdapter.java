@@ -24,6 +24,8 @@ import java.util.ArrayList;
  */
 public class TidbitAdapter extends ArrayAdapter<Tidbit> {
 
+    private boolean mEnabled;
+
     public TidbitAdapter(Context context, ArrayList<Tidbit> events) {
         super(context, 0, events);
     }
@@ -55,4 +57,12 @@ public class TidbitAdapter extends ArrayAdapter<Tidbit> {
         return convertView;
     }
 
+    @Override
+    public boolean areAllItemsEnabled() {
+        return mEnabled;
+    }
+
+    public void setAllItemsEnabled(boolean enabled) {
+        mEnabled = enabled;
+    }
 }

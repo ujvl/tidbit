@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:indeterminate="true"
-        app:cpb_color="@color/theme_color"
+        app:cpb_color="@color/theme"
         app:cpb_colors="@array/progress_colors"
         app:cpb_rotation_speed="1.0"
         app:cpb_sweep_speed="1.0"
@@ -20,7 +20,7 @@
         app:cpb_min_sweep_angle="10"
         app:cpb_max_sweep_angle="300"/>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
@@ -41,15 +41,31 @@
 
         <com.melnykov.fab.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/std_margin"
+            android:layout_marginBottom="@dimen/std_margin"
+            android:layout_above="@+id/map_button"
             android:src="@drawable/ic_action_new"
             app:fab_colorNormal="@color/theme_sec"
             app:fab_colorPressed="@color/theme_sec_dark"
             app:fab_colorRipple="#ddd" />
 
-    </FrameLayout>
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:background="@color/theme"
+            android:visibility="visible"
+            android:src="@drawable/ic_action_map"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/map_button" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
