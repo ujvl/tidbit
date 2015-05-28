@@ -17,7 +17,6 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
         setContentView(R.layout.activity_initial);
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        Log.e("initial", new SessionManager(this).isLoggedIn() + " ----");
         if (new SessionManager(this).isLoggedIn()) {
             onLogin();
         }

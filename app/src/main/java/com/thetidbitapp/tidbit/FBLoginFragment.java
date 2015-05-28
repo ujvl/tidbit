@@ -52,7 +52,6 @@ public class FBLoginFragment extends Fragment {
 
                 rootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
                 new SessionManager(getActivity()).setLoggedIn(true);
-                Log.e("FBLOG",new SessionManager(getActivity()).isLoggedIn() + " _----__-_-" );
                 mListener.onLogin();
 
             }
