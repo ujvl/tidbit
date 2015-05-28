@@ -2,10 +2,10 @@
 <resources>
 
     <integer-array  name="progress_colors">
-        <item>@color/theme_sec_bright</item>
-        <item>@color/theme_sec</item>
-        <item>@color/theme_sec_dark</item>
-        <item>@color/theme_sec_darker</item>
+        <item>@color/sec_bright</item>
+        <item>@color/secondary</item>
+        <item>@color/sec_dark</item>
+        <item>@color/sec_darker</item>
     </integer-array>
 
 </resources>

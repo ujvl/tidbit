@@ -1,4 +1,4 @@
-package com.thetidbitapp.model;
+package com.thetidbitapp.viewadap;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,13 +30,13 @@ public class MainPagerAdapter extends FragmentPagerAdapter
     public Fragment getItem(int pos) {
         switch(pos) {
             case 0:
-                return FeedFragment.newInstance("Feed fragment", "Instance 1");
+                return new FeedFragment();
             case 1:
                 return ProfileFragment.newInstance("ThirdFragment", "Instance 1");
             case 2:
                 return new OverflowFragment();
             default:
-                throw new IllegalStateException("only 3 pages available");
+                throw new IllegalStateException("how would this happen??");
         }
     }
 

@@ -28,7 +28,7 @@ public class CustomSpeedViewPager extends ViewPager {
      * @param scrollFactor factor to change scroll speed by
      *                     (the bigger the factor, the slower it is)
      */
-    public void changeScrollSpeed(double scrollFactor) {
+    public void changeScrollSpeedFactor(double scrollFactor) {
         try {
             Field mScroller;
             mScroller = ViewPager.class.getDeclaredField("mScroller");

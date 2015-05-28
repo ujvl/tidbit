@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.thetidbitapp.model.MainPagerAdapter;
+import com.thetidbitapp.viewadap.MainPagerAdapter;
 import com.thetidbitapp.view.BlockedViewPager;
 
 public class MainActivity extends ActionBarActivity implements OnLogoutListener {

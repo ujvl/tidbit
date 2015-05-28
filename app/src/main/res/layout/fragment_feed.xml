@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,18 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/feed_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@+id/toolbar"
-        android:background="@color/white"
-        android:textColorPrimary="@color/black"
-        app:pstsDividerColor="@color/white"
-        app:pstsIndicatorColor="@color/theme_dark"
-        app:pstsIndicatorHeight="2dp"
-        app:pstsShouldExpand="true"
-        app:pstsUnderlineHeight="0dp"/>
 
     <com.thetidbitapp.view.CustomSpeedViewPager
         android:id="@+id/feed_pager"
@@ -26,4 +14,49 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</LinearLayout>
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/feed_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_container_height"
+        android:background="@color/white"
+        android:textColorPrimary="@color/black"
+        app:pstsDividerColor="@color/white"
+        app:pstsIndicatorColor="@color/prim_dark"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsShouldExpand="true"
+        app:pstsUnderlineHeight="0dp"/>
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/map_button_ripple"
+        app:mrl_rippleOverlay="true"
+        app:mrl_rippleHover="true"
+        app:mrl_rippleColor="@color/prim_darker"
+        android:layout_gravity="center_horizontal|bottom">
+
+        <ImageButton
+            android:id="@+id/map_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:background="@color/prim_dark"
+            android:src="@drawable/ic_action_map" />
+
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/std_margin"
+        android:layout_marginEnd="@dimen/std_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:src="@drawable/ic_action_new"
+        app:fab_colorNormal="@color/secondary"
+        app:fab_colorPressed="@color/sec_dark"
+        app:fab_colorRipple="#ddd"
+        android:layout_gravity="right|bottom" />
+
+
+</FrameLayout>

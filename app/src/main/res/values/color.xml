@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="theme_sec">#ff59af59</color>
-    <color name="theme_sec_bright">#8AF27F</color>
-    <color name="theme_sec_dark">#ff4da744</color>
-    <color name="theme_sec_darker">#ff3e8f36</color>
-    <color name="theme_sec_darkest">#23571E</color>
+    <color name="secondary">#ff59af59</color>
+    <color name="sec_bright">#8AF27F</color>
+    <color name="sec_dark">#ff4da744</color>
+    <color name="sec_darker">#ff3e8f36</color>
+    <color name="sec_darkest">#23571E</color>
 
     <color name="theme_light_gray">#ff708985</color>
     <color name="theme_gray">#4E5F5C</color>
 
-    <color name="theme">#00BBD2</color>
-    <color name="theme_bright">#ff00e3ff</color>
-    <color name="theme_dark">#ff0098ab</color>
-    <color name="theme_darker">#ff007b8a</color>
-    <color name="theme_darkest">#ff00626e</color>
+    <color name="primary">#00BBD2</color>
+    <color name="prim_bright">#ff00e3ff</color>
+    <color name="prim_dark">#ff0098ab</color>
+    <color name="prim_darker">#ff007b8a</color>
+    <color name="prim_darkest">#ff00626e</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
