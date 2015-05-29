@@ -3,7 +3,6 @@ package com.thetidbitapp.tidbit;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.facebook.FacebookSdk;
 import com.thetidbitapp.model.SessionManager;

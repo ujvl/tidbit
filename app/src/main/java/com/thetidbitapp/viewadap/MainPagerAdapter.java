@@ -17,9 +17,9 @@ public class MainPagerAdapter extends FragmentPagerAdapter
         implements PagerSlidingTabStrip.IconTabProvider {
 
     final int[] ICONS = new int[]{
-            R.drawable.ic_menu_home,
-            R.drawable.ic_action_person,
-            R.drawable.ic_action_menu
+            R.drawable.ic_home_white_24dp,
+            R.drawable.ic_account_circle_white_24dp,
+            R.drawable.ic_view_headline_white_24dp
     };
 
     public MainPagerAdapter(FragmentManager fm) {

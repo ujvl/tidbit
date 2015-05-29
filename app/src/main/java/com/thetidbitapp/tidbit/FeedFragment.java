@@ -2,15 +2,17 @@ package com.thetidbitapp.tidbit;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.balysv.materialripple.MaterialRippleLayout;
-import com.melnykov.fab.FloatingActionButton;
+import com.rey.material.widget.FloatingActionButton;
 import com.thetidbitapp.view.CustomSpeedViewPager;
 import com.thetidbitapp.viewadap.FeedPagerAdapter;
 
@@ -35,7 +37,6 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         mTabStrip = (PagerSlidingTabStrip) root.findViewById(R.id.feed_tabs);
         mTabStrip.setViewPager(pager);
 
-
         mMapContainer = (MaterialRippleLayout) root.findViewById(R.id.map_button_ripple);
         mFab = (FloatingActionButton) root.findViewById(R.id.fab);
         mFab.setOnClickListener(this);
@@ -43,13 +44,12 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         return root;
     }
 
-
     @Override
     public void onScrollDown() {
         if (!hidden) {
-            hide(mMapContainer, mMapContainer.getBottom());
-            hide(mFab, mFab.getBottom());
-            hide(mTabStrip, -mTabStrip.getHeight());
+            move(mMapContainer, mMapContainer.getBottom(), new AccelerateInterpolator());
+            move(mFab, mFab.getBottom(), new AccelerateInterpolator());
+            move(mTabStrip, -mTabStrip.getHeight(), new AccelerateInterpolator());
         }
         hidden = true;
     }
@@ -57,19 +57,15 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     @Override
     public void onScrollUp() {
         if (hidden) {
-            show(mMapContainer);
-            show(mFab);
-            show(mTabStrip);
+            move(mMapContainer, 0, new DecelerateInterpolator());
+            move(mFab, 0, new DecelerateInterpolator());
+            move(mTabStrip, 0, new DecelerateInterpolator());
         }
         hidden = false;
     }
 
-    public void hide(View v, float value) {
-        v.animate().translationY(value).setInterpolator(new AccelerateInterpolator()).start();
-    }
-
-    public void show(View v) {
-        v.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
+    public void move(View v, float value, Interpolator interpolator) {
+        v.animate().translationY(value).setInterpolator(interpolator).start();
     }
 
     @Override

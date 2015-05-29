@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <com.thetidbitapp.view.CustomSpeedViewPager
         android:id="@+id/feed_pager"
         tools:context="TidbitFragment"
@@ -18,10 +17,11 @@
         android:id="@+id/feed_tabs"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_container_height"
-        android:background="@color/white"
-        android:textColorPrimary="@color/black"
-        app:pstsDividerColor="@color/white"
-        app:pstsIndicatorColor="@color/prim_dark"
+        android:background="@color/prim_dark"
+        android:textColorPrimary="@color/white"
+        android:textColor="@color/white"
+        app:pstsDividerColor="@color/prim_dark"
+        app:pstsIndicatorColor="@color/white"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
         app:pstsUnderlineHeight="0dp"/>
@@ -39,24 +39,25 @@
             android:id="@+id/map_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp"
+            android:padding="12dp"
             android:background="@color/prim_dark"
-            android:src="@drawable/ic_action_map" />
+            android:src="@drawable/ic_map_white_24dp" />
 
     </com.balysv.materialripple.MaterialRippleLayout>
 
-    <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <com.rey.material.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/std_margin"
         android:layout_marginEnd="@dimen/std_margin"
         android:layout_marginBottom="@dimen/fab_margin"
-        android:src="@drawable/ic_action_new"
-        app:fab_colorNormal="@color/secondary"
-        app:fab_colorPressed="@color/sec_dark"
-        app:fab_colorRipple="#ddd"
-        android:layout_gravity="right|bottom" />
-
+        android:id="@+id/fab"
+        app:fab_iconSrc="@drawable/ic_action_new"
+        app:fab_elevation="2dp"
+        app:fab_backgroundColor="@color/secondary"
+        android:layout_gravity="right|bottom"
+        app:rd_style="@drawable/ripple"
+        app:rd_rippleType="wave"/>
 
 </FrameLayout>
