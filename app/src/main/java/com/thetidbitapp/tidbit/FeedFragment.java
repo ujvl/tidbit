@@ -2,7 +2,6 @@ package com.thetidbitapp.tidbit;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.rey.material.widget.FloatingActionButton;
 import com.thetidbitapp.view.CustomSpeedViewPager;
-import com.thetidbitapp.viewadap.FeedPagerAdapter;
+import com.thetidbitapp.adap.FeedPagerAdapter;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
         EventsFragment.OnEventsInteractionListener {

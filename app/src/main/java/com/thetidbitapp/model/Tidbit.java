@@ -1,5 +1,8 @@
 package com.thetidbitapp.model;
 
+import android.graphics.Bitmap;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -7,46 +10,64 @@ import java.util.Date;
  */
 public class Tidbit {
 
-    private String name;
-    private Date datetime;
-    private String location;
-    private String food;
-    private String description;
-    private int numAttendees;
-    private boolean userAttending;
+    private int mId;
+    private String mName;
+    private Date mDatetime;
+    private String mLocation;
+    private String mFood;
+    private String mDescription;
+    private int mNumAttendees;
+    private Bitmap cover;
 
-//    private static SimpleDateFormat dateFormater = new SimpleDateFormat("mm dd yy at tt");
+    private static SimpleDateFormat dateFormater;
 
-    public Tidbit(String name, Date date, String loc, String food, int att) {
-        this(name, date, loc, food, "", att);
+    public Tidbit(int id, String name, Date date, String loc, String food, int att) {
+        this(id, name, date, loc, food, "", att);
     }
 
-    public Tidbit(String name, Date date, String loc, String food, String descr) {
-        this(name, date, loc, food, descr, 0);
+    public Tidbit(int id, String name, Date date, String loc, String food, String descr) {
+        this(id, name, date, loc, food, descr, 0);
     }
 
-    public Tidbit(String name, Date date, String loc, String food, String descr, int att) {
-        this.name = name;
-        this.location = loc;
-        this.datetime = date;
-        this.food = food;
-        this.description = descr;
-        this.numAttendees = att;
+    public Tidbit(int id, String name, Date date, String loc, String food, String descr, int att) {
+        mId = id;
+        mName = name;
+        mLocation = loc;
+        mDatetime = date;
+        mFood = food;
+        mDescription = descr;
+        mNumAttendees = att;
     }
 
-    public String eventName() { return name; }
+    public String eventName() { return mName; }
 
     public String datetime() { return "Mar 12th at 1:00 pm";/*dateFormater.format(datetime);*/ }
 
-    public String location() { return location; }
+    public String location() { return mLocation; }
 
-    public boolean hasFreeFood() { return food == null; }
+    public boolean hasFreeFood() { return mFood == null; }
 
-    public String food() { return food; }
+    public String food() { return mFood; }
 
-    public String description() { return description; }
+    public String description() { return mDescription; }
 
-    public int numberAttending() { return numAttendees; }
+    public int numberAttending() { return mNumAttendees; }
+
+    public Bitmap cover() { return cover; }
+
+    public void setName(String name) { mName = name; }
+
+    public void setDatetime(Date datetime) { mDatetime = datetime; }
+
+    public void setLocation(String location) { mLocation = location; }
+
+    public void setFood(String food) { mFood = food; }
+
+    public void setmDescription(String mDescription) { mDescription = mDescription; }
+
+    public void setNumAttendees(int numAttendees) { mNumAttendees = numAttendees; }
+
+    public void setCover(Bitmap cover) { cover = cover; }
 
 }
 

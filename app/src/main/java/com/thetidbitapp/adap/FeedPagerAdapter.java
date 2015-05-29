@@ -1,4 +1,4 @@
-package com.thetidbitapp.viewadap;
+package com.thetidbitapp.adap;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

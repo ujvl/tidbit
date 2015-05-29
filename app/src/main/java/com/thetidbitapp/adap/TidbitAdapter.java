@@ -1,4 +1,4 @@
-package com.thetidbitapp.model;
+package com.thetidbitapp.adap;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.balysv.materialripple.MaterialRippleLayout;
+import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.tidbit.R;
 
 import java.util.ArrayList;
@@ -53,7 +54,6 @@ public class TidbitAdapter extends ArrayAdapter<Tidbit> {
         tvLoc.setText(tidbit.location());
         tvAtt.setText(tidbit.numberAttending() + " going");
 
-//        MaterialRippleLayout.on(convertView).rippleInAdapter(true).rippleColor(Color.BLACK).create();
         return convertView;
     }
 
@@ -65,4 +65,5 @@ public class TidbitAdapter extends ArrayAdapter<Tidbit> {
     public void setAllItemsEnabled(boolean enabled) {
         mEnabled = enabled;
     }
+
 }

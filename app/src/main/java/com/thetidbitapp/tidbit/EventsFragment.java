@@ -12,20 +12,32 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.thetidbitapp.adap.EnablableCardAdapter;
 import com.thetidbitapp.model.Tidbit;
-import com.thetidbitapp.model.TidbitAdapter;
+import com.thetidbitapp.view.TidbitCard;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import it.gmariotti.cardslib.library.internal.Card;
+import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
+import it.gmariotti.cardslib.library.view.CardListView;
 
 public class EventsFragment extends Fragment implements AbsListView.OnScrollListener,
         SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
 
-    private ListView mTidbitList;
-    private TidbitAdapter mTidbitAdapter;
-    private ArrayList<Tidbit> mTidbits;
+    /*
+        View objects
+     */
+    private CardListView mTidbitList;
+    private EnablableCardAdapter mCardAdapter;
+    private List<Card> mCards;
     private SwipeRefreshLayout mRefresher;
 
+    /*
+        Control objects
+     */
     private SortType mSortType;
     private int mLastFirstVisibleItem;
     private OnEventsInteractionListener mListener;
@@ -55,19 +67,16 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
 
         if (getArguments() != null) {
             mSortType = (SortType) getArguments().getSerializable(SORT_PARAM);
-            mTidbits = new ArrayList<>();
+            mCards = new ArrayList<>();
             if (mSortType == SortType.POPULAR) {
-                mTidbits.add(new Tidbit("Ma burfday", new Date(), "Evans hall, UC Berkeley, CA", "Sliver", 123));
-                mTidbits.add(new Tidbit("TEDxBerkeley", new Date(), "Soda hall, UC Berkeley, CA", "Top Dog", 234));
                 for (int i = 0; i < 15; i++)
-                    mTidbits.add(new Tidbit("Lol free food", new Date(), "Wheeler hall, UC Berkeley, CA", "Other", 53));
+                    mCards.add(new TidbitCard(getActivity(),
+                            new Tidbit(0, "TEDxBerkeley", new Date(), "Evans hall, UC Berkeley, CA", "Sliver", 123)));
             }
             else {
-                mTidbits.add(new Tidbit("Google Tech talk", new Date(), "Wheeler hall, UC Berkeley, CA", "Top Dog", 63));
-                mTidbits.add(new Tidbit("420 free dope", new Date(), "Memorial Glade, My ass, CA", "Sliver", 27));
-                mTidbits.add(new Tidbit("Engineering Week", new Date(), "Dope hall, VA", "Sushi", 293));
                 for (int i = 0; i < 15; i++)
-                    mTidbits.add(new Tidbit("Free ReDbUlL", new Date(), "Cory hall, Moon", "Pizza", 46));
+                    mCards.add(new TidbitCard(getActivity(),
+                            new Tidbit(0, "Engineering Week", new Date(), "Doe Library, VA", "Sushi", 293)));
             }
         }
 
@@ -77,7 +86,7 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View root = inflater.inflate(R.layout.fragment_events, container, false);
-        mTidbitList = (ListView) root.findViewById(R.id.tidbits_list);
+        mTidbitList = (CardListView) root.findViewById(R.id.tidbits_list);
         mRefresher = (SwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
 
         // Load content
@@ -101,8 +110,8 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
     }
 
     private void setupList() {
-        mTidbitAdapter = new TidbitAdapter(getActivity(), mTidbits);
-        mTidbitList.setAdapter(mTidbitAdapter);
+        mCardAdapter = new EnablableCardAdapter(getActivity(), mCards);
+        mTidbitList.setAdapter(mCardAdapter);
     }
 
     @Override
@@ -124,13 +133,13 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
 
     @Override
     public void onRefresh() {
-        mTidbitAdapter.setAllItemsEnabled(false);
+        mCardAdapter.setAllItemsEnabled(false);
         setupList();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mRefresher.setRefreshing(false);
-                mTidbitAdapter.setAllItemsEnabled(true);
+                mCardAdapter.setAllItemsEnabled(true);
             }
         }, 2500);
     }

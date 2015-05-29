@@ -8,6 +8,7 @@
 
     <color name="theme_light_gray">#ff708985</color>
     <color name="theme_gray">#4E5F5C</color>
+    <color name="theme_gray_dark">#ff364240</color>
 
     <color name="primary">#00BBD2</color>
     <color name="prim_bright">#ff00e3ff</color>
@@ -17,5 +18,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    
+
+    <color name="title_black">#ff222222</color>
+    <color name="subtitle_black">#ff767676</color>
 </resources>
