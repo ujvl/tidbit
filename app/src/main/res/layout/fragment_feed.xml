@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/prim_dark"
-        app:tpi_indicatorColor="@color/white"
+        app:tpi_indicatorColor="@color/sec_bright"
+        app:tpi_indicatorHeight="4dp"
         app:tpi_mode="fixed"
         app:tpi_tabRipple="@drawable/ripple"
         android:textAppearance="@style/ToolBarStyle"/>
@@ -43,7 +44,9 @@
         android:id="@+id/map_button_ripple"
         app:mrl_rippleOverlay="true"
         app:mrl_rippleHover="true"
-        app:mrl_rippleColor="@color/prim_darker"
+        app:mrl_rippleColor="@color/black"
+        app:mrl_rippleDuration="700"
+        app:mrl_rippleFadeDuration="200"
         android:layout_gravity="center_horizontal|bottom">
 
         <ImageButton

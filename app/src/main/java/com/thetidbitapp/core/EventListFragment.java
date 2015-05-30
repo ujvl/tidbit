@@ -1,4 +1,4 @@
-package com.thetidbitapp.tidbit;
+package com.thetidbitapp.core;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import com.thetidbitapp.adap.EnablableCardAdapter;
 import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.adap.TidbitCard;
+import com.thetidbitapp.tidbit.R;
+import com.thetidbitapp.view.FixedSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,8 +25,13 @@ import java.util.List;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.view.CardListView;
 
-public class EventsFragment extends Fragment implements AbsListView.OnScrollListener,
+public abstract class EventListFragment extends Fragment implements AbsListView.OnScrollListener,
         SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
+
+    public interface OnEventsInteractionListener {
+        public void onScrollUp();
+        public void onScrollDown();
+    }
 
     private static final int[] REFRESH_COLORS = new int[] {
             R.color.sec_brighter, R.color.sec_bright, R.color.secondary
@@ -36,61 +43,25 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
     private CardListView mTidbitList;
     private EnablableCardAdapter mCardAdapter;
     private List<Card> mCards;
-    private SwipeRefreshLayout mRefresher;
+    private FixedSwipeRefreshLayout mRefresher;
 
     /*
         Control objects
      */
-    private SortType mSortType;
     private int mLastFirstVisibleItem;
     private OnEventsInteractionListener mListener;
     private static final String SORT_PARAM = "sort_type";
 
-    public enum SortType { UPCOMING, POPULAR; }
+    public abstract List<Card> getCards();
 
-    public interface OnEventsInteractionListener {
-        public void onScrollUp();
-        public void onScrollDown();
-    }
-
-    public static EventsFragment newInstance(SortType sortType) {
-        EventsFragment fragment = new EventsFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(SORT_PARAM, sortType);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public EventsFragment() { }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mSortType = (SortType) getArguments().getSerializable(SORT_PARAM);
-            mCards = new ArrayList<>();
-            if (mSortType == SortType.POPULAR) {
-                for (int i = 0; i < 15; i++)
-                    mCards.add(new TidbitCard(getActivity(),
-                            new Tidbit(0, "TEDxBerkeley", new Date(), "Evans hall, UC Berkeley, CA", "Sliver", 123)));
-            }
-            else {
-                for (int i = 0; i < 15; i++)
-                    mCards.add(new TidbitCard(getActivity(),
-                            new Tidbit(0, "Engineering Week", new Date(), "Doe Library, VA", "Sushi", 293)));
-            }
-        }
-
-    }
+    public EventListFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View root = inflater.inflate(R.layout.fragment_events, container, false);
         mTidbitList = (CardListView) root.findViewById(R.id.tidbits_list);
-        mRefresher = (SwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
+        mRefresher = (FixedSwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
 
         // Load content (Simulation)
         new Handler().postDelayed(new Runnable() {
@@ -113,6 +84,8 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
     }
 
     private void setupList() {
+        mCards = getCards();
+        mCards.get(0).onSwipeCard();
         mCardAdapter = new EnablableCardAdapter(getActivity(), mCards);
         mTidbitList.setAdapter(mCardAdapter);
     }

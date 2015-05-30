@@ -1,4 +1,4 @@
-package com.thetidbitapp.tidbit;
+package com.thetidbitapp.core;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,17 +6,16 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
+import android.view.animation.*;
 
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.rey.material.widget.FloatingActionButton;
 import com.rey.material.widget.TabPageIndicator;
 import com.thetidbitapp.adap.FeedPagerAdapter;
+import com.thetidbitapp.tidbit.R;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
-        EventsFragment.OnEventsInteractionListener {
+        EventListFragment.OnEventsInteractionListener {
 
     private MaterialRippleLayout mMapContainer;
     private FloatingActionButton mFab;
@@ -31,6 +30,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
         ViewPager pager = (ViewPager) root.findViewById(R.id.feed_pager);
         pager.setAdapter(new FeedPagerAdapter(getChildFragmentManager()));
+        pager.setOffscreenPageLimit(3);
 
         mTabStrip = (TabPageIndicator) root.findViewById(R.id.feed_tabs);
         mTabStrip.setViewPager(pager);

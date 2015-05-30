@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="secondary">#ff59af59</color>
-    <color name="sec_brighter">#ff6af282</color>
-    <color name="sec_bright">#ff27bc0e</color>
-    <color name="sec_dark">#ff4da744</color>
-    <color name="sec_darker">#ff3e8f36</color>
-    <color name="sec_darkest">#23571E</color>
+    <color name="secondary">#ff7800</color>
+    <color name="sec_brighter">#ffffba10</color>
+    <color name="sec_bright">#ffffa300</color>
+    <color name="sec_dark">#DE731E</color>
+    <color name="sec_darker">#C55D00</color>
+    <color name="sec_darkest">#9B4900</color>
 
     <color name="theme_light_gray">#ff708985</color>
     <color name="theme_gray">#4E5F5C</color>

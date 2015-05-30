@@ -1,92 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/card_main_layout">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
-        <LinearLayout
+        <com.joooonho.SelectableRoundedImageView
+            android:id="@+id/card_cover_pic"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            app:sriv_left_top_corner_radius="@dimen/std_card_corner_radius"
+            app:sriv_right_top_corner_radius="@dimen/std_card_corner_radius"
+            app:sriv_border_width="0dp"/>
+
+        <TextView
+            android:id="@+id/card_event_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/white"
-            android:id="@+id/card_main_content_layout">
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:textSize="24sp"
+            android:textColor="@color/title_black"
+            android:text="Event Title goes here" />
 
-            <com.joooonho.SelectableRoundedImageView
-                android:id="@+id/card_cover_pic"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
-                app:sriv_left_top_corner_radius="@dimen/std_card_corner_radius"
-                app:sriv_right_top_corner_radius="@dimen/std_card_corner_radius"
-                app:sriv_border_width="0dp"/>
+        <TextView
+            android:id="@+id/card_loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/subtitle_black"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Location, Of, Event, Goes, Here"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
 
             <TextView
-                android:id="@+id/card_event_title"
-                android:layout_width="match_parent"
+                android:id="@+id/card_going"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:textSize="24sp"
-                android:textColor="@color/title_black"
-                android:text="Event Title goes here" />
+                android:text="GOING"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:padding="8dp"
+                android:layout_marginLeft="8dp"
+                android:background="@color/white"
+                android:textColor="@color/black"/>
 
             <TextView
-                android:id="@+id/card_loc"
-                android:layout_width="match_parent"
+                android:id="@+id/card_not_going"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:text="NOT GOING"
+                android:background="@color/white"
+                android:textColor="@color/black"
+                android:padding="8dp"
+                android:layout_toRightOf="@id/card_going"/>
+
+            <TextView
+                android:id="@+id/card_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:textSize="12sp"
+                android:text="July 12 at 12:12 pm"
                 android:textColor="@color/subtitle_black"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:text="Location, Of, Event, Goes, Here"/>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/card_going"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GOING"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:padding="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:background="@color/white"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:id="@+id/card_not_going"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NOT GOING"
-                    android:background="@color/white"
-                    android:textColor="@color/black"
-                    android:padding="8dp"
-                    android:layout_toRightOf="@id/card_going"/>
-
-                <TextView
-                    android:id="@+id/card_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="16dp"
-                    android:textSize="12sp"
-                    android:text="July 12 at 12:12 pm"
-                    android:textColor="@color/subtitle_black"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

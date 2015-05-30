@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.thetidbitapp.core.FeedFragment;
+
 public class MainActivity extends ActionBarActivity implements OnLogoutListener {
 
     @Override
@@ -41,6 +43,11 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_settings) {
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
