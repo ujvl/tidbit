@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="secondary">#ff59af59</color>
-    <color name="sec_bright">#8AF27F</color>
+    <color name="sec_brighter">#ff6af282</color>
+    <color name="sec_bright">#ff27bc0e</color>
     <color name="sec_dark">#ff4da744</color>
     <color name="sec_darker">#ff3e8f36</color>
     <color name="sec_darkest">#23571E</color>

@@ -18,7 +18,6 @@ public class EnablableCardAdapter extends CardArrayAdapter {
         super(context, cards);
     }
 
-
     @Override
     public boolean areAllItemsEnabled() {
         return mEnabled;

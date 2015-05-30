@@ -7,13 +7,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.thetidbitapp.view.CustomSpeedViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/feed_pager"
         tools:context="TidbitFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.astuetz.PagerSlidingTabStrip
+    <com.rey.material.widget.TabPageIndicator
+        style="@style/Material.Widget.TabPageIndicator"
+        android:id="@+id/feed_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/prim_dark"
+        app:tpi_indicatorColor="@color/white"
+        app:tpi_mode="fixed"
+        app:tpi_tabRipple="@drawable/ripple"
+        android:textAppearance="@style/ToolBarStyle"/>
+
+    <!--<com.astuetz.PagerSlidingTabStrip
         android:id="@+id/feed_tabs"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_container_height"
@@ -24,7 +35,7 @@
         app:pstsIndicatorColor="@color/white"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
-        app:pstsUnderlineHeight="0dp"/>
+        app:pstsUnderlineHeight="0dp"/>-->
 
     <com.balysv.materialripple.MaterialRippleLayout
         android:layout_width="match_parent"
@@ -45,7 +56,6 @@
 
     </com.balysv.materialripple.MaterialRippleLayout>
 
-
     <com.rey.material.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +65,7 @@
         android:id="@+id/fab"
         app:fab_iconSrc="@drawable/ic_action_new"
         app:fab_elevation="2dp"
-        app:fab_backgroundColor="@color/secondary"
+        app:fab_backgroundColor="@color/sec_bright"
         android:layout_gravity="right|bottom"
         app:rd_style="@drawable/ripple"
         app:rd_rippleType="wave"/>

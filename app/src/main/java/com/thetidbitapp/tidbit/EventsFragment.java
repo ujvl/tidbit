@@ -5,27 +5,30 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.thetidbitapp.adap.EnablableCardAdapter;
 import com.thetidbitapp.model.Tidbit;
-import com.thetidbitapp.view.TidbitCard;
+import com.thetidbitapp.adap.TidbitCard;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.view.CardListView;
 
 public class EventsFragment extends Fragment implements AbsListView.OnScrollListener,
         SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
+
+    private static final int[] REFRESH_COLORS = new int[] {
+            R.color.sec_brighter, R.color.sec_bright, R.color.secondary
+    };
 
     /*
         View objects
@@ -89,7 +92,7 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
         mTidbitList = (CardListView) root.findViewById(R.id.tidbits_list);
         mRefresher = (SwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
 
-        // Load content
+        // Load content (Simulation)
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -103,7 +106,7 @@ public class EventsFragment extends Fragment implements AbsListView.OnScrollList
         mTidbitList.setOnScrollListener(this);
         mRefresher.setOnRefreshListener(this);
 
-        mRefresher.setColorSchemeResources(R.color.sec_bright, R.color.secondary, R.color.sec_darker);
+        mRefresher.setColorSchemeResources(REFRESH_COLORS);
         mRefresher.setProgressViewOffset(false, 0, 250);
 
         return root;

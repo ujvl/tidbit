@@ -26,25 +26,13 @@
         android:layout_height="wrap_content"
         android:visibility="invisible">
 
-        <!--<ListView
-            android:id="@+id/tidbits_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingTop="@dimen/tab_container_height"
-            android:scrollbars="none"/>-->
         <it.gmariotti.cardslib.library.view.CardListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tidbits_list"
             android:clipToPadding="false"
-            app:list_card_layout_resourceID="@layout/tidbit_card"
-            android:layout_marginLeft="@dimen/std_margin"
-            android:layout_marginRight="@dimen/std_margin"
-            android:paddingTop="@dimen/tab_container_height_plus_margin"
-            android:paddingLeft="@dimen/card_default_native_margin_left"
-            android:paddingEnd="@dimen/card_default_native_margin_right"
-            android:paddingRight="@dimen/card_default_native_margin_right"
+            android:paddingTop="54dp"
+            app:card_layout_resourceID="@layout/tidbit_card"
             android:scrollbars="none"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>

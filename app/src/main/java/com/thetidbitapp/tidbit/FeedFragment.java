@@ -2,6 +2,7 @@ package com.thetidbitapp.tidbit;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.rey.material.widget.FloatingActionButton;
-import com.thetidbitapp.view.CustomSpeedViewPager;
+import com.rey.material.widget.TabPageIndicator;
 import com.thetidbitapp.adap.FeedPagerAdapter;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
@@ -20,7 +20,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
     private MaterialRippleLayout mMapContainer;
     private FloatingActionButton mFab;
-    private PagerSlidingTabStrip mTabStrip;
+    private TabPageIndicator mTabStrip;
     private boolean hidden = false;
 
     public FeedFragment() { }
@@ -29,11 +29,10 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_feed, container, false);
 
-        CustomSpeedViewPager pager = (CustomSpeedViewPager) root.findViewById(R.id.feed_pager);
+        ViewPager pager = (ViewPager) root.findViewById(R.id.feed_pager);
         pager.setAdapter(new FeedPagerAdapter(getChildFragmentManager()));
-        pager.changeScrollSpeedFactor(0.01); // Hacky fix to make it seem like there's no animation
 
-        mTabStrip = (PagerSlidingTabStrip) root.findViewById(R.id.feed_tabs);
+        mTabStrip = (TabPageIndicator) root.findViewById(R.id.feed_tabs);
         mTabStrip.setViewPager(pager);
 
         mMapContainer = (MaterialRippleLayout) root.findViewById(R.id.map_button_ripple);
