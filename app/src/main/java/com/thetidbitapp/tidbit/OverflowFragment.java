@@ -46,6 +46,12 @@ public class OverflowFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(R.string.settings_heading);
+    }
+
     private void setText(View root, int viewId, int strId) {
         ((TextView) (root.findViewById(viewId)).findViewById(R.id.overflow_item_text))
                 .setText(getText(strId));

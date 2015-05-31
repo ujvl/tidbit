@@ -11,15 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.thetidbitapp.adap.EnablableCardAdapter;
-import com.thetidbitapp.model.Tidbit;
-import com.thetidbitapp.adap.TidbitCard;
 import com.thetidbitapp.tidbit.R;
 import com.thetidbitapp.view.FixedSwipeRefreshLayout;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
@@ -28,9 +25,10 @@ import it.gmariotti.cardslib.library.view.CardListView;
 public abstract class EventListFragment extends Fragment implements AbsListView.OnScrollListener,
         SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
 
-    public interface OnEventsInteractionListener {
+    public interface OnEventListInteractionListener {
         public void onScrollUp();
         public void onScrollDown();
+        public void onCardClick(CharSequence id);
     }
 
     private static final int[] REFRESH_COLORS = new int[] {
@@ -49,7 +47,7 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
         Control objects
      */
     private int mLastFirstVisibleItem;
-    private OnEventsInteractionListener mListener;
+    private OnEventListInteractionListener mListener;
     private static final String SORT_PARAM = "sort_type";
 
     public abstract List<Card> getCards();
@@ -58,6 +56,8 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        Log.i("HELLO ONCREATEVIEW", "ASDASDASD");
 
         final View root = inflater.inflate(R.layout.fragment_events, container, false);
         mTidbitList = (CardListView) root.findViewById(R.id.tidbits_list);
@@ -85,7 +85,6 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
 
     private void setupList() {
         mCards = getCards();
-        mCards.get(0).onSwipeCard();
         mCardAdapter = new EnablableCardAdapter(getActivity(), mCards);
         mTidbitList.setAdapter(mCardAdapter);
     }
@@ -122,14 +121,14 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // TODO go to tidbit
+        mListener.onCardClick(((TextView) view.findViewById(R.id.card_id)).getText());
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnEventsInteractionListener) getParentFragment();
+            mListener = (OnEventListInteractionListener) getParentFragment();
         } catch (ClassCastException e) {
             throw new ClassCastException("parent fragment must implement Listener");
         }

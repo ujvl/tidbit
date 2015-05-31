@@ -23,20 +23,7 @@
         app:tpi_indicatorHeight="4dp"
         app:tpi_mode="fixed"
         app:tpi_tabRipple="@drawable/ripple"
-        android:textAppearance="@style/ToolBarStyle"/>
-
-    <!--<com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/feed_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tab_container_height"
-        android:background="@color/prim_dark"
-        android:textColorPrimary="@color/white"
-        android:textColor="@color/white"
-        app:pstsDividerColor="@color/prim_dark"
-        app:pstsIndicatorColor="@color/white"
-        app:pstsIndicatorHeight="2dp"
-        app:pstsShouldExpand="true"
-        app:pstsUnderlineHeight="0dp"/>-->
+        android:textAppearance="@style/TabBarStyle"/>
 
     <com.balysv.materialripple.MaterialRippleLayout
         android:layout_width="match_parent"

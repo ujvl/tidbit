@@ -12,9 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView style="@style/HeadingStyle"
-            android:text="Settings"/>
-
         <include layout="@layout/overflow_item"
             android:id="@+id/ov_item_profile"/>
 

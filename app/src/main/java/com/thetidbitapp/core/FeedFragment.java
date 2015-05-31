@@ -1,5 +1,6 @@
 package com.thetidbitapp.core;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -15,12 +16,18 @@ import com.thetidbitapp.adap.FeedPagerAdapter;
 import com.thetidbitapp.tidbit.R;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
-        EventListFragment.OnEventsInteractionListener {
+        EventListFragment.OnEventListInteractionListener {
 
+    private OnFeedInteractionListener mListener;
     private MaterialRippleLayout mMapContainer;
     private FloatingActionButton mFab;
     private TabPageIndicator mTabStrip;
     private boolean hidden = false;
+
+    public interface OnFeedInteractionListener {
+        public void onFABClick();
+        public void onCardClick(CharSequence id);
+    }
 
     public FeedFragment() { }
 
@@ -68,7 +75,33 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
     @Override
     public void onClick(View v) {
-
+        mListener.onFABClick();
     }
 
+    @Override
+    public void onCardClick(CharSequence id) {
+        mListener.onCardClick(id.toString());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(R.string.app_name);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFeedInteractionListener) getParentFragment();
+        } catch (ClassCastException e) {
+            throw new ClassCastException("parent activity must implement Listener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 }
