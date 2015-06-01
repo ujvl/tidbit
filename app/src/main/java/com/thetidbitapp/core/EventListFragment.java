@@ -31,10 +31,6 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
         public void onCardClick(CharSequence id);
     }
 
-    private static final int[] REFRESH_COLORS = new int[] {
-            R.color.sec_brighter, R.color.sec_bright, R.color.secondary
-    };
-
     /*
         View objects
      */
@@ -77,7 +73,7 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
         mTidbitList.setOnScrollListener(this);
         mRefresher.setOnRefreshListener(this);
 
-        mRefresher.setColorSchemeResources(REFRESH_COLORS);
+        mRefresher.setColorSchemeResources(R.color.sec_brighter);
         mRefresher.setProgressViewOffset(false, 0, 250);
 
         return root;

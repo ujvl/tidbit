@@ -2,19 +2,12 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    </style>
 
-    <!--<style name="AppTheme" parent="android:Theme.Material">-->
-        <!--<item name="android:windowNoTitle">true</item>-->
-        <!--<item name="windowActionBar">false</item>-->
-        <!--&lt;!&ndash; Main theme colors &ndash;&gt;-->
-        <!--&lt;!&ndash;   your app branding color for the app bar &ndash;&gt;-->
-        <!--<item name="android:colorPrimary">@color/primary</item>-->
-        <!--&lt;!&ndash;   darker variant for the status bar and contextual app bars &ndash;&gt;-->
-        <!--<item name="android:colorPrimaryDark">@color/primary_dark</item>-->
-        <!--&lt;!&ndash;   theme UI controls like checkboxes and text fields &ndash;&gt;-->
-        <!--<item name="android:colorAccent">@color/accent</item>-->
-    <!--</style>-->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/prim_dark</item>
+        <item name="colorAccent">@color/sec_bright</item>
+
+    </style>
 
     <style name="TabBarStyle" parent="Theme.AppCompat.Light">
         <item name="android:textColor">@color/white</item>
@@ -27,6 +20,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
     </style>
 
     <style name="HeadingStyle" parent="@android:style/TextAppearance.Medium">
@@ -51,6 +45,21 @@
     <style name="LinLayoutItemStyle" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/std_med_text_size</item>
+    </style>
+
+    <style name="FieldStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/std_med_text_size</item>
+        <item name="android:layout_marginLeft">@dimen/std_margin</item>
+        <item name="et_labelEnable">true</item>
+        <item name="et_dividerColor">@color/theme_light_gray</item>
+        <item name="et_dividerErrorColor">#ffff0000</item>
+        <item name="et_dividerHeight">1dp</item>
+        <item name="et_dividerPadding">8dp</item>
+        <item name="et_labelPadding">8dp</item>
+        <item name="et_labelTextSize">@dimen/std_small_text_size</item>
+        <item name="et_labelTextColor">@color/sec_bright</item>
+
     </style>
 
 </resources>

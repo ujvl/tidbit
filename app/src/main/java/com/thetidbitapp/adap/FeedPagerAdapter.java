@@ -38,13 +38,13 @@ public class FeedPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int pos) {
         switch(pos) {
             case 0:
-                return "Upcoming";
+                return "Upcoming".toUpperCase();
             case 1:
-                return "Popular";
+                return "Popular".toUpperCase();
             case 2:
-                return "Saved";
+                return "Saved".toUpperCase();
             case 3:
-                return "Your Posts";
+                return "Your Posts".toUpperCase();
             default:
                 throw new IllegalStateException("how is this possible??");
         }

@@ -2,9 +2,13 @@ package com.thetidbitapp.core;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.*;
@@ -30,6 +34,18 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     }
 
     public FeedFragment() { }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -93,7 +109,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFeedInteractionListener) getParentFragment();
+            mListener = (OnFeedInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException("parent activity must implement Listener");
         }

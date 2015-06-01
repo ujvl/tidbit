@@ -7,14 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.thetidbitapp.core.FeedFragment;
 
 public class MainActivity extends ActionBarActivity implements OnLogoutListener,
                             FragmentManager.OnBackStackChangedListener,
-                            FeedFragment.OnFeedInteractionListener {
+                            FeedFragment.OnFeedInteractionListener,
+                            NewEventFragment.OnSubmitListener {
 
     private static String FRAG_TAG = "current fragment";
 
@@ -48,27 +48,20 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.action_settings) {
-
-            addAndCommit(new OverflowFragment());
-
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                addAndCommit(new OverflowFragment());
+                break;
+            case R.id.action_notif:
+                break;
         }
-        else if (item.getItemId() == R.id.action_notif) {
-
-            // TODO
-
-        }
-
         return super.onOptionsItemSelected(item);
-
     }
 
     @Override
@@ -93,7 +86,7 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
 
     @Override
     public void onFABClick() {
-        addAndCommit(new OverflowFragment());
+        addAndCommit(new NewEventFragment());
     }
 
     @Override
@@ -101,9 +94,14 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
         addAndCommit(new OverflowFragment());
     }
 
+    @Override
+    public void onSubmit() {
+
+    }
+
     private void addAndCommit(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
-        .addToBackStack(null).add(R.id.container_main, fragment, FRAG_TAG).commit();
+        .addToBackStack(null).replace(R.id.container_main, fragment, FRAG_TAG).commit();
     }
 
     private void shouldDisplayHomeUp() {

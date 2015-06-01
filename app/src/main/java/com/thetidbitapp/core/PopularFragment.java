@@ -19,7 +19,7 @@ public class PopularFragment extends EventListFragment {
         ArrayList<Card> cards = new ArrayList<>();
         for (int i = 0; i < 15; i++)
             cards.add(new TidbitCard(getActivity(),
-                    new Tidbit(0, "Engineering Week", new Date(), "Doe Library, VA", "Sushi", 293)));
+                    new Tidbit(0, "Hey buddy", new Date(), "Doe Library, VA", "Sushi", 293)));
         return cards;
     }
 
