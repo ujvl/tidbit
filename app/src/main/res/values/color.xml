@@ -22,4 +22,8 @@
 
     <color name="title_black">#ff222222</color>
     <color name="subtitle_black">#ff767676</color>
+
+    <color name="mdtp_accent_color">@color/prim_darkest</color>
+    <color name="mdtp_accent_color_dark">@color/prim_dark</color>
+
 </resources>

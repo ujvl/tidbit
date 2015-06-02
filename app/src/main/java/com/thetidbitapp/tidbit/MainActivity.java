@@ -47,7 +47,6 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -85,8 +84,7 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
 
     @Override
     public void onFABClick() {
-        getFragmentManager().beginTransaction().addToBackStack(null)
-        .replace(R.id.container_main, new NewEventFragment(), FRAG_TAG).commit();
+        addAndCommit(new NewEventFragment());
     }
 
     @Override
