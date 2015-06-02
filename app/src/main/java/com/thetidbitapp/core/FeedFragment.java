@@ -2,13 +2,12 @@ package com.thetidbitapp.core;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.*;
@@ -20,7 +19,7 @@ import com.thetidbitapp.adap.FeedPagerAdapter;
 import com.thetidbitapp.tidbit.R;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
-        EventListFragment.OnEventListInteractionListener {
+        EventListFragment.OnEventListInteractionListener, ViewPager.OnPageChangeListener {
 
     private OnFeedInteractionListener mListener;
     private MaterialRippleLayout mMapContainer;
@@ -56,6 +55,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         pager.setOffscreenPageLimit(3);
 
         mTabStrip = (TabPageIndicator) root.findViewById(R.id.feed_tabs);
+        mTabStrip.setOnPageChangeListener(this);
         mTabStrip.setViewPager(pager);
 
         mMapContainer = (MaterialRippleLayout) root.findViewById(R.id.map_button_ripple);
@@ -64,6 +64,17 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
         return root;
     }
+
+    @Override
+    public void onPageSelected(int position) {
+        onScrollUp();
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+
+    @Override
+    public void onPageScrollStateChanged(int state) { }
 
     @Override
     public void onScrollDown() {
@@ -77,6 +88,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
     @Override
     public void onScrollUp() {
+        Log.e("ON scroll up calls ", hidden + "");
         if (hidden) {
             move(mMapContainer, 0, new DecelerateInterpolator());
             move(mFab, 0, new DecelerateInterpolator());

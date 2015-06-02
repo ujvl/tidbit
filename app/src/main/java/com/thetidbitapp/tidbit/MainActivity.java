@@ -27,7 +27,6 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         Fragment feed;
         if (savedInstanceState == null) {
             feed = new FeedFragment();
@@ -86,7 +85,8 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
 
     @Override
     public void onFABClick() {
-        addAndCommit(new NewEventFragment());
+        getFragmentManager().beginTransaction().addToBackStack(null)
+        .replace(R.id.container_main, new NewEventFragment(), FRAG_TAG).commit();
     }
 
     @Override
