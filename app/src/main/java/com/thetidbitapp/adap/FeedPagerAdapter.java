@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.thetidbitapp.core.PopularFragment;
-import com.thetidbitapp.core.SavedFragment;
-import com.thetidbitapp.core.UpcomingFragment;
-import com.thetidbitapp.core.UsersPostsFragment;
+import com.thetidbitapp.feed.PopularFragment;
+import com.thetidbitapp.feed.SavedFragment;
+import com.thetidbitapp.feed.UpcomingFragment;
+import com.thetidbitapp.feed.UsersPostsFragment;
 
 /**
  * Created by Ujval on 5/28/15.

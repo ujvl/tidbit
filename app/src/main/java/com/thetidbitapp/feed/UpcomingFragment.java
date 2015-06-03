@@ -1,4 +1,4 @@
-package com.thetidbitapp.core;
+package com.thetidbitapp.feed;
 
 import com.thetidbitapp.adap.TidbitCard;
 import com.thetidbitapp.model.Tidbit;
@@ -12,7 +12,7 @@ import it.gmariotti.cardslib.library.internal.Card;
 /**
  * Created by Ujval on 5/30/15.
  */
-public class UsersPostsFragment extends EventListFragment {
+public class UpcomingFragment extends EventListFragment {
 
     @Override
     public List<Card> getCards() {

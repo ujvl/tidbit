@@ -1,4 +1,4 @@
-package com.thetidbitapp.core;
+package com.thetidbitapp.feed;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.balysv.materialripple.MaterialRippleLayout;
 import com.rey.material.widget.FloatingActionButton;
 import com.rey.material.widget.TabPageIndicator;
 import com.thetidbitapp.adap.FeedPagerAdapter;
+import com.thetidbitapp.tidbit.OnEventInteractionListener;
 import com.thetidbitapp.tidbit.R;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
@@ -27,9 +28,9 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     private TabPageIndicator mTabStrip;
     private boolean hidden = false;
 
-    public interface OnFeedInteractionListener {
+    public interface OnFeedInteractionListener extends OnEventInteractionListener {
         public void onFABClick();
-        public void onCardClick(CharSequence id);
+        public void onCardClick(String id);
     }
 
     public FeedFragment() { }

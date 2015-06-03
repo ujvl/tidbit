@@ -1,4 +1,4 @@
-package com.thetidbitapp.core;
+package com.thetidbitapp.feed;
 
 import com.thetidbitapp.adap.TidbitCard;
 import com.thetidbitapp.model.Tidbit;

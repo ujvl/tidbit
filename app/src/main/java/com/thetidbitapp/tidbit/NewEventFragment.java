@@ -75,6 +75,21 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_new_event, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_done) {
+            mListener.onSubmit();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void setupButtonListener(final Button button, boolean isForDate) {
 
         Calendar now = Calendar.getInstance();
@@ -82,28 +97,28 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
 
         if (isForDate) {
             picker = DatePickerDialog.newInstance(
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                        button.setText(monthOfYear + "/" + dayOfMonth + "/" + year);
-                    }
-                },
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH)
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                            button.setText(monthOfYear + "/" + dayOfMonth + "/" + year);
+                        }
+                    },
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
             );
         }
         else {
             picker = TimePickerDialog.newInstance(
-                new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-                        button.setText(hourOfDay + ":" + minute);
-                     }
-                },
-                now.get(Calendar.HOUR_OF_DAY),
-                now.get(Calendar.MINUTE),
-                false
+                    new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+                            button.setText(hourOfDay + ":" + minute);
+                        }
+                    },
+                    now.get(Calendar.HOUR_OF_DAY),
+                    now.get(Calendar.MINUTE),
+                    false
             );
         }
 
@@ -148,21 +163,6 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
 
         }
 
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_new_event, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_done) {
-            mListener.onSubmit();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

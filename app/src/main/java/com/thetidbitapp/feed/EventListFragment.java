@@ -1,4 +1,4 @@
-package com.thetidbitapp.core;
+package com.thetidbitapp.feed;
 
 import android.app.Activity;
 import android.os.Handler;

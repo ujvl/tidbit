@@ -38,14 +38,8 @@ dependencies {
     // Circular Image View
     compile 'com.pkmmte.view:circularimageview:1.1'
 
-    // Super List View
-    compile 'com.quentindommerc.superlistview:library:1.5.2'
-
     // Material Shadow
     compile 'com.github.dmytrodanylyk.shadow-layout:library:1.0.3'
-
-    // Tab strip
-    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 
     // Facebook SDK
     compile 'com.facebook.android:facebook-android-sdk:4.1.0'
@@ -55,6 +49,7 @@ dependencies {
 
     // Holy grail material design animation
     compile 'com.github.rey5137:material:1.1.1'
+    compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
 
     // Roundable image view
     compile 'com.joooonho:selectableroundedimageview:1.0.1'
@@ -67,12 +62,6 @@ dependencies {
 
     //Optional for RecyclerView
     compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.1.0'
-
-    //Optional for staggered grid view
-    compile 'com.github.gabrielemariotti.cards:cardslib-extra-staggeredgrid:2.1.0'
-
-    //Optional for drag and drop
-    compile 'com.github.gabrielemariotti.cards:cardslib-extra-dragdrop:2.1.0'
 
     // Material edit text
     compile 'com.rengwuxian.materialedittext:library:2.1.3'

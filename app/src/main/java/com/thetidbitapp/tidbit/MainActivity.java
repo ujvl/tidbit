@@ -9,12 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.thetidbitapp.core.FeedFragment;
+import com.thetidbitapp.feed.FeedFragment;
 
 public class MainActivity extends ActionBarActivity implements OnLogoutListener,
                             FragmentManager.OnBackStackChangedListener,
                             FeedFragment.OnFeedInteractionListener,
-                            NewEventFragment.OnSubmitListener {
+                            NewEventFragment.OnSubmitListener,
+                            OnEventInteractionListener {
 
     private static String FRAG_TAG = "current fragment";
 
@@ -88,12 +89,22 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
     }
 
     @Override
-    public void onCardClick(CharSequence id) {
-        addAndCommit(new OverflowFragment());
+    public void onCardClick(String id) {
+        addAndCommit(EventMoreInfoFragment.newInstance(id));
     }
 
     @Override
     public void onSubmit() {
+        getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onChooseGoing() {
+
+    }
+
+    @Override
+    public void onChooseNotGoing() {
 
     }
 
@@ -107,5 +118,4 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
         getSupportActionBar().setDisplayHomeAsUpEnabled(canGoBack);
         getSupportActionBar().setDisplayShowHomeEnabled(canGoBack);
     }
-
 }
