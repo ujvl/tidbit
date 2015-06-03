@@ -49,4 +49,9 @@
     <string name="hint_location">Event location</string>
     <string name="hint_food">Food at event</string>
 
+    <string name="event_details">Event Details</string>
+
+    <string name="going">GOING</string>
+    <string name="not_going">NOT GOING</string>
+
 </resources>

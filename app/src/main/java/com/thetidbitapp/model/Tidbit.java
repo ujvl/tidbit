@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class Tidbit {
 
-    private int mId;
+    private String mId;
     private String mName;
     private Date mDatetime;
     private String mLocation;
@@ -21,15 +21,15 @@ public class Tidbit {
 
     private static SimpleDateFormat dateFormater;
 
-    public Tidbit(int id, String name, Date date, String loc, String food, int att) {
+    public Tidbit(String id, String name, Date date, String loc, String food, int att) {
         this(id, name, date, loc, food, "", att);
     }
 
-    public Tidbit(int id, String name, Date date, String loc, String food, String descr) {
+    public Tidbit(String id, String name, Date date, String loc, String food, String descr) {
         this(id, name, date, loc, food, descr, 0);
     }
 
-    public Tidbit(int id, String name, Date date, String loc, String food, String descr, int att) {
+    public Tidbit(String id, String name, Date date, String loc, String food, String descr, int att) {
         mId = id;
         mName = name;
         mLocation = loc;
@@ -38,6 +38,8 @@ public class Tidbit {
         mDescription = descr;
         mNumAttendees = att;
     }
+
+	public String id() { return mId; }
 
     public String eventName() { return mName; }
 

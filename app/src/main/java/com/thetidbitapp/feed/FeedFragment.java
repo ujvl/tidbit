@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +15,6 @@ import com.balysv.materialripple.MaterialRippleLayout;
 import com.rey.material.widget.FloatingActionButton;
 import com.rey.material.widget.TabPageIndicator;
 import com.thetidbitapp.adap.FeedPagerAdapter;
-import com.thetidbitapp.tidbit.OnEventInteractionListener;
 import com.thetidbitapp.tidbit.R;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
@@ -28,7 +26,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     private TabPageIndicator mTabStrip;
     private boolean hidden = false;
 
-    public interface OnFeedInteractionListener extends OnEventInteractionListener {
+    public interface OnFeedInteractionListener {
         public void onFABClick();
         public void onCardClick(String id);
     }
@@ -89,7 +87,6 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
     @Override
     public void onScrollUp() {
-        Log.e("ON scroll up calls ", hidden + "");
         if (hidden) {
             move(mMapContainer, 0, new DecelerateInterpolator());
             move(mFab, 0, new DecelerateInterpolator());

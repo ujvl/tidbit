@@ -15,7 +15,7 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
                             FragmentManager.OnBackStackChangedListener,
                             FeedFragment.OnFeedInteractionListener,
                             NewEventFragment.OnSubmitListener,
-                            OnEventInteractionListener {
+							OnEventInteractionListener {
 
     private static String FRAG_TAG = "current fragment";
 
@@ -90,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
 
     @Override
     public void onCardClick(String id) {
-        addAndCommit(EventMoreInfoFragment.newInstance(id));
+        addAndCommit(EventDetailsFragment.newInstance(id));
     }
 
     @Override
@@ -98,15 +98,15 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
         getSupportFragmentManager().popBackStack();
     }
 
-    @Override
-    public void onChooseGoing() {
+	@Override
+	public void onChooseGoing(String eventId) {
 
-    }
+	}
 
-    @Override
-    public void onChooseNotGoing() {
+	@Override
+	public void onChooseNotGoing(String eventId) {
 
-    }
+	}
 
     private void addAndCommit(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
@@ -118,4 +118,5 @@ public class MainActivity extends ActionBarActivity implements OnLogoutListener,
         getSupportActionBar().setDisplayHomeAsUpEnabled(canGoBack);
         getSupportActionBar().setDisplayShowHomeEnabled(canGoBack);
     }
+
 }

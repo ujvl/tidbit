@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class EventMoreInfoFragment extends Fragment {
+public class EventDetailsFragment extends Fragment {
 
     private static final String EVENT_ID = "event id";
 
@@ -16,15 +16,15 @@ public class EventMoreInfoFragment extends Fragment {
 
     private OnEventInteractionListener mListener;
 
-    public static EventMoreInfoFragment newInstance(String id) {
-        EventMoreInfoFragment fragment = new EventMoreInfoFragment();
+    public static EventDetailsFragment newInstance(String id) {
+        EventDetailsFragment fragment = new EventDetailsFragment();
         Bundle args = new Bundle();
         args.putString(EVENT_ID, id);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public EventMoreInfoFragment() { }
+    public EventDetailsFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,13 @@ public class EventMoreInfoFragment extends Fragment {
         }
     }
 
-    @Override
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().setTitle(R.string.event_details);
+	}
+
+	@Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
