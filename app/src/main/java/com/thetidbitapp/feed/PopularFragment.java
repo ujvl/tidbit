@@ -15,11 +15,10 @@ import it.gmariotti.cardslib.library.internal.Card;
 public class PopularFragment extends EventListFragment {
 
     @Override
-    public List<Card> getCards() {
-        ArrayList<Card> cards = new ArrayList<>();
+    public List<Tidbit> getCards() {
+        ArrayList<Tidbit> cards = new ArrayList<>();
         for (int i = 0; i < 15; i++)
-            cards.add(new TidbitCard(getActivity(),
-                    new Tidbit(0, "Hey buddy", new Date(), "Doe Library, VA", "Sushi", 293)));
+            cards.add(new Tidbit(0, "Hey buddy", new Date(), "Doe Library, VA", "Sushi", 293));
         return cards;
     }
 

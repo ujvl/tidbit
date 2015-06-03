@@ -14,13 +14,12 @@ import it.gmariotti.cardslib.library.internal.Card;
  */
 public class SavedFragment extends EventListFragment {
 
-    @Override
-    public List<Card> getCards() {
-        ArrayList<Card> cards = new ArrayList<>();
-        for (int i = 0; i < 15; i++)
-            cards.add(new TidbitCard(getActivity(),
-                    new Tidbit(0, "Engineering Week", new Date(), "Doe Library, VA", "Sushi", 293)));
-        return cards;
-    }
+	@Override
+	public List<Tidbit> getCards() {
+		ArrayList<Tidbit> cards = new ArrayList<>();
+		for (int i = 0; i < 15; i++)
+			cards.add(new Tidbit(0, "Hey buddy", new Date(), "Doe Library, VA", "Sushi", 293));
+		return cards;
+	}
 
 }

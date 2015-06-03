@@ -27,14 +27,15 @@
         android:layout_height="wrap_content"
         android:visibility="invisible">
 
-        <it.gmariotti.cardslib.library.view.CardListView
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tidbits_list"
+            android:id="@+id/events_recycler"
             android:clipToPadding="false"
             android:paddingTop="54dp"
-            card:card_layout_resourceID="@layout/tidbit_card"
-            android:scrollbars="none"/>
+            android:scrollbars="none"
+            android:paddingLeft="@dimen/std_margin_half"
+            android:paddingRight="@dimen/std_margin_half"/>
 
     </com.thetidbitapp.view.FixedSwipeRefreshLayout>
 

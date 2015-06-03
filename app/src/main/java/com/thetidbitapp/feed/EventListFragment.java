@@ -5,25 +5,27 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.thetidbitapp.adap.EnablableCardAdapter;
+import com.thetidbitapp.adap.EventAdapter;
+import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.tidbit.R;
 import com.thetidbitapp.view.FixedSwipeRefreshLayout;
 
 import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.view.CardListView;
 
-public abstract class EventListFragment extends Fragment implements AbsListView.OnScrollListener,
-        SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
+public abstract class EventListFragment extends Fragment implements
+        								SwipeRefreshLayout.OnRefreshListener,
+										AdapterView.OnItemClickListener {
 
     public interface OnEventListInteractionListener {
         public void onScrollUp();
@@ -34,9 +36,11 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
     /*
         View objects
      */
-    private CardListView mTidbitList;
-    private EnablableCardAdapter mCardAdapter;
-    private List<Card> mCards;
+    //private CardListView mTidbitList;
+	private RecyclerView mEventRecycler;
+
+    private EventAdapter mEventAdapter;
+    private List<Tidbit> mEvents;
     private FixedSwipeRefreshLayout mRefresher;
 
     /*
@@ -44,20 +48,20 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
      */
     private int mLastFirstVisibleItem;
     private OnEventListInteractionListener mListener;
-    private static final String SORT_PARAM = "sort_type";
 
-    public abstract List<Card> getCards();
+    public abstract List<Tidbit> getCards();
 
     public EventListFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Log.i("HELLO ONCREATEVIEW", "ASDASDASD");
-
         final View root = inflater.inflate(R.layout.fragment_events, container, false);
-        mTidbitList = (CardListView) root.findViewById(R.id.tidbits_list);
+		mEventRecycler = (RecyclerView) root.findViewById(R.id.events_recycler);
         mRefresher = (FixedSwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
+
+		mEventRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+		//mEventRecycler.addOnScrollListener(this);
 
         // Load content (Simulation)
         new Handler().postDelayed(new Runnable() {
@@ -69,9 +73,9 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
             }
         }, 2500);
 
-        mTidbitList.setOnItemClickListener(this);
-        mTidbitList.setOnScrollListener(this);
-        mRefresher.setOnRefreshListener(this);
+//        mTidbitList.setOnItemClickListener(this);
+//        mTidbitList.setOnScrollListener(this);
+		mRefresher.setOnRefreshListener(this);
 
         mRefresher.setColorSchemeResources(R.color.sec_brighter);
         mRefresher.setProgressViewOffset(false, 0, 250);
@@ -80,12 +84,12 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
     }
 
     private void setupList() {
-        mCards = getCards();
-        mCardAdapter = new EnablableCardAdapter(getActivity(), mCards);
-        mTidbitList.setAdapter(mCardAdapter);
+        mEvents = getCards();
+        mEventAdapter = new EventAdapter(mEvents, getActivity());
+		mEventRecycler.setAdapter(mEventAdapter);
     }
 
-    @Override
+    /*@Override
     public void onScrollStateChanged(AbsListView view, int scrollState) { }
 
     @Override
@@ -100,17 +104,17 @@ public abstract class EventListFragment extends Fragment implements AbsListView.
         }
 
         mLastFirstVisibleItem = currentFirstVisibleItem;
-    }
+    }*/
 
     @Override
     public void onRefresh() {
-        mCardAdapter.setAllItemsEnabled(false);
+		mEventAdapter.setAllItemsEnabled(false);
         setupList();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mRefresher.setRefreshing(false);
-                mCardAdapter.setAllItemsEnabled(true);
+				mEventAdapter.setAllItemsEnabled(true);
             }
         }, 2500);
     }
