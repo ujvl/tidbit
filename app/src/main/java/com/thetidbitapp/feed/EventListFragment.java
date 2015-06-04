@@ -7,28 +7,19 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.thetidbitapp.adap.EnablableCardAdapter;
 import com.thetidbitapp.adap.EventAdapter;
 import com.thetidbitapp.model.Tidbit;
-import com.thetidbitapp.tidbit.OnEventInteractionListener;
 import com.thetidbitapp.tidbit.R;
 import com.thetidbitapp.view.FixedSwipeRefreshLayout;
 
 import java.util.List;
 
-import it.gmariotti.cardslib.library.internal.Card;
-
-public abstract class EventListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-														 View.OnClickListener {
+public abstract class EventListFragment extends Fragment implements View.OnClickListener,
+													 	 SwipeRefreshLayout.OnRefreshListener {
 
     public interface OnEventListInteractionListener {
         public void onScrollUp();
@@ -89,13 +80,11 @@ public abstract class EventListFragment extends Fragment implements SwipeRefresh
 
     @Override
     public void onRefresh() {
-		mEventAdapter.setAllItemsEnabled(false);
         setupList();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mRefresher.setRefreshing(false);
-				mEventAdapter.setAllItemsEnabled(true);
             }
         }, 2500);
     }
@@ -128,7 +117,12 @@ public abstract class EventListFragment extends Fragment implements SwipeRefresh
 
 		@Override
 		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-			if (dy <= -DELTA_SCROLL) {
+
+			if (((LinearLayoutManager) recyclerView.getLayoutManager())
+					.findFirstVisibleItemPosition() == 0) {
+				super.onScrolled(recyclerView, dx, dy);
+			}
+			else if (dy <= -DELTA_SCROLL) {
 				mListener.onScrollUp();
 			}
 			else if (dy > DELTA_SCROLL) {

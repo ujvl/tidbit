@@ -56,9 +56,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="@dimen/std_margin">
 
-                <Button
+                <TextView
                     android:id="@+id/card_going"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -67,11 +67,11 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textSize="@dimen/std_text_size"
-                    android:layout_marginLeft="@dimen/std_margin_half"
+                    android:layout_marginLeft="@dimen/std_margin"
                     android:background="@color/white"
                     android:textColor="@drawable/flat_button_text_color"/>
 
-                <Button
+                <TextView
                     android:id="@+id/card_not_going"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -79,6 +79,7 @@
                     android:background="@color/white"
                     android:textColor="@drawable/flat_button_text_color"
                     android:textSize="@dimen/std_text_size"
+                    android:layout_marginLeft="@dimen/std_margin_half"
                     android:layout_toRightOf="@id/card_going"/>
 
                 <TextView

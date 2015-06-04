@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,9 +48,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	@Override
 	public void onBindViewHolder(EventViewHolder holder, int position) {
 
-		if (position == 0)
-			holder.ivCover.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.test_picture_2));
-
+		holder.ivCover.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.test_picture_2));
 		holder.tvTitle.setText(mEvents.get(position).eventName());
 		holder.tvLoc.setText(mEvents.get(position).location());
 		holder.tvDate.setText(mEvents.get(position).datetime());
@@ -83,7 +80,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 		animateOut(view, android.R.anim.slide_out_right, 150);
 	}
 
-
 	/**
 	 * Action taken for when not-going button of a view pressed
 	 * @param view parent of button
@@ -91,7 +87,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	 */
 	private void onNotGoing(View view, final int position) {
 		removeItem(position);
-		animateOut(view, android.R.anim.slide_out_right, 150);
+		animateOut(view, R.anim.slide_out_left, 150);
 	}
 
 	/**
@@ -130,8 +126,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 		private TextView tvTitle;
 		private TextView tvLoc;
 		private TextView tvDate;
-		private Button btnGoing;
-		private Button btnNotGoing;
+		private TextView btnGoing;
+		private TextView btnNotGoing;
 
 		public EventViewHolder(final View itemView) {
 			super(itemView);
@@ -140,8 +136,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 			tvTitle = (TextView) itemView.findViewById(R.id.card_event_title);
 			tvLoc = (TextView) itemView.findViewById(R.id.card_loc);
 			tvDate = (TextView) itemView.findViewById(R.id.card_date);
-			btnGoing = (Button) itemView.findViewById(R.id.card_going);
-			btnNotGoing = (Button) itemView.findViewById(R.id.card_not_going);
+			btnGoing = (TextView) itemView.findViewById(R.id.card_going);
+			btnNotGoing = (TextView) itemView.findViewById(R.id.card_not_going);
 
 			btnGoing.setOnClickListener(new View.OnClickListener() {
 

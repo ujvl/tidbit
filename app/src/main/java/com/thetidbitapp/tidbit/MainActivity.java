@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.thetidbitapp.feed.FeedFragment;
 
-public class MainActivity extends ActionBarActivity implements OnLogoutListener,
+public class MainActivity extends AppCompatActivity implements OnLogoutListener,
                             FragmentManager.OnBackStackChangedListener,
                             FeedFragment.OnFeedInteractionListener,
                             NewEventFragment.OnSubmitListener,
