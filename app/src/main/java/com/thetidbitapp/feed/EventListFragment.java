@@ -124,11 +124,11 @@ public abstract class EventListFragment extends Fragment implements SwipeRefresh
 
 	private class OnRecyclerScrollListener extends RecyclerView.OnScrollListener {
 
-		private final int DELTA_SCROLL = 5;
+		private final int DELTA_SCROLL = 20;
 
 		@Override
 		public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-			if (dy < DELTA_SCROLL) {
+			if (dy <= -DELTA_SCROLL) {
 				mListener.onScrollUp();
 			}
 			else if (dy > DELTA_SCROLL) {

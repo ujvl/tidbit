@@ -27,7 +27,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	private int mLastPosition = -1;
 
 	private Context mContext;
-	private View.OnClickListener mListener, mGoingListener, mNotGoingListener;
+	private View.OnClickListener mListener;
 
 	public EventAdapter(List<Tidbit> events, Context c) {
 		mEvents = events;
@@ -46,14 +46,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 		mListener = listener;
 	}
 
-	public void setOnClickGoingListener(View.OnClickListener listener) {
-		mGoingListener = listener;
-	}
-
-	public void setOnClickNotGoingListener(View.OnClickListener listener) {
-		mNotGoingListener = listener;
-	}
-
 	@Override
 	public void onBindViewHolder(EventViewHolder holder, int position) {
 
@@ -64,14 +56,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 		holder.tvLoc.setText(mEvents.get(position).location());
 		holder.tvDate.setText(mEvents.get(position).datetime());
 
-		holder.btnGoing.setOnClickListener(mGoingListener);
-		holder.btnNotGoing.setOnClickListener(mNotGoingListener);
-
-		setAnimation(holder.cv, position);
+		setInAnimation(holder.cv, position);
 
 	}
 
-	private void setAnimation(View viewToAnimate, int position) {
+	/**
+	 * Sets the animation for when a view comes in
+	 * @param viewToAnimate view to animate
+	 * @param position position of view in adapter
+	 */
+	private void setInAnimation(View viewToAnimate, int position) {
 		if (position > mLastPosition) {
 			Animation animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_in_left);
 			viewToAnimate.startAnimation(animation);
@@ -79,17 +73,56 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 		}
 	}
 
-	public void setAllItemsEnabled(boolean enable){
-		boolean mAllEnabled = enable;
-		notifyItemRangeChanged(0, getItemCount());
+	/**
+	 * Action taken for when going button of a view pressed
+	 * @param view parent of button
+	 * @param position position of view in adapter
+	 */
+	private void onGoing(View view, int position) {
+		removeItem(position);
+		animateOut(view, android.R.anim.slide_out_right, 150);
 	}
+
+
+	/**
+	 * Action taken for when not-going button of a view pressed
+	 * @param view parent of button
+	 * @param position position of view in adapter
+	 */
+	private void onNotGoing(View view, final int position) {
+		removeItem(position);
+		animateOut(view, android.R.anim.slide_out_right, 150);
+	}
+
+	/**
+	 * Removes the item at position
+	 * @param position position to remove item from
+	 */
+	private void removeItem(int position) {
+		mEvents.remove(position);
+		notifyItemRemoved(position);
+		notifyItemRangeChanged(position, mEvents.size());
+	}
+
+	/**
+	 * Out-animates the view
+	 * @param view view to animate
+	 * @param animId id of animation
+	 * @param duration duration of animation
+	 */
+	private void animateOut(View view, int animId, int duration) {
+		Animation anim = AnimationUtils.loadAnimation(mContext, animId);
+		anim.setDuration(duration);
+		view.startAnimation(anim);
+	}
+
 
 	@Override
 	public int getItemCount() {
 		return mEvents.size();
 	}
 
-	public static class EventViewHolder extends RecyclerView.ViewHolder {
+	public class EventViewHolder extends RecyclerView.ViewHolder {
 
 		private CardView cv;
 
@@ -100,7 +133,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 		private Button btnGoing;
 		private Button btnNotGoing;
 
-		public EventViewHolder(View itemView) {
+		public EventViewHolder(final View itemView) {
 			super(itemView);
 			cv = (CardView) itemView.findViewById(R.id.card_layout);
 			ivCover = (ImageView) itemView.findViewById(R.id.card_cover_pic);
@@ -109,6 +142,22 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 			tvDate = (TextView) itemView.findViewById(R.id.card_date);
 			btnGoing = (Button) itemView.findViewById(R.id.card_going);
 			btnNotGoing = (Button) itemView.findViewById(R.id.card_not_going);
+
+			btnGoing.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					EventAdapter.this.onGoing(itemView, getAdapterPosition());
+				}
+			});
+
+			btnNotGoing.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					EventAdapter.this.onNotGoing(itemView, getAdapterPosition());
+				}
+			});
+
 		}
 
 	}
