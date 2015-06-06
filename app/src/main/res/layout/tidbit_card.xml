@@ -37,7 +37,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginStart="16dp"
-                android:textSize="24sp"
+                android:textSize="@dimen/std_heading_text_size"
                 android:textColor="@color/title_black" />
 
             <TextView
@@ -56,7 +56,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/std_margin">
+                android:paddingBottom="@dimen/std_margin_half">
 
                 <TextView
                     android:id="@+id/card_going"
@@ -67,7 +67,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:textSize="@dimen/std_text_size"
-                    android:layout_marginLeft="@dimen/std_margin"
+                    android:padding="@dimen/std_margin_half"
+                    android:layout_marginLeft="@dimen/std_margin_half"
                     android:background="@color/white"
                     android:textColor="@drawable/flat_button_text_color"/>
 
@@ -79,6 +80,7 @@
                     android:background="@color/white"
                     android:textColor="@drawable/flat_button_text_color"
                     android:textSize="@dimen/std_text_size"
+                    android:padding="@dimen/std_margin_half"
                     android:layout_marginLeft="@dimen/std_margin_half"
                     android:layout_toRightOf="@id/card_going"/>
 

@@ -20,7 +20,7 @@
 
         <include layout="@layout/divider"/>
 
-        <TextView style="@style/HeadingStyle"
+        <TextView style="@style/OverflowHeadingStyle"
             android:text="Share the love" />
 
         <include layout="@layout/overflow_item"
@@ -37,7 +37,7 @@
 
         <include layout="@layout/divider"/>
 
-        <TextView style="@style/HeadingStyle"
+        <TextView style="@style/OverflowHeadingStyle"
             android:text="Important stuff" />
 
         <include layout="@layout/overflow_item"

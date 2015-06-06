@@ -18,7 +18,7 @@
         android:id="@+id/feed_tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/prim_dark"
+        android:background="@color/prim_darkest"
         app:tpi_indicatorColor="@color/sec_bright"
         app:tpi_indicatorHeight="4dp"
         app:tpi_mode="fixed"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:background="@color/prim_dark"
+            android:background="@color/prim_darkest"
             android:src="@drawable/ic_map_white_24dp" />
 
     </com.balysv.materialripple.MaterialRippleLayout>

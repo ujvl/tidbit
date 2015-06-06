@@ -33,8 +33,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:padding="@dimen/std_margin"
-			android:textColor="@color/white"
-			android:text="Login with Facebook"
+            android:textColor="@drawable/login_button_text_color"
+			android:text="@string/fb_login"
 			android:layout_alignParentBottom="true"
 			android:layout_centerHorizontal="true"
 			android:layout_marginBottom="@dimen/std_margin" />
