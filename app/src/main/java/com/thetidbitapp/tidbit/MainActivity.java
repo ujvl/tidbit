@@ -1,24 +1,36 @@
 package com.thetidbitapp.tidbit;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.thetidbitapp.feed.FeedFragment;
 
-public class MainActivity extends AppCompatActivity implements OnLogoutListener,
-                            FragmentManager.OnBackStackChangedListener,
+public class MainActivity extends AppCompatActivity implements OnConnectionFailedListener,
+							LocationListener, ConnectionCallbacks, OnEventInteractionListener,
+							OnLogoutListener, FragmentManager.OnBackStackChangedListener,
                             FeedFragment.OnFeedInteractionListener,
-                            NewEventFragment.OnSubmitListener,
-							OnEventInteractionListener {
+                            NewEventFragment.OnSubmitListener {
 
     private static String FRAG_TAG = "current fragment";
+
+	private GoogleApiClient mGoogleApiClient;
+	private LocationRequest mLocRequest;
+	private boolean mShouldRequestLoc;
+	private Location mLastLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +50,12 @@ public class MainActivity extends AppCompatActivity implements OnLogoutListener,
         }
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
-        getSupportFragmentManager()
-        .beginTransaction()
-        .replace(R.id.container_main, feed, FRAG_TAG)
-        .commit();
+        getSupportFragmentManager().beginTransaction()
+        .replace(R.id.container_main, feed, FRAG_TAG).commit();
 
         shouldDisplayHomeUp();
+		buildGoogleApiClient();
+		createLocationRequest();
 
     }
 
@@ -63,6 +75,20 @@ public class MainActivity extends AppCompatActivity implements OnLogoutListener,
         }
         return super.onOptionsItemSelected(item);
     }
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		stopLocationUpdates();
+	}
+
+	@Override
+	 public void onResume() {
+		super.onResume();
+		if (mGoogleApiClient.isConnected() && !mShouldRequestLoc) {
+			startLocationUpdates();
+		}
+	}
 
     @Override
     public void onLogout() {
@@ -109,15 +135,62 @@ public class MainActivity extends AppCompatActivity implements OnLogoutListener,
 
 	}
 
-    private void addAndCommit(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction()
-        .addToBackStack(null).replace(R.id.container_main, fragment, FRAG_TAG).commit();
-    }
+	@Override
+	public void onConnected(Bundle bundle) {
+		mLastLoc = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+		if (mShouldRequestLoc) {
+			startLocationUpdates();
+		}
+	}
 
-    private void shouldDisplayHomeUp() {
-        boolean canGoBack = getSupportFragmentManager().getBackStackEntryCount() > 0;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(canGoBack);
-        getSupportActionBar().setDisplayShowHomeEnabled(canGoBack);
-    }
+	@Override
+	public void onConnectionSuspended(int i) {
+
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult connectionResult) {
+
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		mLastLoc = location;
+	}
+
+	private void addAndCommit(Fragment fragment) {
+		getSupportFragmentManager().beginTransaction()
+				.addToBackStack(null).replace(R.id.container_main, fragment, FRAG_TAG).commit();
+	}
+
+	private void shouldDisplayHomeUp() {
+		boolean canGoBack = getSupportFragmentManager().getBackStackEntryCount() > 0;
+		getSupportActionBar().setDisplayHomeAsUpEnabled(canGoBack);
+		getSupportActionBar().setDisplayShowHomeEnabled(canGoBack);
+	}
+
+	private synchronized void buildGoogleApiClient() {
+		mGoogleApiClient = new GoogleApiClient.Builder(this)
+				.addConnectionCallbacks(this)
+				.addOnConnectionFailedListener(this)
+				.addApi(LocationServices.API)
+				.build();
+	}
+
+	private void createLocationRequest() {
+		mLocRequest = new LocationRequest();
+		mLocRequest.setInterval(1000000).setFastestInterval(1000000);
+		mLocRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+	}
+
+	private void stopLocationUpdates() {
+		LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+		mShouldRequestLoc = false;
+	}
+
+	private void startLocationUpdates() {
+		LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocRequest, this);
+		mShouldRequestLoc = true;
+	}
 
 }
