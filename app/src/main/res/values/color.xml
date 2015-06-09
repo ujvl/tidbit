@@ -19,6 +19,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="green">#ff00b711</color>
 
     <color name="title_black">#ff222222</color>
     <color name="subtitle_black">#ff767676</color>

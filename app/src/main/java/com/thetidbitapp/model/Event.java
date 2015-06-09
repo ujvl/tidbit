@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by Ujval on 2/22/15.
  */
-public class Tidbit {
+public class Event {
 
     private String mId;
     private String mName;
@@ -21,15 +21,15 @@ public class Tidbit {
 
     private static SimpleDateFormat dateFormater;
 
-    public Tidbit(String id, String name, Date date, String loc, String food, int att) {
+    public Event(String id, String name, Date date, String loc, String food, int att) {
         this(id, name, date, loc, food, "", att);
     }
 
-    public Tidbit(String id, String name, Date date, String loc, String food, String descr) {
+    public Event(String id, String name, Date date, String loc, String food, String descr) {
         this(id, name, date, loc, food, descr, 0);
     }
 
-    public Tidbit(String id, String name, Date date, String loc, String food, String descr, int att) {
+    public Event(String id, String name, Date date, String loc, String food, String descr, int att) {
         mId = id;
         mName = name;
         mLocation = loc;

@@ -18,7 +18,7 @@ import com.thetidbitapp.adap.FeedPagerAdapter;
 import com.thetidbitapp.tidbit.R;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
-        EventListFragment.OnEventListInteractionListener, ViewPager.OnPageChangeListener {
+        AbstractEventsFragment.OnEventListInteractionListener, ViewPager.OnPageChangeListener {
 
     private OnFeedInteractionListener mListener;
     private MaterialRippleLayout mMapContainer;
@@ -41,7 +41,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_main, menu);
+        inflater.inflate(R.menu.menu_feed, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

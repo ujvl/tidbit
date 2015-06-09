@@ -53,7 +53,9 @@
 
     <string name="event_details">Event Details</string>
 
+    <!-- Card -->
     <string name="going">GOING</string>
     <string name="not_going">NOT GOING</string>
+    <string name="cancel">CANCEL EVENT</string>
 
 </resources>

@@ -157,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	@Override
 	public void onConnected(Bundle bundle) {
 		mLastLoc = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-		Log.e("ON CONNECTED", mLastLoc.toString());
 		mSessionManager.updateLocation(mLastLoc);
 		if (mShouldRequestLoc) {
 			startLocationUpdates();

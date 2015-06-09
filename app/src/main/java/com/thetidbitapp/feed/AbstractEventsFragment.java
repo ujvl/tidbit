@@ -1,6 +1,7 @@
 package com.thetidbitapp.feed;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,15 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.thetidbitapp.adap.EventAdapter;
+import com.thetidbitapp.adap.AbstractEventAdapter;
+import com.thetidbitapp.model.Event;
 import com.thetidbitapp.model.SessionManager;
-import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.tidbit.R;
 import com.thetidbitapp.view.FixedSwipeRefreshLayout;
 
 import java.util.List;
 
-public abstract class EventListFragment extends Fragment implements View.OnClickListener,
+public abstract class AbstractEventsFragment extends Fragment implements View.OnClickListener,
 													 	 SwipeRefreshLayout.OnRefreshListener {
 
     public interface OnEventListInteractionListener {
@@ -31,8 +32,8 @@ public abstract class EventListFragment extends Fragment implements View.OnClick
 
 	private FixedSwipeRefreshLayout mRefresher;
 	private RecyclerView mEventRecycler;
-    private EventAdapter mEventAdapter;
-    private List<Tidbit> mEvents;
+    private AbstractEventAdapter mEventAdapter;
+    private List<Event> mEvents;
 
     private OnEventListInteractionListener mListener;
 
@@ -43,9 +44,7 @@ public abstract class EventListFragment extends Fragment implements View.OnClick
 		}
 	};
 
-    public abstract List<Tidbit> getCards();
-
-    public EventListFragment() { }
+    public AbstractEventsFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,23 +72,16 @@ public abstract class EventListFragment extends Fragment implements View.OnClick
         return root;
     }
 
-    private void setupList() {
-        mEvents = getCards();
-        mEventAdapter = new EventAdapter(mEvents, getActivity());
-		mEventAdapter.setOnItemClickListener(this);
-		mEventRecycler.setAdapter(mEventAdapter);
-    }
-
     @Override
     public void onRefresh() {
         setupList();
 		Log.e("EVENTSLISTFRAG", new SessionManager(getActivity()).getLocation().toString());
 		new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mRefresher.setRefreshing(false);
-            }
-        }, 2500);
+			@Override
+			public void run() {
+				mRefresher.setRefreshing(false);
+			}
+		}, 2500);
     }
 
 	@Override
@@ -114,6 +106,33 @@ public abstract class EventListFragment extends Fragment implements View.OnClick
         mListener = null;
     }
 
+	/**
+	 * Fetches events from server
+	 * @return a list of events
+	 */
+	public abstract List<Event> getEvents();
+
+	/**
+	 * Creates and returns an instance of AbstractEventAdapter
+	 * @param events a list of events
+	 * @param context application context
+	 * @return contextually relevant instance of AbstractEventAdapter
+	 */
+	public abstract AbstractEventAdapter getEventAdapter(List<Event> events, Context context);
+
+	/**
+	 * Sets up the RecyclerView of the fragment
+	 */
+	private void setupList() {
+		mEvents = getEvents();
+		mEventAdapter = getEventAdapter(mEvents, getActivity());
+		mEventAdapter.setOnItemClickListener(this);
+		mEventRecycler.setAdapter(mEventAdapter);
+	}
+
+	/**
+	 * Custom OnRecyclerScrollListener that fires context listener callbacks
+	 */
 	private class OnRecyclerScrollListener extends RecyclerView.OnScrollListener {
 
 		private final int DELTA_SCROLL = 20;

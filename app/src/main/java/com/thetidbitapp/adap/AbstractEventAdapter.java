@@ -12,7 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.thetidbitapp.model.Tidbit;
+import com.thetidbitapp.model.Event;
 import com.thetidbitapp.tidbit.R;
 
 import java.util.List;
@@ -20,24 +20,25 @@ import java.util.List;
 /**
  * Created by Ujval on 6/3/15
  */
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
+public abstract class AbstractEventAdapter<E extends AbstractEventAdapter.EventViewHolder>
+													extends RecyclerView.Adapter<E> {
 
-	private List<Tidbit> mEvents;
+	private List<Event> mEvents;
 	private int mLastPosition = -1;
 
 	private Context mContext;
 	private View.OnClickListener mListener;
 
-	public EventAdapter(List<Tidbit> events, Context c) {
+	public AbstractEventAdapter(List<Event> events, Context c) {
 		mEvents = events;
 		mContext = c;
 	}
 
 	@Override
-	public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public E onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tidbit_card, parent, false);
 		view.setOnClickListener(mListener);
-		EventViewHolder evh = new EventViewHolder(view);
+		E evh = getViewHolder(view);
 		return evh;
 	}
 
@@ -46,7 +47,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	}
 
 	@Override
-	public void onBindViewHolder(EventViewHolder holder, int position) {
+	public void onBindViewHolder(E holder, int position) {
 
 		holder.ivCover.setImageBitmap(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.test_picture_2));
 		holder.tvTitle.setText(mEvents.get(position).eventName());
@@ -56,6 +57,18 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 		setInAnimation(holder.cv, position);
 
 	}
+
+	@Override
+	public int getItemCount() {
+		return mEvents.size();
+	}
+
+	/**
+	 * Gets an instance of the ViewHolder
+	 * @param v the View that the ViewHolder controls
+	 * @return an instance of the ViewHolder on v
+	 */
+	protected abstract E getViewHolder(View v);
 
 	/**
 	 * Sets the animation for when a view comes in
@@ -75,7 +88,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	 * @param view parent of button
 	 * @param position position of view in adapter
 	 */
-	private void onGoing(View view, int position) {
+	private void removeRightwards(View view, int position) {
 		removeItem(position);
 		animateOut(view, android.R.anim.slide_out_right, 150);
 	}
@@ -85,7 +98,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	 * @param view parent of button
 	 * @param position position of view in adapter
 	 */
-	private void onNotGoing(View view, final int position) {
+	private void removeLeftwards(View view, int position) {
 		removeItem(position);
 		animateOut(view, R.anim.slide_out_left, 150);
 	}
@@ -94,7 +107,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	 * Removes the item at position
 	 * @param position position to remove item from
 	 */
-	private void removeItem(int position) {
+	protected void removeItem(int position) {
 		mEvents.remove(position);
 		notifyItemRemoved(position);
 		notifyItemRangeChanged(position, mEvents.size());
@@ -106,54 +119,60 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 	 * @param animId id of animation
 	 * @param duration duration of animation
 	 */
-	private void animateOut(View view, int animId, int duration) {
+	protected void animateOut(View view, int animId, int duration) {
 		Animation anim = AnimationUtils.loadAnimation(mContext, animId);
 		anim.setDuration(duration);
 		view.startAnimation(anim);
 	}
 
-
-	@Override
-	public int getItemCount() {
-		return mEvents.size();
-	}
-
 	public class EventViewHolder extends RecyclerView.ViewHolder {
 
-		private CardView cv;
+		protected CardView cv;
 
-		private ImageView ivCover;
-		private TextView tvTitle;
-		private TextView tvLoc;
-		private TextView tvDate;
-		private TextView btnGoing;
-		private TextView btnNotGoing;
+		protected ImageView ivCover;
+		protected TextView tvTitle;
+		protected TextView tvLoc;
+		protected TextView tvDate;
+		protected TextView btnOne;
+		protected TextView btnTwo;
 
-		public EventViewHolder(final View itemView) {
+		public EventViewHolder(View itemView) {
+
 			super(itemView);
 			cv = (CardView) itemView.findViewById(R.id.card_layout);
 			ivCover = (ImageView) itemView.findViewById(R.id.card_cover_pic);
 			tvTitle = (TextView) itemView.findViewById(R.id.card_event_title);
 			tvLoc = (TextView) itemView.findViewById(R.id.card_loc);
 			tvDate = (TextView) itemView.findViewById(R.id.card_date);
-			btnGoing = (TextView) itemView.findViewById(R.id.card_going);
-			btnNotGoing = (TextView) itemView.findViewById(R.id.card_not_going);
 
-			btnGoing.setOnClickListener(new View.OnClickListener() {
+			btnOne = (TextView) itemView.findViewById(R.id.card_button_one);
+			btnTwo = (TextView) itemView.findViewById(R.id.card_button_two);
 
+			btnOne.setText(mContext.getString(R.string.going));
+			btnTwo.setText(mContext.getString(R.string.not_going));
+
+			btnOne.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					EventAdapter.this.onGoing(itemView, getAdapterPosition());
+					onFirstBtnClick();
 				}
 			});
 
-			btnNotGoing.setOnClickListener(new View.OnClickListener() {
+			btnTwo.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					EventAdapter.this.onNotGoing(itemView, getAdapterPosition());
+					onSecondBtnClick();
 				}
 			});
 
+		}
+
+		protected void onFirstBtnClick() {
+			removeRightwards(itemView, getAdapterPosition());
+		}
+
+		protected void onSecondBtnClick() {
+			removeLeftwards(itemView, getAdapterPosition());
 		}
 
 	}
