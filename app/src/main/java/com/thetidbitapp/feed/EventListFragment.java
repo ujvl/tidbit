@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.thetidbitapp.adap.EventAdapter;
+import com.thetidbitapp.model.SessionManager;
 import com.thetidbitapp.model.Tidbit;
 import com.thetidbitapp.tidbit.R;
 import com.thetidbitapp.view.FixedSwipeRefreshLayout;
@@ -81,7 +83,8 @@ public abstract class EventListFragment extends Fragment implements View.OnClick
     @Override
     public void onRefresh() {
         setupList();
-        new Handler().postDelayed(new Runnable() {
+		Log.e("EVENTSLISTFRAG", new SessionManager(getActivity()).getLocation().toString());
+		new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mRefresher.setRefreshing(false);

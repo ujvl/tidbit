@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,26 @@ import android.widget.Toast;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.thetidbitapp.model.SessionManager;
 
+import org.json.JSONObject;
+
 import java.util.Arrays;
 
-public class FBLoginFragment extends Fragment {
+public class FBLoginFragment extends Fragment implements FacebookCallback<LoginResult>,
+												GraphRequest.GraphJSONObjectCallback,
+												View.OnClickListener {
 
     private OnLoginListener mListener;
     private CallbackManager callbackManager;
+	private LoginManager mLoginManager;
+	private View mRootView;
+
+	private static final String FIELDS_KEY = "fields";
 
     public FBLoginFragment() { }
 
@@ -34,37 +45,16 @@ public class FBLoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.fragment_fblogin, container, false);
-        final LoginManager manager = LoginManager.getInstance();
+        mRootView = inflater.inflate(R.layout.fragment_fblogin, container, false);
+        mLoginManager = LoginManager.getInstance();
 
-        Button loginButton = (Button) rootView.findViewById(R.id.login_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                manager.logInWithReadPermissions(FBLoginFragment.this, Arrays.asList("public_profile"));
-            }
-        });
+        Button loginButton = (Button) mRootView.findViewById(R.id.login_button);
+        loginButton.setOnClickListener(this);
 
         callbackManager = CallbackManager.Factory.create();
-        manager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
+		mLoginManager.registerCallback(callbackManager, this);
 
-                rootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
-                new SessionManager(getActivity()).setLoggedIn(true);
-                mListener.onLogin();
-
-            }
-
-            @Override
-            public void onCancel() { }
-
-            @Override
-            public void onError(FacebookException exception) {
-                Toast.makeText(getActivity(), "There was an error logging in", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        return rootView;
+        return mRootView;
     }
 
     @Override
@@ -83,8 +73,46 @@ public class FBLoginFragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnLoginListener {
-        public void onLogin();
+	@Override
+	public void onSuccess(LoginResult loginResult) {
+
+		Bundle params = new Bundle();
+		GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), this);
+		params.putString(FIELDS_KEY, getActivity().getString(R.string.fb_fields));
+		request.setParameters(params);
+		request.executeAsync();
+
+	}
+
+	@Override
+	public void onCancel() {
+
+	}
+
+	@Override
+	public void onError(FacebookException e) {
+
+	}
+
+
+	@Override
+	public void onCompleted(JSONObject result, GraphResponse response) {
+
+		mRootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
+		new SessionManager(getActivity()).setLoggedIn(true);
+		mListener.onLogin(result);
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		mLoginManager.logInWithReadPermissions(
+				FBLoginFragment.this,
+				Arrays.asList("public_profile", "email"));
+	}
+
+	public interface OnLoginListener {
+        public void onLogin(JSONObject result);
     }
 
     @Override

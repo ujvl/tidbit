@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
 import com.thetidbitapp.model.SessionManager;
+import com.thetidbitapp.state.OnLogoutListener;
 
 public class OverflowFragment extends Fragment {
 

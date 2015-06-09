@@ -1,4 +1,4 @@
-package com.thetidbitapp.tidbit;
+package com.thetidbitapp.state;
 
 /**
  * Created by Ujval on 5/27/15.

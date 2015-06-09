@@ -31,8 +31,9 @@
     <string name="users_posts">Your posts</string>
     <string name="saved_posts">Saved posts</string>
     
-    <!-- fb app id -->
+    <!--   fb  -->
     <string name="facebook_app_id">980180495326106</string>
+    <string name="fb_fields">id,name,email</string>
 
     <!-- menu item text -->
     <string name="action_notif">Notifications</string>

@@ -69,4 +69,6 @@ dependencies {
     // date
     compile 'com.wdullaer:materialdatetimepicker:1.3.0'
 
+    compile 'com.google.code.gson:gson:2.3.1'
+
 }

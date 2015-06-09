@@ -1,13 +1,17 @@
 package com.thetidbitapp.tidbit;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.facebook.FacebookSdk;
 import com.thetidbitapp.model.SessionManager;
 
-public class InitialActivity extends ActionBarActivity implements FBLoginFragment.OnLoginListener {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class InitialActivity extends AppCompatActivity implements FBLoginFragment.OnLoginListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +21,7 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         if (new SessionManager(this).isLoggedIn()) {
-            onLogin();
+			proceedToApp();
         }
 
         FBLoginFragment login = (savedInstanceState == null) ? new FBLoginFragment() :
@@ -27,10 +31,25 @@ public class InitialActivity extends ActionBarActivity implements FBLoginFragmen
     }
 
     @Override
-    public void onLogin() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+    public void onLogin(JSONObject response) {
+
+		try {
+			SessionManager mSessionManager = new SessionManager(this);
+			String[] fields = getString(R.string.fb_fields).split(",");
+			for (String field : fields) {
+				mSessionManager.editor().putString(field, response.getString(field)).apply();
+			}
+			proceedToApp();
+		}
+		catch (JSONException e) {
+			Log.e("InitialActivity", "Error finding fields");
+		}
     }
+
+	private void proceedToApp() {
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		finish();
+	}
 
 }

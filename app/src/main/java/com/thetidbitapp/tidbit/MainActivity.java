@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,15 +19,19 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.thetidbitapp.feed.FeedFragment;
+import com.thetidbitapp.model.SessionManager;
+import com.thetidbitapp.state.OnEventInteractionListener;
+import com.thetidbitapp.state.OnLogoutListener;
 
 public class MainActivity extends AppCompatActivity implements OnConnectionFailedListener,
 							LocationListener, ConnectionCallbacks, OnEventInteractionListener,
-							OnLogoutListener, FragmentManager.OnBackStackChangedListener,
+		OnLogoutListener, FragmentManager.OnBackStackChangedListener,
                             FeedFragment.OnFeedInteractionListener,
                             NewEventFragment.OnSubmitListener {
 
     private static String FRAG_TAG = "current fragment";
 
+	private SessionManager mSessionManager;
 	private GoogleApiClient mGoogleApiClient;
 	private LocationRequest mLocRequest;
 	private boolean mShouldRequestLoc;
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+		mSessionManager = new SessionManager(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,6 +97,18 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 		}
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		mGoogleApiClient.connect();
+	}
+
+	/**
+	 *
+	 * Non lifecycle callbacks
+	 *
+	 */
+
     @Override
     public void onLogout() {
         Intent intent = new Intent(this, InitialActivity.class);
@@ -138,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	@Override
 	public void onConnected(Bundle bundle) {
 		mLastLoc = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+		Log.e("ON CONNECTED", mLastLoc.toString());
+		mSessionManager.updateLocation(mLastLoc);
 		if (mShouldRequestLoc) {
 			startLocationUpdates();
 		}
@@ -145,18 +166,26 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
 	@Override
 	public void onConnectionSuspended(int i) {
-
+		Log.e("ON CONNECTION SUSPENDED", "NOOOO :(");
 	}
 
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
-
+		Log.e("ON CONNECTION FAILED", "EVEN WORSE :((((");
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
 		mLastLoc = location;
+		Log.e("ON LOC CHANGED", mLastLoc.toString());
+		mSessionManager.updateLocation(mLastLoc);
 	}
+
+	/**
+	 *
+	 * Helper methods
+	 *
+	 */
 
 	private void addAndCommit(Fragment fragment) {
 		getSupportFragmentManager().beginTransaction()
