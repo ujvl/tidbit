@@ -22,7 +22,6 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         BaseEventsFragment.OnEventListInteractionListener, ViewPager.OnPageChangeListener {
 
     private OnFeedInteractionListener mListener;
-    private MaterialRippleLayout mMapContainer;
     private FloatingActionButton mFab;
     private TabPageIndicator mTabStrip;
 	private FeedPagerAdapter mAdapter;
@@ -63,7 +62,6 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         mTabStrip.setOnPageChangeListener(this);
         mTabStrip.setViewPager(pager);
 
-        mMapContainer = (MaterialRippleLayout) root.findViewById(R.id.map_button_ripple);
         mFab = (FloatingActionButton) root.findViewById(R.id.fab);
         mFab.setOnClickListener(this);
 
@@ -97,7 +95,6 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 	@Override
     public void onScrollDown() {
         if (!hidden) {
-            move(mMapContainer, mMapContainer.getBottom(), new AccelerateInterpolator());
             move(mFab, mFab.getBottom(), new AccelerateInterpolator());
             move(mTabStrip, -mTabStrip.getHeight(), new AccelerateInterpolator());
         }
@@ -107,7 +104,6 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     @Override
     public void onScrollUp() {
         if (hidden) {
-            move(mMapContainer, 0, new DecelerateInterpolator());
             move(mFab, 0, new DecelerateInterpolator());
             move(mTabStrip, 0, new DecelerateInterpolator());
         }

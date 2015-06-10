@@ -25,7 +25,7 @@
         app:tpi_tabRipple="@drawable/ripple"
         android:textAppearance="@style/TabBarStyle"/>
 
-    <com.balysv.materialripple.MaterialRippleLayout
+    <!--<com.balysv.materialripple.MaterialRippleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/map_button_ripple"
@@ -44,14 +44,14 @@
             android:background="@color/prim_darkest"
             android:src="@drawable/ic_map_white_24dp" />
 
-    </com.balysv.materialripple.MaterialRippleLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>-->
 
     <com.rey.material.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/std_margin"
         android:layout_marginEnd="@dimen/std_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/std_margin"
         android:id="@+id/fab"
         app:fab_iconSrc="@drawable/ic_action_new"
         app:fab_elevation="2dp"

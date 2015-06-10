@@ -1,6 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/std_margin">
+        android:paddingBottom="@dimen/std_margin">
 
         <ImageView
             android:id="@+id/event_cover"
@@ -19,33 +18,43 @@
             android:src="@drawable/cover_photo"
             android:scaleType="centerCrop"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/std_heading_text_size"
+            android:textColor="@color/white"
+            android:background="#80000000"
+            android:text="Title goes here"
+            android:padding="@dimen/std_margin_half"
+            android:layout_alignBottom="@+id/event_cover"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/double_std_margin"
             android:layout_marginLeft="@dimen/std_margin"
             android:layout_marginRight="@dimen/std_margin"
             android:layout_below="@id/event_cover">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/std_heading_text_size"
-                android:textColor="@color/black"
-                android:text="Title goes here"/>
+            <TextView style="@style/MoreInfoHeadingStyle"
+                      android:text="Food" />
+
+            <TextView style="@style/LinLayoutItemStyle"
+                      android:text="Food goes here"/>
+
+            <TextView style="@style/MoreInfoHeadingStyle"
+                      android:text="When" />
+
+            <TextView style="@style/LinLayoutItemStyle"
+                      android:text="Date from time to time"/>
 
             <TextView style="@style/MoreInfoHeadingStyle"
                       android:text="Where" />
 
             <TextView style="@style/LinLayoutItemStyle"
                 android:text="Location, goes, here"/>
-
-            <TextView style="@style/MoreInfoHeadingStyle"
-                      android:text="When" />
-
-            <TextView style="@style/LinLayoutItemStyle"
-                      android:text="From date at time to date at time"/>
 
             <TextView style="@style/MoreInfoHeadingStyle"
                       android:text="What" />
