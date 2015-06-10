@@ -6,18 +6,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Ujval on 2/22/15.
+ * Created by Ujval on 2/22/15
  */
 public class Event {
 
-    private String mId;
+    private final String mId;
     private String mName;
     private Date mDatetime;
     private String mLocation;
     private String mFood;
     private String mDescription;
     private int mNumAttendees;
-    private Bitmap cover;
+    private Bitmap mCover;
 
     private static SimpleDateFormat dateFormater;
 
@@ -55,7 +55,7 @@ public class Event {
 
     public int numberAttending() { return mNumAttendees; }
 
-    public Bitmap cover() { return cover; }
+    public Bitmap cover() { return mCover; }
 
     public void setName(String name) { mName = name; }
 
@@ -69,7 +69,7 @@ public class Event {
 
     public void setNumAttendees(int numAttendees) { mNumAttendees = numAttendees; }
 
-    public void setCover(Bitmap cover) { cover = cover; }
+    public void setCover(Bitmap cover) { mCover = cover; }
 
 }
 

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Ujval on 6/9/15
  */
-public class UserEventAdapter extends AbstractEventAdapter<UserEventAdapter.UserEventViewHolder> {
+public class UserEventAdapter extends BaseEventAdapter<UserEventAdapter.UserEventViewHolder> {
 
 	private Context mContext;
 
@@ -26,11 +26,14 @@ public class UserEventAdapter extends AbstractEventAdapter<UserEventAdapter.User
 		return new UserEventViewHolder(itemView);
 	}
 
-	public class UserEventViewHolder extends AbstractEventAdapter.EventViewHolder {
+	public class UserEventViewHolder extends BaseEventAdapter.EventViewHolder {
 
 		public UserEventViewHolder(View itemView) {
 			super(itemView);
 			btnOne.setText(mContext.getString(R.string.cancel));
+			btnOne.setTextColor(
+					mContext.getResources().getColorStateList(R.color.flat_button_text_color_negative)
+			);
 			btnTwo.setVisibility(View.GONE);
 		}
 

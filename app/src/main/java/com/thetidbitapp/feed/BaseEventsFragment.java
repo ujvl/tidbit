@@ -13,38 +13,53 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.thetidbitapp.adap.AbstractEventAdapter;
+import com.thetidbitapp.adap.BaseEventAdapter;
+import com.thetidbitapp.adap.FeedPagerAdapter;
 import com.thetidbitapp.model.Event;
-import com.thetidbitapp.model.SessionManager;
 import com.thetidbitapp.tidbit.R;
 import com.thetidbitapp.view.FixedSwipeRefreshLayout;
 
 import java.util.List;
 
-public abstract class AbstractEventsFragment extends Fragment implements View.OnClickListener,
-													 	 SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseEventsFragment extends Fragment implements View.OnClickListener,
+													FeedPagerAdapter.Reloadable,
+													SwipeRefreshLayout.OnRefreshListener,
+													BaseEventAdapter.OnItemsChangeListener {
 
     public interface OnEventListInteractionListener {
         public void onScrollUp();
         public void onScrollDown();
         public void onCardClick(CharSequence id);
+		public void onItemsChanged(int position);
     }
 
+	private OnEventListInteractionListener mListener;
 	private FixedSwipeRefreshLayout mRefresher;
 	private RecyclerView mEventRecycler;
-    private AbstractEventAdapter mEventAdapter;
+    private BaseEventAdapter mEventAdapter;
     private List<Event> mEvents;
 
-    private OnEventListInteractionListener mListener;
+	/**
+	 * Fetches events from server
+	 * @return a list of events
+	 */
+	public abstract List<Event> getEvents();
 
-	private final View.OnClickListener mOnGoingClickListener = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
+	/**
+	 * Creates and returns an instance of AbstractEventAdapter
+	 * @param events a list of events
+	 * @param context application context
+	 * @return contextually relevant instance of AbstractEventAdapter
+	 */
+	public abstract BaseEventAdapter getEventAdapter(List<Event> events, Context context);
 
-		}
-	};
+	/**
+	 * Returns the Fragment's position in the parent ViewPager
+	 * @return position in ViewPager
+	 */
+	public abstract int getViewPagerPosition();
 
-    public AbstractEventsFragment() { }
+    public BaseEventsFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,13 +69,13 @@ public abstract class AbstractEventsFragment extends Fragment implements View.On
 		mEventRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		mRefresher = (FixedSwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
 
+		setupRecycler();
         // Load content (Simulation)
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                setupList();
-                root.findViewById(R.id.tidbit_progress_circle).setVisibility(View.GONE);
-                root.findViewById(R.id.tidbit_list_swipe_refresh).setVisibility(View.VISIBLE);
+				root.findViewById(R.id.tidbit_progress_circle).setVisibility(View.GONE);
+				root.findViewById(R.id.tidbit_list_swipe_refresh).setVisibility(View.VISIBLE);
             }
         }, 2500);
 
@@ -72,22 +87,51 @@ public abstract class AbstractEventsFragment extends Fragment implements View.On
         return root;
     }
 
-    @Override
+	@Override
+	public void onResume() {
+		super.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+	}
+
+	@Override
     public void onRefresh() {
-        setupList();
-		Log.e("EVENTSLISTFRAG", new SessionManager(getActivity()).getLocation().toString());
+        setupRecycler();
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				mRefresher.setRefreshing(false);
 			}
 		}, 2500);
+		onItemsChanged();
     }
+
+	@Override
+	public void onReload() {
+		getView().findViewById(R.id.tidbit_progress_circle).setVisibility(View.VISIBLE);
+		getView().findViewById(R.id.tidbit_list_swipe_refresh).setVisibility(View.GONE);
+		setupRecycler();
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				getView().findViewById(R.id.tidbit_progress_circle).setVisibility(View.GONE);
+				getView().findViewById(R.id.tidbit_list_swipe_refresh).setVisibility(View.VISIBLE);
+			}
+		}, 2500);
+	}
 
 	@Override
 	public void onClick(final View view) {
 		int itemPosition = mEventRecycler.getChildAdapterPosition(view);
 		mListener.onCardClick(mEvents.get(itemPosition).id());
+	}
+
+	@Override
+	public void onItemsChanged() {
+		mListener.onItemsChanged(getViewPagerPosition());
 	}
 
     @Override
@@ -107,26 +151,13 @@ public abstract class AbstractEventsFragment extends Fragment implements View.On
     }
 
 	/**
-	 * Fetches events from server
-	 * @return a list of events
-	 */
-	public abstract List<Event> getEvents();
-
-	/**
-	 * Creates and returns an instance of AbstractEventAdapter
-	 * @param events a list of events
-	 * @param context application context
-	 * @return contextually relevant instance of AbstractEventAdapter
-	 */
-	public abstract AbstractEventAdapter getEventAdapter(List<Event> events, Context context);
-
-	/**
 	 * Sets up the RecyclerView of the fragment
 	 */
-	private void setupList() {
+	private void setupRecycler() {
 		mEvents = getEvents();
 		mEventAdapter = getEventAdapter(mEvents, getActivity());
 		mEventAdapter.setOnItemClickListener(this);
+		mEventAdapter.setOnItemsChangeListener(this);
 		mEventRecycler.setAdapter(mEventAdapter);
 	}
 

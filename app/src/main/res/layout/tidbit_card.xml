@@ -69,14 +69,14 @@
                     android:padding="@dimen/std_margin_half"
                     android:layout_marginLeft="@dimen/std_margin_half"
                     android:background="@color/white"
-                    android:textColor="@drawable/flat_button_text_color"/>
+                    android:textColor="@color/flat_button_text_color_positive"/>
 
                 <TextView
                     android:id="@+id/card_button_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:textColor="@drawable/flat_button_text_color"
+                    android:textColor="@color/flat_button_text_color_negative"
                     android:textSize="@dimen/std_text_size"
                     android:padding="@dimen/std_margin_half"
                     android:layout_marginLeft="@dimen/std_margin_half"

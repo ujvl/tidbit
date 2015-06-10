@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Ujval on 6/9/15
  */
-public class DefaultEventAdapter extends AbstractEventAdapter<AbstractEventAdapter.EventViewHolder> {
+public class DefaultEventAdapter extends BaseEventAdapter<BaseEventAdapter.EventViewHolder> {
 
 	public DefaultEventAdapter(List<Event> events, Context c) {
 		super(events, c);

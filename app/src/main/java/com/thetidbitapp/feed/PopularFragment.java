@@ -2,7 +2,7 @@ package com.thetidbitapp.feed;
 
 import android.content.Context;
 
-import com.thetidbitapp.adap.AbstractEventAdapter;
+import com.thetidbitapp.adap.BaseEventAdapter;
 import com.thetidbitapp.adap.DefaultEventAdapter;
 import com.thetidbitapp.model.Event;
 
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Ujval on 5/30/15.
  */
-public class PopularFragment extends AbstractEventsFragment {
+public class PopularFragment extends BaseEventsFragment {
 
     @Override
     public List<Event> getEvents() {
@@ -24,7 +24,13 @@ public class PopularFragment extends AbstractEventsFragment {
     }
 
 	@Override
-	public AbstractEventAdapter getEventAdapter(List<Event> events, Context context) {
+	public BaseEventAdapter getEventAdapter(List<Event> events, Context context) {
 		return new DefaultEventAdapter(events, context);
 	}
+
+	@Override
+	public int getViewPagerPosition() {
+		return 1;
+	}
+
 }

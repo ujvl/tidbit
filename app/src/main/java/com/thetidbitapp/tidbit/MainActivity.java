@@ -25,7 +25,7 @@ import com.thetidbitapp.state.OnLogoutListener;
 
 public class MainActivity extends AppCompatActivity implements OnConnectionFailedListener,
 							LocationListener, ConnectionCallbacks, OnEventInteractionListener,
-		OnLogoutListener, FragmentManager.OnBackStackChangedListener,
+							OnLogoutListener, FragmentManager.OnBackStackChangedListener,
                             FeedFragment.OnFeedInteractionListener,
                             NewEventFragment.OnSubmitListener {
 

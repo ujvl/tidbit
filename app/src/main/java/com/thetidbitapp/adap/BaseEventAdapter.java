@@ -20,16 +20,21 @@ import java.util.List;
 /**
  * Created by Ujval on 6/3/15
  */
-public abstract class AbstractEventAdapter<E extends AbstractEventAdapter.EventViewHolder>
+public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolder>
 													extends RecyclerView.Adapter<E> {
 
 	private List<Event> mEvents;
 	private int mLastPosition = -1;
 
 	private Context mContext;
-	private View.OnClickListener mListener;
+	private View.OnClickListener mClickListener;
+	private OnItemsChangeListener mChangeListener;
 
-	public AbstractEventAdapter(List<Event> events, Context c) {
+	public interface OnItemsChangeListener {
+		public void onItemsChanged();
+	}
+
+	public BaseEventAdapter(List<Event> events, Context c) {
 		mEvents = events;
 		mContext = c;
 	}
@@ -37,13 +42,9 @@ public abstract class AbstractEventAdapter<E extends AbstractEventAdapter.EventV
 	@Override
 	public E onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tidbit_card, parent, false);
-		view.setOnClickListener(mListener);
+		view.setOnClickListener(mClickListener);
 		E evh = getViewHolder(view);
 		return evh;
-	}
-
-	public void setOnItemClickListener(View.OnClickListener listener) {
-		mListener = listener;
 	}
 
 	@Override
@@ -61,6 +62,22 @@ public abstract class AbstractEventAdapter<E extends AbstractEventAdapter.EventV
 	@Override
 	public int getItemCount() {
 		return mEvents.size();
+	}
+
+	/**
+	 * Sets a listener on item clicks
+	 * @param listener listener to assign to
+	 */
+	public void setOnItemClickListener(View.OnClickListener listener) {
+		mClickListener = listener;
+	}
+
+	/**
+	 * Sets a listener on changes in the Adapter's items
+	 * @param listener listener to assign to
+	 */
+	public void setOnItemsChangeListener(OnItemsChangeListener listener) {
+		mChangeListener = listener;
 	}
 
 	/**
@@ -111,6 +128,7 @@ public abstract class AbstractEventAdapter<E extends AbstractEventAdapter.EventV
 		mEvents.remove(position);
 		notifyItemRemoved(position);
 		notifyItemRangeChanged(position, mEvents.size());
+		mChangeListener.onItemsChanged();
 	}
 
 	/**

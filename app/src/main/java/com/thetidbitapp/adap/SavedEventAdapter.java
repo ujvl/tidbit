@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Ujval on 6/9/15
  */
-public class SavedEventAdapter extends AbstractEventAdapter<SavedEventAdapter.SavedEventViewHolder> {
+public class SavedEventAdapter extends BaseEventAdapter<SavedEventAdapter.SavedEventViewHolder> {
 
 	private Context mContext;
 
@@ -27,7 +27,7 @@ public class SavedEventAdapter extends AbstractEventAdapter<SavedEventAdapter.Sa
 		return new SavedEventViewHolder(itemView);
 	}
 
-	public class SavedEventViewHolder extends AbstractEventAdapter.EventViewHolder {
+	public class SavedEventViewHolder extends BaseEventAdapter.EventViewHolder {
 
 		public SavedEventViewHolder(View itemView) {
 			super(itemView);

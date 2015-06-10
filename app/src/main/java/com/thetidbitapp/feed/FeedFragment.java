@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,13 +19,16 @@ import com.thetidbitapp.adap.FeedPagerAdapter;
 import com.thetidbitapp.tidbit.R;
 
 public class FeedFragment extends Fragment implements FloatingActionButton.OnClickListener,
-        AbstractEventsFragment.OnEventListInteractionListener, ViewPager.OnPageChangeListener {
+        BaseEventsFragment.OnEventListInteractionListener, ViewPager.OnPageChangeListener {
 
     private OnFeedInteractionListener mListener;
     private MaterialRippleLayout mMapContainer;
     private FloatingActionButton mFab;
     private TabPageIndicator mTabStrip;
-    private boolean hidden = false;
+	private FeedPagerAdapter mAdapter;
+
+    private boolean hidden;
+	private final boolean[] needToRefresh = new boolean[4];
 
     public interface OnFeedInteractionListener {
         public void onFABClick();
@@ -49,8 +53,10 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_feed, container, false);
 
+		mAdapter = new FeedPagerAdapter(getChildFragmentManager());
         ViewPager pager = (ViewPager) root.findViewById(R.id.feed_pager);
-        pager.setAdapter(new FeedPagerAdapter(getChildFragmentManager()));
+        pager.setAdapter(mAdapter);
+		pager.setOnPageChangeListener(this);
         pager.setOffscreenPageLimit(3);
 
         mTabStrip = (TabPageIndicator) root.findViewById(R.id.feed_tabs);
@@ -66,7 +72,11 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
     @Override
     public void onPageSelected(int position) {
-        onScrollUp();
+		onScrollUp();
+		if (needToRefresh[position]) {
+			mAdapter.getCurrentInstance(position).onReload();
+			needToRefresh[position] = false;
+		}
     }
 
     @Override
@@ -75,7 +85,16 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     @Override
     public void onPageScrollStateChanged(int state) { }
 
-    @Override
+	@Override
+	public void onItemsChanged(int position) {
+		for (int i = 0; i < needToRefresh.length; i++) {
+			if (i != position && i != needToRefresh.length - 1) {
+				needToRefresh[i] = true;
+			}
+		}
+	}
+
+	@Override
     public void onScrollDown() {
         if (!hidden) {
             move(mMapContainer, mMapContainer.getBottom(), new AccelerateInterpolator());

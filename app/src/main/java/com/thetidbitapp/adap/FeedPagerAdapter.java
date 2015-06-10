@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.thetidbitapp.feed.BaseEventsFragment;
 import com.thetidbitapp.feed.PopularFragment;
 import com.thetidbitapp.feed.SavedFragment;
 import com.thetidbitapp.feed.UpcomingFragment;
@@ -14,6 +15,12 @@ import com.thetidbitapp.feed.UsersPostsFragment;
  */
 public class FeedPagerAdapter extends FragmentPagerAdapter {
 
+	private BaseEventsFragment[] fragments = new BaseEventsFragment[getCount()];
+
+	public interface Reloadable {
+		public void onReload();
+	}
+
     public FeedPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -22,17 +29,21 @@ public class FeedPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int pos) {
         switch(pos) {
             case 0:
-                return new UpcomingFragment();
+                return fragments[pos] = new UpcomingFragment();
             case 1:
-                return new PopularFragment();
+                return fragments[pos] = new PopularFragment();
             case 2:
-                return new SavedFragment();
+                return fragments[pos] = new SavedFragment();
             case 3:
-                return new UsersPostsFragment();
+                return fragments[pos] = new UsersPostsFragment();
             default:
                 throw new IllegalStateException("how is this possible??");
         }
     }
+
+	public BaseEventsFragment getCurrentInstance(int pos) {
+		return fragments[pos];
+	}
 
     @Override
     public CharSequence getPageTitle(int pos) {
