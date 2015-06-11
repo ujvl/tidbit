@@ -36,7 +36,9 @@ public class UserEventAdapter extends BaseEventAdapter<UserEventAdapter.UserEven
 
 		@Override
 		protected void onFirstBtnClick() {
-			super.onFirstBtnClick();
+			if (checkInternetConnectivity()) {
+				removeRightwards(itemView, getAdapterPosition());
+			}
 		}
 
 		@Override

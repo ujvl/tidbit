@@ -1,11 +1,9 @@
 package com.thetidbitapp.adap;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.View;
 
 import com.thetidbitapp.model.Event;
-import com.thetidbitapp.tidbit.R;
 
 import java.util.List;
 
@@ -27,8 +25,6 @@ public class DefaultEventAdapter extends BaseEventAdapter<DefaultEventAdapter.De
 
 		public DefaultEventViewHolder(View itemView) {
 			super(itemView);
-			btnOne.setTextColor(mContext.getResources().getColor(R.color.green));
-			btnOne.setTypeface(null, Typeface.BOLD);
 		}
 
 		@Override

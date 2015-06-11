@@ -37,7 +37,9 @@ public class SavedEventAdapter extends BaseEventAdapter<SavedEventAdapter.SavedE
 
 		@Override
 		protected void onSecondBtnClick() {
-			super.onSecondBtnClick();
+			if (checkInternetConnectivity()) {
+				removeLeftwards(itemView, getAdapterPosition());
+			}
 		}
 	}
 }

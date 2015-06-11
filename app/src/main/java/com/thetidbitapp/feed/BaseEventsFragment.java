@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +69,7 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 		mRefresher = (FixedSwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
 
 		setupRecycler();
-        // Load content (Simulation)
+        // Load content simulation
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

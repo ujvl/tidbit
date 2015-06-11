@@ -2,10 +2,9 @@ package com.thetidbitapp.adap;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.thetidbitapp.model.Event;
 import com.thetidbitapp.tidbit.R;
@@ -105,23 +103,27 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 	}
 
 	/**
-	 * Removes the view rightwards
+	 * Removes the view rightwards if it exists in the adapter
 	 * @param view parent of button
 	 * @param position position of view in adapter
 	 */
-	protected void removeRightwards(View view, int position) {
-		removeItem(position);
-		animateOut(view, android.R.anim.slide_out_right, 150);
+	protected synchronized void removeRightwards(View view, int position) {
+		if (position != RecyclerView.NO_POSITION) {
+			removeItem(position);
+			animateOut(view, android.R.anim.slide_out_right, 150);
+		}
 	}
 
 	/**
-	 * Removes the view leftwards
+	 * Removes the view leftwards if it exists in the adapter
 	 * @param view parent of button
 	 * @param position position of view in adapter
 	 */
-	protected void removeLeftwards(View view, int position) {
-		removeItem(position);
-		animateOut(view, R.anim.slide_out_left, 150);
+	protected synchronized void removeLeftwards(View view, int position) {
+		if (position != RecyclerView.NO_POSITION) {
+			removeItem(position);
+			animateOut(view, R.anim.slide_out_left, 150);
+		}
 	}
 
 	/**
@@ -199,8 +201,9 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 		 */
 		protected boolean checkInternetConnectivity() {
 			if (!InternetUtil.isOnline(mContext)) {
-				
-				Toast.makeText(mContext, "Stahp, no internet.", Toast.LENGTH_LONG).show();
+//				Snackbar snackbar = Snackbar.make(
+//						,"Stahp, no internet connection", Snackbar.LENGTH_SHORT);
+//				snackbar.show();
 				return false;
 			}
 			return true;
