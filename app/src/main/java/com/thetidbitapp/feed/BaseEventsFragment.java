@@ -3,6 +3,7 @@ package com.thetidbitapp.feed;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -23,7 +24,7 @@ import java.util.List;
 public abstract class BaseEventsFragment extends Fragment implements View.OnClickListener,
 													FeedPagerAdapter.Reloadable,
 													SwipeRefreshLayout.OnRefreshListener,
-													BaseEventAdapter.OnItemsChangeListener {
+		BaseEventAdapter.OnInteractionListener {
 
     public interface OnEventListInteractionListener {
         public void onScrollUp();
@@ -125,7 +126,14 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 		mListener.onItemsChanged(getViewPagerPosition());
 	}
 
-    @Override
+	@Override
+	public void onNoConnectivityReported() {
+		Snackbar snackbar = Snackbar.make(getView(), "Stahp, no internet connection",
+									Snackbar.LENGTH_SHORT);
+		snackbar.show();
+	}
+
+	@Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {

@@ -55,7 +55,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 		mAdapter = new FeedPagerAdapter(getChildFragmentManager());
         ViewPager pager = (ViewPager) root.findViewById(R.id.feed_pager);
         pager.setAdapter(mAdapter);
-		pager.setOnPageChangeListener(this);
+		pager.addOnPageChangeListener(this);
         pager.setOffscreenPageLimit(3);
 
         mTabStrip = (TabPageIndicator) root.findViewById(R.id.feed_tabs);

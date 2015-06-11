@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +29,11 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 
 	protected Context mContext;
 	private View.OnClickListener mClickListener;
-	private OnItemsChangeListener mChangeListener;
+	private OnInteractionListener mInteractionListener;
 
-	public interface OnItemsChangeListener {
+	public interface OnInteractionListener {
 		public void onItemsChanged();
+		public void onNoConnectivityReported();
 	}
 
 	public BaseEventAdapter(List<Event> events, Context c) {
@@ -78,8 +78,8 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 	 * Sets a listener on changes in the Adapter's items
 	 * @param listener listener to assign to
 	 */
-	public void setOnItemsChangeListener(OnItemsChangeListener listener) {
-		mChangeListener = listener;
+	public void setOnItemsChangeListener(OnInteractionListener listener) {
+		mInteractionListener = listener;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 		mEvents.remove(position);
 		notifyItemRemoved(position);
 		notifyItemRangeChanged(position, mEvents.size());
-		mChangeListener.onItemsChanged();
+		mInteractionListener.onItemsChanged();
 	}
 
 	/**
@@ -201,9 +201,7 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 		 */
 		protected boolean checkInternetConnectivity() {
 			if (!InternetUtil.isOnline(mContext)) {
-//				Snackbar snackbar = Snackbar.make(
-//						,"Stahp, no internet connection", Snackbar.LENGTH_SHORT);
-//				snackbar.show();
+				mInteractionListener.onNoConnectivityReported();
 				return false;
 			}
 			return true;

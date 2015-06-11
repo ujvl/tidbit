@@ -24,12 +24,10 @@ public class FeedPagerAdapter extends FragmentPagerAdapter {
 
     public FeedPagerAdapter(FragmentManager fm) {
         super(fm);
-		Log.e("CONSTRUCTOR CALLED", "OKAY ---------------------------");
     }
 
     @Override
     public Fragment getItem(int pos) {
-		Log.e("ASSIGNING NEW FRAGMENT FOR " + pos, "YA OK GOTCHA");
         switch(pos) {
             case 0:
                 return fragments[pos] = new UpcomingFragment();
@@ -44,10 +42,15 @@ public class FeedPagerAdapter extends FragmentPagerAdapter {
         }
     }
 
+	/**
+	 * Gets current instance at pos -- broken when used
+	 * with back-navigation behaviour, will try to fix
+	 * later but for now use
+	 * @param pos
+	 * @return
+	 */
+	@Deprecated
 	public BaseEventsFragment getCurrentInstance(int pos) {
-		Log.e("RETURNING EVENTS FRAGMENT FOR " + pos, "YA OK GOTCHA\n");
-		Log.e("RETURNING EVENTS FRAGMENT FOR " + pos, fragments[0] + " and " +fragments[1] +
-				" and " + fragments[2] + " and " + fragments[3] + "\n-------------------");
 		return fragments[pos];
 	}
 
