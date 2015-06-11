@@ -87,16 +87,6 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
     }
 
 	@Override
-	public void onResume() {
-		super.onResume();
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-	}
-
-	@Override
     public void onRefresh() {
         setupRecycler();
 		new Handler().postDelayed(new Runnable() {
@@ -123,9 +113,11 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 	}
 
 	@Override
-	public void onClick(final View view) {
+	public void onClick(View view) {
 		int itemPosition = mEventRecycler.getChildAdapterPosition(view);
-		mListener.onCardClick(mEvents.get(itemPosition).id());
+		if (itemPosition != RecyclerView.NO_POSITION) {
+			mListener.onCardClick(mEvents.get(itemPosition).id());
+		}
 	}
 
 	@Override

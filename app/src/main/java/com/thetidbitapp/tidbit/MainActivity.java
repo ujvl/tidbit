@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                addAndCommit(new OverflowFragment());
+                replaceAndCommit(new OverflowFragment());
                 break;
             case R.id.action_notif:
                 break;
@@ -86,7 +86,9 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	@Override
 	public void onPause() {
 		super.onPause();
-		stopLocationUpdates();
+		if (mGoogleApiClient.isConnected()) {
+			stopLocationUpdates();
+		}
 	}
 
 	@Override
@@ -131,12 +133,12 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
     @Override
     public void onFABClick() {
-        addAndCommit(new NewEventFragment());
+        replaceAndCommit(new NewEventFragment());
     }
 
     @Override
     public void onCardClick(String id) {
-        addAndCommit(EventDetailsFragment.newInstance(id));
+        replaceAndCommit(EventDetailsFragment.newInstance(id));
     }
 
     @Override
@@ -176,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	@Override
 	public void onLocationChanged(Location location) {
 		mLastLoc = location;
-		Log.e("ON LOC CHANGED", mLastLoc.toString());
+		Log.e("ON LOCATION CHANGED", mLastLoc.toString());
 		mSessionManager.updateLocation(mLastLoc);
 	}
 
@@ -186,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	 *
 	 */
 
-	private void addAndCommit(Fragment fragment) {
+	private void replaceAndCommit(Fragment fragment) {
 		getSupportFragmentManager().beginTransaction()
 				.addToBackStack(null).replace(R.id.container_main, fragment, FRAG_TAG).commit();
 	}

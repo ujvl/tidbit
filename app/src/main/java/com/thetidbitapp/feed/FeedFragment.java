@@ -69,11 +69,11 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     }
 
     @Override
-    public void onPageSelected(int position) {
+    public void onPageSelected(int pos) {
 		onScrollUp();
-		if (needToRefresh[position]) {
-			mAdapter.getCurrentInstance(position).onReload();
-			needToRefresh[position] = false;
+		if (needToRefresh[pos]) {
+			((BaseEventsFragment) getChildFragmentManager().findFragmentByTag(tag(pos))).onReload();
+			needToRefresh[pos] = false;
 		}
     }
 
@@ -145,4 +145,15 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         super.onDetach();
         mListener = null;
     }
+
+	/**
+	 * Hacky way to construct fragment tag for ViewPager...
+	 * Google, if you ever read this, pls provide a convenience
+	 * method to get the current instance of a page
+	 * @param pos position of Fragment to get tag of
+	 * @return tag of the fragment at pos
+	 */
+	private String tag(int pos) {
+		return "android:switcher:" + R.id.feed_pager + ":" + pos;
+	}
 }
