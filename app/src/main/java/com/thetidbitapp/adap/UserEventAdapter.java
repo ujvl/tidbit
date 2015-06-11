@@ -13,11 +13,8 @@ import java.util.List;
  */
 public class UserEventAdapter extends BaseEventAdapter<UserEventAdapter.UserEventViewHolder> {
 
-	private Context mContext;
-
 	public UserEventAdapter(List<Event> events, Context context) {
 		super(events, context);
-		mContext = context;
 	}
 
 

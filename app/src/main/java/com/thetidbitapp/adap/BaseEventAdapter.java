@@ -2,6 +2,8 @@ package com.thetidbitapp.adap;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +13,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.thetidbitapp.model.Event;
 import com.thetidbitapp.tidbit.R;
+import com.thetidbitapp.util.InternetUtil;
 
 import java.util.List;
 
@@ -26,7 +30,7 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 	private List<Event> mEvents;
 	private int mLastPosition = -1;
 
-	private Context mContext;
+	protected Context mContext;
 	private View.OnClickListener mClickListener;
 	private OnItemsChangeListener mChangeListener;
 
@@ -101,21 +105,21 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 	}
 
 	/**
-	 * Action taken for when going button of a view pressed
+	 * Removes the view rightwards
 	 * @param view parent of button
 	 * @param position position of view in adapter
 	 */
-	private void removeRightwards(View view, int position) {
+	protected void removeRightwards(View view, int position) {
 		removeItem(position);
 		animateOut(view, android.R.anim.slide_out_right, 150);
 	}
 
 	/**
-	 * Action taken for when not-going button of a view pressed
+	 * Removes the view leftwards
 	 * @param view parent of button
 	 * @param position position of view in adapter
 	 */
-	private void removeLeftwards(View view, int position) {
+	protected void removeLeftwards(View view, int position) {
 		removeItem(position);
 		animateOut(view, R.anim.slide_out_left, 150);
 	}
@@ -143,7 +147,7 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 		view.startAnimation(anim);
 	}
 
-	public class EventViewHolder extends RecyclerView.ViewHolder {
+	public abstract class EventViewHolder extends RecyclerView.ViewHolder {
 
 		protected CardView cv;
 
@@ -185,12 +189,21 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 
 		}
 
-		protected void onFirstBtnClick() {
-			removeRightwards(itemView, getAdapterPosition());
-		}
+		protected abstract void onFirstBtnClick();
 
-		protected void onSecondBtnClick() {
-			removeLeftwards(itemView, getAdapterPosition());
+		protected abstract void onSecondBtnClick();
+
+		/**
+		 * Notifies user if not connected to internet
+		 * @return true if connected to internet, false otherwise
+		 */
+		protected boolean checkInternetConnectivity() {
+			if (!InternetUtil.isOnline(mContext)) {
+				
+				Toast.makeText(mContext, "Stahp, no internet.", Toast.LENGTH_LONG).show();
+				return false;
+			}
+			return true;
 		}
 
 	}

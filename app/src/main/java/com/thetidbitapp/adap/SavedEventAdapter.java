@@ -14,11 +14,8 @@ import java.util.List;
  */
 public class SavedEventAdapter extends BaseEventAdapter<SavedEventAdapter.SavedEventViewHolder> {
 
-	private Context mContext;
-
 	public SavedEventAdapter(List<Event> events, Context context) {
 		super(events, context);
-		mContext = context;
 	}
 
 
