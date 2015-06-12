@@ -23,6 +23,7 @@
     <dimen name="std_heading_text_size">24sp</dimen>
 
     <dimen name="std_progress_size">48dp</dimen>
+    <dimen name="std_snackbar_size">48dp</dimen>
 
     <dimen name="std_card_corner_radius">2dp</dimen>
 

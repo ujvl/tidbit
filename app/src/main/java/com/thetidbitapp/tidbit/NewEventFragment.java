@@ -35,7 +35,7 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
 
     private OnSubmitListener mListener;
 
-    private Button mFromDateButton, mToDateButton, mFromTimeButton, mToTimeButton;
+    private Button mDateButton, mFromTimeButton, mToTimeButton;
     private FloatingActionButton mFABUpload;
     private ImageView mCoverImage;
 
@@ -57,8 +57,7 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_create_event, container, false);
 
-        mFromDateButton = (Button) root.findViewById(R.id.from_date_button);
-        mToDateButton = (Button) root.findViewById(R.id.to_date_button);
+        mDateButton = (Button) root.findViewById(R.id.date_button);
         mFromTimeButton = (Button) root.findViewById(R.id.from_time_button);
         mToTimeButton = (Button) root.findViewById(R.id.to_time_button);
         mFABUpload = (FloatingActionButton) root.findViewById(R.id.fab_upload);
@@ -67,9 +66,8 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
         mFABUpload.setOnClickListener(this);
         mCoverImage.setOnClickListener(this);
 
-        setupButtonListener(mFromDateButton, true);
+        setupButtonListener(mDateButton, true);
         setupButtonListener(mFromTimeButton, false);
-        setupButtonListener(mToDateButton, true);
         setupButtonListener(mToTimeButton, false);
 
         return root;

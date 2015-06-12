@@ -4,12 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -27,6 +25,10 @@ import java.util.Arrays;
 public class FBLoginFragment extends Fragment implements FacebookCallback<LoginResult>,
 												GraphRequest.GraphJSONObjectCallback,
 												View.OnClickListener {
+
+	public interface OnLoginListener {
+		public void onLogin(JSONObject result);
+	}
 
     private OnLoginListener mListener;
     private CallbackManager callbackManager;
@@ -57,31 +59,19 @@ public class FBLoginFragment extends Fragment implements FacebookCallback<LoginR
         return mRootView;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnLoginListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException("Activity must implement listener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
+	/**
+	 * Fired on completion of login request,
+	 * subsequently calls Graph API
+	 * @param loginResult result containing access token
+	 */
 	@Override
 	public void onSuccess(LoginResult loginResult) {
-
 		Bundle params = new Bundle();
+		new SessionManager(getActivity()).setAccessToken(loginResult.getAccessToken());
 		GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), this);
-		params.putString(FIELDS_KEY, getActivity().getString(R.string.fb_fields));
+		params.putString(FIELDS_KEY, getActivity().getString(R.string.fb_field_result_keys));
 		request.setParameters(params);
 		request.executeAsync();
-
 	}
 
 	@Override
@@ -94,30 +84,50 @@ public class FBLoginFragment extends Fragment implements FacebookCallback<LoginR
 
 	}
 
-
+	/**
+	 * Fired on completion of the graph API request
+	 * @param result result fetched from facebook
+	 * @param response associated response
+	 */
 	@Override
 	public void onCompleted(JSONObject result, GraphResponse response) {
-
 		mRootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
 		new SessionManager(getActivity()).setLoggedIn(true);
 		mListener.onLogin(result);
-
 	}
 
+
+	/**
+	 * Fired on click of the Login with facebook button
+	 * @param v view clicked
+	 */
 	@Override
 	public void onClick(View v) {
 		mLoginManager.logInWithReadPermissions(
-				FBLoginFragment.this,
-				Arrays.asList("public_profile", "email"));
+			FBLoginFragment.this,
+			Arrays.asList(getString(R.string.fb_field_permissions).split(","))
+		);
 	}
-
-	public interface OnLoginListener {
-        public void onLogin(JSONObject result);
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mListener = (OnLoginListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException("Activity must implement listener");
+		}
+	}
+
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
 }

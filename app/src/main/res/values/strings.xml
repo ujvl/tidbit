@@ -33,7 +33,8 @@
     
     <!--   fb  -->
     <string name="facebook_app_id">980180495326106</string>
-    <string name="fb_fields">id,name,email</string>
+    <string name="fb_field_result_keys">id,name,email</string>
+    <string name="fb_field_permissions">public_profile,email,user_events</string>
 
     <!-- menu item text -->
     <string name="action_notif">Notifications</string>
@@ -57,5 +58,8 @@
     <string name="going">GOING</string>
     <string name="not_going">NOT GOING</string>
     <string name="cancel">CANCEL EVENT</string>
+
+    <!-- Warnings -->
+    <string name="connectivity_warning">Stahp, no internet connection available.</string>
 
 </resources>

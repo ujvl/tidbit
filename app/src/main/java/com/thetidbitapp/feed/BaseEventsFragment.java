@@ -24,7 +24,7 @@ import java.util.List;
 public abstract class BaseEventsFragment extends Fragment implements View.OnClickListener,
 													FeedPagerAdapter.Reloadable,
 													SwipeRefreshLayout.OnRefreshListener,
-		BaseEventAdapter.OnInteractionListener {
+													BaseEventAdapter.OnInteractionListener {
 
     public interface OnEventListInteractionListener {
         public void onScrollUp();
@@ -128,8 +128,10 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 
 	@Override
 	public void onNoConnectivityReported() {
-		Snackbar snackbar = Snackbar.make(getView(), "Stahp, no internet connection",
-									Snackbar.LENGTH_SHORT);
+		Snackbar snackbar = Snackbar.make(
+				getView(),
+				getString(R.string.connectivity_warning),
+				Snackbar.LENGTH_SHORT);
 		snackbar.show();
 	}
 

@@ -34,10 +34,10 @@ public class InitialActivity extends AppCompatActivity implements FBLoginFragmen
     public void onLogin(JSONObject response) {
 
 		try {
-			SessionManager mSessionManager = new SessionManager(this);
-			String[] fields = getString(R.string.fb_fields).split(",");
+			SessionManager sessionManager = new SessionManager(this);
+			String[] fields = getString(R.string.fb_field_result_keys).split(",");
 			for (String field : fields) {
-				mSessionManager.editor().putString(field, response.getString(field)).apply();
+				sessionManager.editor().putString(field, response.getString(field)).apply();
 			}
 			proceedToApp();
 		}
@@ -47,8 +47,7 @@ public class InitialActivity extends AppCompatActivity implements FBLoginFragmen
     }
 
 	private void proceedToApp() {
-		Intent intent = new Intent(this, MainActivity.class);
-		startActivity(intent);
+		startActivity(new Intent(this, MainActivity.class));
 		finish();
 	}
 

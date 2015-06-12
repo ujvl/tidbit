@@ -3,9 +3,10 @@ package com.thetidbitapp.model;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.util.Log;
 
+import com.facebook.AccessToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.thetidbitapp.tidbit.R;
 
 /**
@@ -28,20 +29,30 @@ public class SessionManager {
     }
 
     public void setLoggedIn(boolean isLoggedIn) {
-        editor().putBoolean(mContext.getString(R.string.prefs_is_logged_in), isLoggedIn).apply();
+        editor().putBoolean(mContext.getString(R.string.prefs_logged_in_key), isLoggedIn).apply();
     }
 
+	public void setAccessToken(AccessToken token) {
+		String tokenStr = mJsonConverter.toJson(token);
+		editor().putString(mContext.getString(R.string.prefs_access_token_key), tokenStr).apply();
+	}
+
     public boolean isLoggedIn() {
-        return mPrefs.getBoolean(mContext.getString(R.string.prefs_is_logged_in), false);
+        return mPrefs.getBoolean(mContext.getString(R.string.prefs_logged_in_key), false);
     }
 
 	public void updateLocation(Location location) {
-		editor().putString(mContext.getString(R.string.prefs_loc), mJsonConverter.toJson(location)).apply();
+		String locStr = mJsonConverter.toJson(location);
+		editor().putString(mContext.getString(R.string.prefs_loc_key), locStr).apply();
 	}
 
 	public Location getLocation() {
-		String loc = mPrefs.getString(mContext.getString(R.string.prefs_loc), null);
+		String loc = mPrefs.getString(mContext.getString(R.string.prefs_loc_key), null);
 		return loc != null ? mJsonConverter.fromJson(loc, Location.class) : null;
+	}
+
+	public String getAccessToken() {
+		return mPrefs.getString(mContext.getString(R.string.prefs_access_token_key), null);
 	}
 
 }

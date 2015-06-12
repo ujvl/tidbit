@@ -78,34 +78,33 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffc3c3c3"
                 android:textSize="12sp"
+                android:text="@string/date"/>
+
+            <com.rey.material.widget.Button
+                style="@android:style/Widget.DeviceDefault.Light.Spinner"
+                android:id="@+id/date_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textSize="@dimen/std_med_text_size"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#ffc3c3c3"
+                android:textSize="12sp"
                 android:text="@string/from"/>
 
-            <LinearLayout
+            <com.rey.material.widget.Button
+                style="@android:style/Widget.DeviceDefault.Light.Spinner"
+                android:id="@+id/from_time_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.rey.material.widget.Button
-                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                    android:id="@+id/from_date_button"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:text="@string/date"
-                    android:textSize="@dimen/std_med_text_size"
-                    android:gravity="center"/>
-                
-                <com.rey.material.widget.Button
-                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                    android:id="@+id/from_time_button"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:text="@string/time"
-                    android:textSize="@dimen/std_med_text_size"
-                    android:paddingLeft="@dimen/small_offset"
-                    android:gravity="center"/>
-                
-             </LinearLayout>
+                android:layout_height="wrap_content"
+                android:text="@string/time"
+                android:textSize="@dimen/std_med_text_size"
+                android:gravity="center"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -115,41 +114,22 @@
                 android:textSize="12sp"
                 android:text="@string/to"/>
 
-            <LinearLayout
+            <com.rey.material.widget.Button
+                style="@android:style/Widget.DeviceDefault.Light.Spinner"
+                android:id="@+id/to_time_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp">
-
-                <com.rey.material.widget.Button
-                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                    android:id="@+id/to_date_button"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:text="@string/date"
-                    android:textSize="@dimen/std_med_text_size"
-                    android:paddingLeft="@dimen/small_offset"
-                    android:gravity="center"/>
-
-                <com.rey.material.widget.Button
-                    style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                    android:id="@+id/to_time_button"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:text="@string/time"
-                    android:textSize="@dimen/std_med_text_size"
-                    android:paddingLeft="@dimen/small_offset"
-                    android:gravity="center"
-                    app:rd_enable="true"/>
-
-            </LinearLayout>
+                android:text="@string/time"
+                android:textSize="@dimen/std_med_text_size"
+                android:gravity="center"
+                app:rd_enable="true"/>
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_organizer"
                 android:textSize="@dimen/std_med_text_size"
+                android:layout_marginTop="8dp"
                 app:met_baseColor="@color/black"
                 app:met_primaryColor="@color/sec_bright"
                 app:met_errorColor="#fffd0000"
