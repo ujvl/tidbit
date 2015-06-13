@@ -3,13 +3,12 @@ package com.thetidbitapp.tidbit;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
-import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,18 +19,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.rey.material.widget.Button;
 import com.rey.material.widget.FloatingActionButton;
+import com.thetidbitapp.model.SessionManager;
+import com.thetidbitapp.util.InternetUtil;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.Calendar;
 
-public class NewEventFragment extends Fragment implements View.OnClickListener {
+public class NewEventFragment extends Fragment implements View.OnClickListener,
+														  GraphRequest.Callback {
 
     private OnSubmitListener mListener;
 
@@ -85,59 +89,25 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
             mListener.onSubmit();
             return true;
         }
+		if (item.getItemId() == R.id.action_import) {
+			getEventListFromFacebook();
+			return true;
+		}
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupButtonListener(final Button button, boolean isForDate) {
-
-        Calendar now = Calendar.getInstance();
-        final DialogFragment picker;
-
-        if (isForDate) {
-            picker = DatePickerDialog.newInstance(
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                            button.setText(monthOfYear + "/" + dayOfMonth + "/" + year);
-                        }
-                    },
-                    now.get(Calendar.YEAR),
-                    now.get(Calendar.MONTH),
-                    now.get(Calendar.DAY_OF_MONTH)
-            );
-        }
-        else {
-            picker = TimePickerDialog.newInstance(
-                    new TimePickerDialog.OnTimeSetListener() {
-                        @Override
-                        public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-                            button.setText(hourOfDay + ":" + minute);
-                        }
-                    },
-                    now.get(Calendar.HOUR_OF_DAY),
-                    now.get(Calendar.MINUTE),
-                    false
-            );
-        }
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                picker.show(getActivity().getFragmentManager(), "");
-            }
-        });
-
-    }
+	@Override
+	public void onCompleted(GraphResponse graphResponse) {
+		Log.e("On completed", graphResponse.getJSONObject().toString());
+	}
 
     @Override
     public void onClick(View v) {
-
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_REQUEST);
-
     }
 
     @Override
@@ -147,12 +117,9 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
 
             try {
                 Uri selectedImageUri = data.getData();
-                String bitmapPath;
-
-                String[] projection = {MediaStore.Images.Media.DATA};
-                ParcelFileDescriptor pfd = getActivity().getContentResolver().openFileDescriptor(selectedImageUri, "r");
+                ParcelFileDescriptor pfd = getActivity()
+						.getContentResolver().openFileDescriptor(selectedImageUri, "r");
                 FileDescriptor imageSource = pfd.getFileDescriptor();
-
                 Bitmap cover = BitmapFactory.decodeFileDescriptor(imageSource);
                 mCoverImage.setImageBitmap(cover);
             } catch(FileNotFoundException e) {
@@ -184,5 +151,74 @@ public class NewEventFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         getActivity().setTitle("New Event");
     }
+
+	/**
+	 * Attempts to get a list of the user's visible
+	 * events from his/her facebook
+	 */
+	private void getEventListFromFacebook() {
+		if (InternetUtil.isOnline(getActivity())) {
+
+			SessionManager manager = new SessionManager(getActivity());
+			AccessToken token = manager.getAccessToken();
+			String path = manager.getString(getString(R.string.fb_field_id)) + "/events";
+			Bundle params = new Bundle();
+			params.putString(getString(R.string.fb_fields_key), getString(R.string.fb_ev_fields));
+
+			GraphRequest request = GraphRequest.newGraphPathRequest(token, path, this);
+			request.setParameters(params);
+			request.executeAsync();
+
+		}
+		else {
+			Snackbar.make(getView(), getString(R.string.connect_error), Snackbar.LENGTH_SHORT).show();
+		}
+	}
+
+	/**
+	 * Sets up listener for button
+	 * @param button Button to attach listener to
+	 * @param isForDate uses date dialog if true, time dialog otherwise
+	 */
+	private void setupButtonListener(final Button button, boolean isForDate) {
+
+		Calendar now = Calendar.getInstance();
+		final DialogFragment picker;
+
+		if (isForDate) {
+			picker = DatePickerDialog.newInstance(
+					new DatePickerDialog.OnDateSetListener() {
+						@Override
+						public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+							button.setText(monthOfYear + "/" + dayOfMonth + "/" + year);
+						}
+					},
+					now.get(Calendar.YEAR),
+					now.get(Calendar.MONTH),
+					now.get(Calendar.DAY_OF_MONTH)
+			);
+		}
+		else {
+			picker = TimePickerDialog.newInstance(
+					new TimePickerDialog.OnTimeSetListener() {
+						@Override
+						public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
+							button.setText(hourOfDay + ":" + minute);
+						}
+					},
+					now.get(Calendar.HOUR_OF_DAY),
+					now.get(Calendar.MINUTE),
+					false
+			);
+		}
+
+		button.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				picker.show(getActivity().getFragmentManager(), "");
+			}
+		});
+
+	}
 
 }

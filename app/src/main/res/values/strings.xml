@@ -35,11 +35,19 @@
     <string name="facebook_app_id">980180495326106</string>
     <string name="fb_field_result_keys">id,name,email</string>
     <string name="fb_field_permissions">public_profile,email,user_events</string>
+    <string name="fb_field_id">id</string>
+    <string name="fb_field_name">name</string>
+    <string name="fb_field_email">email</string>
+    <string name="fb_fields_key">fields</string>
+    <string name="fb_ev_fields">
+        id,start_time,end_time,name,description,cover,owner,place
+    </string>
 
     <!-- menu item text -->
     <string name="action_notif">Notifications</string>
     <string name="action_profile">Profile</string>
     <string name="action_done">Done</string>
+    <string name="action_import">Import from Facebook</string>
 
     <string name="to">To</string>
     <string name="from">From</string>
@@ -60,6 +68,6 @@
     <string name="cancel">CANCEL EVENT</string>
 
     <!-- Warnings -->
-    <string name="connectivity_warning">Stahp, no internet connection available.</string>
+    <string name="connect_error">Stahp, no internet connection available.</string>
 
 </resources>

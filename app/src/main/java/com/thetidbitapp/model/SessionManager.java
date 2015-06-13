@@ -46,13 +46,18 @@ public class SessionManager {
 		editor().putString(mContext.getString(R.string.prefs_loc_key), locStr).apply();
 	}
 
+	public String getString(String key) {
+		return mPrefs.getString(key, null);
+	}
+
 	public Location getLocation() {
 		String loc = mPrefs.getString(mContext.getString(R.string.prefs_loc_key), null);
 		return loc != null ? mJsonConverter.fromJson(loc, Location.class) : null;
 	}
 
-	public String getAccessToken() {
-		return mPrefs.getString(mContext.getString(R.string.prefs_access_token_key), null);
+	public AccessToken getAccessToken() {
+		String token = mPrefs.getString(mContext.getString(R.string.prefs_access_token_key), null);
+		return token != null ? mJsonConverter.fromJson(token, AccessToken.class) : null;
 	}
 
 }

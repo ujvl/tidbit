@@ -14,7 +14,7 @@
         android:layout_height="match_parent"/>
 
     <com.rey.material.widget.TabPageIndicator
-        style="@style/Material.Widget.TabPageIndicator"
+        style="@style/TabBarStyle"
         android:id="@+id/feed_tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -22,8 +22,7 @@
         app:tpi_indicatorColor="@color/sec_bright"
         app:tpi_indicatorHeight="4dp"
         app:tpi_mode="fixed"
-        app:tpi_tabRipple="@drawable/ripple"
-        android:textAppearance="@style/TabBarStyle"/>
+        app:tpi_tabRipple="@drawable/ripple"/>
 
     <!--<com.balysv.materialripple.MaterialRippleLayout
         android:layout_width="match_parent"

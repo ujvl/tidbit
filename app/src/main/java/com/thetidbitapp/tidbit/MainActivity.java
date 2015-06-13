@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
                             FeedFragment.OnFeedInteractionListener,
                             NewEventFragment.OnSubmitListener {
 
-    private static String FRAG_TAG = "current fragment";
+    private static final String FRAG_TAG = "current fragment";
+	private static final int LOC_UPDATE_FASTEST_INTERVAL_MILLIS = 1000000;
+	private static final int LOC_UPDATE_INTERVAL_MILLIS = 10000000;
 
 	private SessionManager mSessionManager;
 	private GoogleApiClient mGoogleApiClient;
@@ -178,7 +180,6 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	@Override
 	public void onLocationChanged(Location location) {
 		mLastLoc = location;
-		Log.e("ON LOCATION CHANGED", mLastLoc.toString());
 		mSessionManager.updateLocation(mLastLoc);
 	}
 
@@ -208,8 +209,9 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	}
 
 	private void createLocationRequest() {
-		mLocRequest = new LocationRequest();
-		mLocRequest.setInterval(1000000).setFastestInterval(1000000);
+		mLocRequest = LocationRequest.create();
+		mLocRequest.setInterval(LOC_UPDATE_INTERVAL_MILLIS);
+		mLocRequest.setFastestInterval(LOC_UPDATE_FASTEST_INTERVAL_MILLIS);
 		mLocRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 	}
 

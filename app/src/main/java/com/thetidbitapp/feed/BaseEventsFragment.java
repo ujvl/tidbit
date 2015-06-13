@@ -17,7 +17,6 @@ import com.thetidbitapp.adap.BaseEventAdapter;
 import com.thetidbitapp.adap.FeedPagerAdapter;
 import com.thetidbitapp.model.Event;
 import com.thetidbitapp.tidbit.R;
-import com.thetidbitapp.view.FixedSwipeRefreshLayout;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
     }
 
 	private OnEventListInteractionListener mListener;
-	private FixedSwipeRefreshLayout mRefresher;
+	private SwipeRefreshLayout mRefresher;
 	private RecyclerView mEventRecycler;
     private BaseEventAdapter mEventAdapter;
     private List<Event> mEvents;
@@ -67,7 +66,7 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
         final View root = inflater.inflate(R.layout.fragment_events, container, false);
 		mEventRecycler = (RecyclerView) root.findViewById(R.id.events_recycler);
 		mEventRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-		mRefresher = (FixedSwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
+		mRefresher = (SwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
 
 		setupRecycler();
         // Load content simulation
@@ -130,7 +129,7 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 	public void onNoConnectivityReported() {
 		Snackbar snackbar = Snackbar.make(
 				getView(),
-				getString(R.string.connectivity_warning),
+				getString(R.string.connect_error),
 				Snackbar.LENGTH_SHORT);
 		snackbar.show();
 	}

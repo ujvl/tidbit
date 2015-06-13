@@ -4,8 +4,13 @@
 
     <item android:id="@+id/action_done"
         android:title="@string/action_done"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         app:showAsAction="always"
         android:icon="@drawable/ic_done_white_24dp"/>
 
+    <item android:id="@+id/action_import"
+          android:title="@string/action_import"
+          android:orderInCategory="100"
+          app:showAsAction="ifRoom"
+          android:icon="@drawable/ic_import_export_white_24dp"/>
 </menu>

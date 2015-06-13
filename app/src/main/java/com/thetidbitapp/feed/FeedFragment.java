@@ -85,9 +85,9 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
 	@Override
 	public void onItemsChanged(int position) {
-		/** TODO Need to put in a better fix here later **/
+		/** TODO Need to put in a more scalable fix here later **/
 		for (int i = 0; i < needToRefresh.length; i++) {
-			if (i != position && position != 3 && i != 3) {
+			if (i != position && position != 3 && i != 3 && i != 2) {
 				needToRefresh[i] = true;
 			}
 		}
