@@ -27,7 +27,7 @@ public class UserEventAdapter extends BaseEventAdapter<UserEventAdapter.UserEven
 
 		public UserEventViewHolder(View itemView) {
 			super(itemView);
-			btnOne.setText(mContext.getString(R.string.cancel));
+			btnOne.setText(mContext.getString(R.string.cancel_ev));
 			btnOne.setTextColor(
 					mContext.getResources().getColorStateList(R.color.flat_button_text_color_negative)
 			);

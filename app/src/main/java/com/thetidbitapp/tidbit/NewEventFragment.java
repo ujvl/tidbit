@@ -17,29 +17,37 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.rey.material.widget.Button;
 import com.rey.material.widget.FloatingActionButton;
+import com.thetidbitapp.model.FBEvent;
 import com.thetidbitapp.model.SessionManager;
 import com.thetidbitapp.util.InternetUtil;
+import com.thetidbitapp.util.ParseUtil;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewEventFragment extends Fragment implements View.OnClickListener,
-														  GraphRequest.Callback {
+														  GraphRequest.Callback,
+														  MaterialDialog.ListCallback {
 
     private OnSubmitListener mListener;
 
-    private Button mDateButton, mFromTimeButton, mToTimeButton;
+    private Button mFromDateButton, mToDateButton, mFromTimeButton, mToTimeButton;
     private FloatingActionButton mFABUpload;
     private ImageView mCoverImage;
 
@@ -61,7 +69,8 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_create_event, container, false);
 
-        mDateButton = (Button) root.findViewById(R.id.date_button);
+        mFromDateButton = (Button) root.findViewById(R.id.from_date_button);
+		mToDateButton = (Button) root.findViewById(R.id.to_date_button);
         mFromTimeButton = (Button) root.findViewById(R.id.from_time_button);
         mToTimeButton = (Button) root.findViewById(R.id.to_time_button);
         mFABUpload = (FloatingActionButton) root.findViewById(R.id.fab_upload);
@@ -70,7 +79,8 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
         mFABUpload.setOnClickListener(this);
         mCoverImage.setOnClickListener(this);
 
-        setupButtonListener(mDateButton, true);
+        setupButtonListener(mFromDateButton, true);
+		setupButtonListener(mToDateButton, true);
         setupButtonListener(mFromTimeButton, false);
         setupButtonListener(mToTimeButton, false);
 
@@ -98,7 +108,20 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 
 	@Override
 	public void onCompleted(GraphResponse graphResponse) {
-		Log.e("On completed", graphResponse.getJSONObject().toString());
+		final Map<String, FBEvent> events = ParseUtil.getEventMap(graphResponse);
+		new MaterialDialog.Builder(getActivity())
+		.title(R.string.fb_event_chooser_title)
+		.items(events.keySet().toArray(new CharSequence[0]))
+		.positiveText(R.string.okay)
+		.negativeText(R.string.cancel)
+		.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+			@Override
+			public boolean onSelection(MaterialDialog d, View view, int which, CharSequence text) {
+				fillFields(events.get(text));
+				return true;
+			}
+		})
+		.show();
 	}
 
     @Override
@@ -109,6 +132,11 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_REQUEST);
     }
+
+	@Override
+	public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+
+	}
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -153,22 +181,30 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
     }
 
 	/**
+	 * Fills as many fields as possible
+	 * using the data from event
+	 * @param event the event from fb
+	 */
+	private void fillFields(FBEvent event) {
+
+	}
+
+	/**
 	 * Attempts to get a list of the user's visible
 	 * events from his/her facebook
 	 */
 	private void getEventListFromFacebook() {
 		if (InternetUtil.isOnline(getActivity())) {
-
 			SessionManager manager = new SessionManager(getActivity());
 			AccessToken token = manager.getAccessToken();
 			String path = manager.getString(getString(R.string.fb_field_id)) + "/events";
+
 			Bundle params = new Bundle();
 			params.putString(getString(R.string.fb_fields_key), getString(R.string.fb_ev_fields));
 
 			GraphRequest request = GraphRequest.newGraphPathRequest(token, path, this);
 			request.setParameters(params);
 			request.executeAsync();
-
 		}
 		else {
 			Snackbar.make(getView(), getString(R.string.connect_error), Snackbar.LENGTH_SHORT).show();

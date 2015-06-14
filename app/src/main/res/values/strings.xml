@@ -42,6 +42,7 @@
     <string name="fb_ev_fields">
         id,start_time,end_time,name,description,cover,owner,place
     </string>
+    <string name="fb_event_chooser_title">Import a Facebook event</string>
 
     <!-- menu item text -->
     <string name="action_notif">Notifications</string>
@@ -62,10 +63,12 @@
 
     <string name="event_details">Event Details</string>
 
-    <!-- Card -->
+    <!-- Actions -->
     <string name="going">GOING</string>
     <string name="not_going">NOT GOING</string>
-    <string name="cancel">CANCEL EVENT</string>
+    <string name="cancel_ev">CANCEL EVENT</string>
+    <string name="okay">OKAY</string>
+    <string name="cancel">CANCEL</string>
 
     <!-- Warnings -->
     <string name="connect_error">Stahp, no internet connection available.</string>
