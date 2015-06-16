@@ -17,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -42,12 +41,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NewEventFragment extends Fragment implements View.OnClickListener,
-														  GraphRequest.Callback,
-														  MaterialDialog.ListCallback {
+														  GraphRequest.Callback  {
 
     private OnSubmitListener mListener;
 
-    private Button mFromDateButton, mToDateButton, mFromTimeButton, mToTimeButton;
+    private Button mFromDateButton, mToDateButton;
+	private Button mFromTimeButton, mToTimeButton;
     private FloatingActionButton mFABUpload;
     private ImageView mCoverImage;
 
@@ -132,11 +131,6 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_REQUEST);
     }
-
-	@Override
-	public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-
-	}
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

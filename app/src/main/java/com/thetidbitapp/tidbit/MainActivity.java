@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
                             NewEventFragment.OnSubmitListener {
 
     private static final String FRAG_TAG = "current fragment";
-	private static final int LOC_UPDATE_FASTEST_INTERVAL_MILLIS = 1000000;
-	private static final int LOC_UPDATE_INTERVAL_MILLIS = 10000000;
+	private static final int LOC_UPDATE_FASTEST_INTERVAL_MILLIS = 1800000; // 30 mins
+	private static final int LOC_UPDATE_INTERVAL_MILLIS = 7200000; // 2 hours
 
 	private SessionManager mSessionManager;
 	private GoogleApiClient mGoogleApiClient;

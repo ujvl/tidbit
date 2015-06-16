@@ -3,8 +3,6 @@ package com.thetidbitapp.util;
 import android.widget.Toast;
 
 import com.facebook.GraphResponse;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.thetidbitapp.model.FBEvent;
 
 import org.json.JSONArray;
