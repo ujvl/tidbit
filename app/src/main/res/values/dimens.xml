@@ -6,11 +6,14 @@
     <dimen name="double_std_margin">32dp</dimen>
     <dimen name="std_margin">16dp</dimen>
     <dimen name="std_margin_half">8dp</dimen>
-    <dimen name="fab_margin">64dp</dimen>
+
     <dimen name="card_margin">4dp</dimen>
+    <dimen name="fab_margin">64dp</dimen>
+    <dimen name="fab_elev">2dp</dimen>
 
     <dimen name="tab_container_height">48dp</dimen>
     <dimen name="tab_container_height_plus_margin">52dp</dimen>
+    <dimen name="neg_fab_height">-32dp</dimen>
 
     <dimen name="fab_size">56dp</dimen>
     <dimen name="button_elevation">2dp</dimen>
@@ -28,4 +31,5 @@
     <dimen name="std_card_corner_radius">2dp</dimen>
 
     <dimen name="small_offset">2dp</dimen>
+
 </resources>

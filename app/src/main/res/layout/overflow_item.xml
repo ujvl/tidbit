@@ -15,7 +15,6 @@
         <TextView
             style="@style/LinLayoutItemStyle"
             android:id="@+id/overflow_item_text"
-            android:text="Text"
             android:layout_marginLeft="@dimen/std_margin"/>
 
     </LinearLayout>

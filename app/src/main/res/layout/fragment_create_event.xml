@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- TODO FIX HARDCODED HEIGHT -->
         <ImageView
             android:id="@+id/create_event_cover"
             android:layout_width="match_parent"
@@ -21,18 +22,18 @@
             android:scaleType="centerCrop"/>
 
         <com.rey.material.widget.FloatingActionButton
+            android:id="@+id/fab_upload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab_upload"
+            android:layout_below="@+id/create_event_cover"
+            android:layout_alignRight="@+id/linearLayout"
+            android:layout_alignEnd="@+id/linearLayout"
+            android:layout_marginTop="@dimen/neg_fab_height"
             app:fab_iconSrc="@drawable/ic_action_new"
             app:fab_elevation="2dp"
             app:fab_backgroundColor="@color/sec_bright"
             app:rd_style="@drawable/ripple"
-            app:rd_rippleType="wave"
-            android:layout_below="@+id/create_event_cover"
-            android:layout_alignRight="@+id/linearLayout"
-            android:layout_alignEnd="@+id/linearLayout"
-            android:layout_marginTop="-32dp"/>
+            app:rd_rippleType="wave"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,11 +48,11 @@
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:hint="@string/hint_title"
+                android:textSize="@dimen/std_med_text_size"
                 app:met_baseColor="@color/black"
                 app:met_primaryColor="@color/sec_bright"
-                app:met_errorColor="#fffd0000"
-                android:hint="@string/hint_title"
+                app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_singleLineEllipsis="true"
                 app:met_maxCharacters="50"
@@ -62,25 +63,23 @@
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:hint="@string/hint_location"
+                android:textSize="@dimen/std_med_text_size"
                 app:met_baseColor="@color/black"
                 app:met_primaryColor="@color/sec_bright"
-                app:met_errorColor="#fffd0000"
-                android:hint="@string/hint_location"
+                app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_singleLineEllipsis="true"
                 app:met_floatingLabelAlwaysShown="true"
                 app:met_textColorHint="@color/white"
-                app:met_floatingLabelPadding="8dp"/>
-
-
+                app:met_floatingLabelPadding="@dimen/std_margin_half"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/std_margin_half"
                 android:textColor="#ffc3c3c3"
-                android:textSize="12sp"
+                android:textSize="@dimen/std_small_text_size"
                 android:text="@string/from"/>
 
         <LinearLayout
@@ -110,13 +109,13 @@
 
         </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="#ffc3c3c3"
-                android:textSize="12sp"
-                android:text="@string/to"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/std_margin_half"
+            android:textColor="#ffc3c3c3"
+            android:textSize="@dimen/std_small_text_size"
+            android:text="@string/to"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,16 +149,16 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_organizer"
                 android:textSize="@dimen/std_med_text_size"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/std_margin_half"
                 app:met_baseColor="@color/black"
                 app:met_primaryColor="@color/sec_bright"
-                app:met_errorColor="#fffd0000"
+                app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_singleLineEllipsis="true"
                 app:met_maxCharacters="50"
                 app:met_floatingLabelAlwaysShown="true"
                 app:met_textColorHint="@color/white"
-                app:met_floatingLabelPadding="8dp"/>
+                app:met_floatingLabelPadding="@dimen/std_margin_half"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -169,27 +168,27 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/std_med_text_size"
+                    android:hint="@string/hint_food"
                     app:met_baseColor="@color/black"
                     app:met_primaryColor="@color/sec_bright"
-                    app:met_errorColor="#fffd0000"
-                    android:hint="@string/hint_food"
+                    app:met_errorColor="@color/error_color"
                     app:met_floatingLabel="highlight"
                     app:met_singleLineEllipsis="true"
                     app:met_maxCharacters="25"
                     app:met_floatingLabelAlwaysShown="true"
                     app:met_textColorHint="@color/white"
-                    app:met_floatingLabelPadding="8dp"/>
+                    app:met_floatingLabelPadding="@dimen/std_margin_half"/>
 
                 <com.rey.material.widget.CheckBox
                     style="@style/Material.Drawable.CheckBox"
                     android:layout_width="0dip"
                     android:layout_weight="0.2"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/std_med_text_size"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"
-                    android:text="Free"
+                    android:text="@string/free"
                     app:cbd_strokeSize="1dp"
                     app:cbd_strokeColor="@color/theme_gray"
                     app:cbd_tickColor="@color/white" />
@@ -200,15 +199,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/std_margin"
-                android:textSize="16sp"
+                android:textSize="@dimen/std_med_text_size"
+                android:hint="@string/description"
                 app:met_baseColor="@color/black"
                 app:met_primaryColor="@color/sec_bright"
-                app:met_errorColor="#fffd0000"
-                android:hint="Description"
+                app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelAlwaysShown="true"
                 app:met_textColorHint="@color/white"
-                app:met_floatingLabelPadding="8dp"/>
+                app:met_floatingLabelPadding="@dimen/std_margin_half"/>
 
         </LinearLayout>
 

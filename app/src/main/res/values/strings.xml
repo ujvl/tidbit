@@ -50,16 +50,17 @@
     <string name="action_done">Done</string>
     <string name="action_import">Import from Facebook</string>
 
-    <string name="to">To</string>
-    <string name="from">From</string>
-    <string name="date">Date</string>
-    <string name="time">Time</string>
-
     <!--hints-->
     <string name="hint_organizer">Event Organizer (optional)</string>
     <string name="hint_title">Event title</string>
     <string name="hint_location">Event location</string>
     <string name="hint_food">Food at event</string>
+    <string name="to">To</string>
+    <string name="from">From</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="free">Free</string>
+    <string name="description">Description</string>
 
     <string name="event_details">Event Details</string>
 
@@ -72,5 +73,6 @@
 
     <!-- Warnings -->
     <string name="connect_error">Stahp, no internet connection available.</string>
+
 
 </resources>
