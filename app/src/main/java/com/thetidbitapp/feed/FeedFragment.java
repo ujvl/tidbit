@@ -24,6 +24,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     private OnFeedInteractionListener mListener;
     private FloatingActionButton mFab;
     private TabPageIndicator mTabStrip;
+	private View mToolbar;
 	private FeedPagerAdapter mAdapter;
 
     private boolean hidden;
@@ -52,6 +53,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_feed, container, false);
 
+		mToolbar = getActivity().findViewById(R.id.toolbar);
 		mAdapter = new FeedPagerAdapter(getChildFragmentManager());
         ViewPager pager = (ViewPager) root.findViewById(R.id.feed_pager);
         pager.setAdapter(mAdapter);
@@ -97,7 +99,8 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public void onScrollDown() {
         if (!hidden) {
             move(mFab, mFab.getBottom(), new AccelerateInterpolator());
-            move(mTabStrip, -mTabStrip.getHeight(), new AccelerateInterpolator());
+			move(mToolbar, -mToolbar.getHeight(), new AccelerateInterpolator());
+            move(mTabStrip, -mToolbar.getHeight(), new AccelerateInterpolator());
         }
         hidden = true;
     }
@@ -106,6 +109,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public void onScrollUp() {
         if (hidden) {
             move(mFab, 0, new DecelerateInterpolator());
+			move(mToolbar, 0 , new DecelerateInterpolator());
             move(mTabStrip, 0, new DecelerateInterpolator());
         }
         hidden = false;

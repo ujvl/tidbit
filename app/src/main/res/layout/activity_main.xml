@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.thetidbitapp.tidbit.MainActivity">
+    tools:context="com.thetidbitapp.tidbit.MainActivity"
+    android:clipChildren="false">
 
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
@@ -12,6 +13,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container_main"/>
+        android:id="@+id/container_main"
+        android:clipChildren="false"/>
 
 </LinearLayout>
