@@ -31,7 +31,7 @@
             android:layout_marginTop="@dimen/neg_fab_height"
             app:fab_iconSrc="@drawable/ic_action_new"
             app:fab_elevation="2dp"
-            app:fab_backgroundColor="@color/sec_bright"
+            app:fab_backgroundColor="@color/fab_color"
             app:rd_style="@drawable/ripple"
             app:rd_rippleType="wave"/>
 

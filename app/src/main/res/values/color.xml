@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="secondary">#ff7800</color>
-    <color name="sec_brighter">#ffffba10</color>
-    <color name="sec_bright">#ffffa300</color>
-    <color name="sec_dark">#DE731E</color>
-    <color name="sec_darker">#C55D00</color>
-    <color name="sec_darkest">#9B4900</color>
+    <color name="secondary">#ff64bcb9</color>
+    <color name="sec_brighter">#ff9cc5ca</color>
+    <color name="sec_bright">#ff84c3c7</color>
+    <color name="sec_dark">#ff3c9a9f</color>
+    <color name="sec_darker">#ff25848f</color>
+    <color name="sec_darkest">#ff025d6f</color>
 
     <color name="theme_light_gray">#ff708985</color>
     <color name="theme_gray">#4E5F5C</color>
     <color name="theme_gray_dark">#ff364240</color>
 
-    <color name="primary">#00BBD2</color>
-    <color name="prim_bright">#ff00e3ff</color>
-    <color name="prim_dark">#ff0098ab</color>
-    <color name="prim_darker">#ff007b8a</color>
-    <color name="prim_darkest">#ff00486e</color>
+    <color name="primary">#ffffba00</color>
+    <color name="prim_bright">#ffffe100</color>
+    <color name="prim_dark">#ffffaf00</color>
+    <color name="prim_darker">#ffff9a00</color>
+    <color name="prim_darkest">#ffff8100</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
@@ -27,5 +27,7 @@
 
     <color name="mdtp_accent_color">@color/prim_darkest</color>
     <color name="mdtp_accent_color_dark">@color/prim_dark</color>
+
+    <color name="fab_color">@color/sec_darker</color>
 
 </resources>

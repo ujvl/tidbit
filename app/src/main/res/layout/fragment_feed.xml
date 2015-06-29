@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/prim_darkest"
-        app:tpi_indicatorColor="@color/sec_bright"
+        app:tpi_indicatorColor="@color/white"
         app:tpi_indicatorHeight="4dp"
         app:tpi_mode="fixed"
         app:tpi_tabRipple="@drawable/ripple"/>
@@ -55,7 +55,7 @@
         android:layout_gravity="right|bottom"
         app:fab_iconSrc="@drawable/ic_action_new"
         app:fab_elevation="@dimen/fab_elev"
-        app:fab_backgroundColor="@color/sec_bright"
+        app:fab_backgroundColor="@color/fab_color"
         app:rd_style="@drawable/ripple"
         app:rd_rippleType="wave"/>
 

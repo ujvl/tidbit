@@ -28,8 +28,8 @@ public class SavedEventAdapter extends BaseEventAdapter<SavedEventAdapter.SavedE
 
 		public SavedEventViewHolder(View itemView) {
 			super(itemView);
-			btnOne.setTextColor(mContext.getResources().getColor(R.color.green));
-			btnOne.setTypeface(null, Typeface.BOLD);
+			btnOne.setTextColor(mContext.getResources().getColor(R.color.theme_light_gray));
+			btnOne.setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
 		}
 
 		@Override
