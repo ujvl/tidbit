@@ -99,7 +99,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public void onScrollDown() {
         if (!hidden) {
             move(mFab, mFab.getBottom(), new AccelerateInterpolator());
-			move(mToolbar, -mToolbar.getHeight(), new AccelerateInterpolator());
+			//move(mToolbar, -mToolbar.getHeight(), new AccelerateInterpolator());
             move(mTabStrip, -mToolbar.getHeight(), new AccelerateInterpolator());
         }
         hidden = true;
@@ -109,7 +109,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public void onScrollUp() {
         if (hidden) {
             move(mFab, 0, new DecelerateInterpolator());
-			move(mToolbar, 0 , new DecelerateInterpolator());
+			// move(mToolbar, 0 , new DecelerateInterpolator());
             move(mTabStrip, 0, new DecelerateInterpolator());
         }
         hidden = false;

@@ -24,13 +24,16 @@
         android:id="@+id/tidbit_list_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/events_recycler"
             android:clipToPadding="false"
+            android:clipChildren="false"
             android:paddingTop="54dp"
             android:scrollbars="none"
             android:paddingLeft="@dimen/std_margin_half"

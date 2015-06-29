@@ -15,7 +15,6 @@
     <color name="prim_bright">#ff00e3ff</color>
     <color name="prim_dark">#ff0098ab</color>
     <color name="prim_darker">#ff007b8a</color>
-    <!--<color name="prim_darkest">#ff00626e</color>-->
     <color name="prim_darkest">#ff00486e</color>
 
     <color name="white">#ffffff</color>
