@@ -150,12 +150,12 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
 	@Override
 	public void onChooseGoing(String eventId) {
-
+		getSupportFragmentManager().popBackStack();
 	}
 
 	@Override
 	public void onChooseNotGoing(String eventId) {
-
+		getSupportFragmentManager().popBackStack();
 	}
 
 	@Override

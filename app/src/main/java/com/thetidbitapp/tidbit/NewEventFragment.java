@@ -95,7 +95,7 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_done) {
-            mListener.onSubmit();
+			submit();
             return true;
         }
 		if (item.getItemId() == R.id.action_import) {
@@ -201,7 +201,19 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 			request.executeAsync();
 		}
 		else {
-			Snackbar.make(getView(), getString(R.string.connect_error), Snackbar.LENGTH_SHORT).show();
+			showNoInternetSnackBar();
+		}
+	}
+
+	/**
+	 * Attempts to submit the event
+	 */
+	private void submit() {
+		if (InternetUtil.isOnline(getActivity())) {
+			mListener.onSubmit();
+		}
+		else {
+			showNoInternetSnackBar();
 		}
 	}
 
@@ -249,6 +261,10 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 			}
 		});
 
+	}
+
+	private void showNoInternetSnackBar() {
+		Snackbar.make(getView(), getString(R.string.connect_error), Snackbar.LENGTH_SHORT).show();
 	}
 
 }
