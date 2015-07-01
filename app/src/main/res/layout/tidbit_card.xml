@@ -16,8 +16,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/card_background">
+            android:layout_height="match_parent"
+            android:background="@drawable/selectable_element_background">
 
             <!--TODO FIX THE WHOLE HARDCODED SIZE PROBLEM -->
             <com.joooonho.SelectableRoundedImageView
@@ -68,19 +68,19 @@
                     android:padding="@dimen/std_margin_half"
                     android:layout_marginLeft="@dimen/std_margin_half"
                     android:layout_marginStart="@dimen/std_margin_half"
-                    android:background="@drawable/md_btn_selector"
+                    android:background="@drawable/selectable_element_background"
                     android:textColor="@color/flat_button_text_color_positive"/>
 
                 <TextView
                     android:id="@+id/card_button_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/md_btn_selector"
                     android:textSize="@dimen/std_text_size"
                     android:padding="@dimen/std_margin_half"
                     android:layout_marginLeft="@dimen/std_margin_half"
                     android:layout_marginStart="@dimen/std_margin_half"
                     android:layout_toRightOf="@id/card_button_one"
+                    android:background="@drawable/selectable_element_background"
                     android:textColor="@color/flat_button_text_color_negative"/>
 
                 <TextView
