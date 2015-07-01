@@ -1,103 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/card_layout"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
     android:layout_marginBottom="@dimen/card_margin">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/card_layout"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="2dp">
+        android:background="@drawable/selectable_element_background">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <!--TODO FIX THE WHOLE HARDCODED SIZE PROBLEM -->
+        <com.joooonho.SelectableRoundedImageView
+            android:id="@+id/card_cover_pic"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/selectable_element_background">
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            app:sriv_left_top_corner_radius="@dimen/std_card_corner_radius"
+            app:sriv_right_top_corner_radius="@dimen/std_card_corner_radius"
+            app:sriv_border_width="0dp"/>
 
-            <!--TODO FIX THE WHOLE HARDCODED SIZE PROBLEM -->
-            <com.joooonho.SelectableRoundedImageView
-                android:id="@+id/card_cover_pic"
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop"
-                app:sriv_left_top_corner_radius="@dimen/std_card_corner_radius"
-                app:sriv_right_top_corner_radius="@dimen/std_card_corner_radius"
-                app:sriv_border_width="0dp"/>
+        <TextView
+            android:id="@+id/card_event_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/double_std_margin"
+            android:layout_marginLeft="@dimen/std_margin"
+            android:layout_marginRight="@dimen/std_margin"
+            android:layout_marginStart="@dimen/std_margin"
+            android:textSize="@dimen/std_heading_text_size"
+            android:textColor="@color/title_black" />
+
+        <TextView
+            android:id="@+id/card_loc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/std_text_size"
+            android:textColor="@color/subtitle_black"
+            android:layout_marginBottom="@dimen/std_margin"
+            android:layout_marginLeft="@dimen/std_margin"
+            android:layout_marginRight="@dimen/std_margin"
+            android:layout_marginStart="@dimen/std_margin"
+            android:layout_marginTop="4dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/std_margin_half">
 
             <TextView
-                android:id="@+id/card_event_title"
-                android:layout_width="match_parent"
+                android:id="@+id/card_button_one"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/double_std_margin"
-                android:layout_marginLeft="@dimen/std_margin"
-                android:layout_marginRight="@dimen/std_margin"
-                android:layout_marginStart="@dimen/std_margin"
-                android:textSize="@dimen/std_heading_text_size"
-                android:textColor="@color/title_black" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="@dimen/std_text_size"
+                android:padding="@dimen/std_margin_half"
+                android:layout_marginLeft="@dimen/std_margin_half"
+                android:layout_marginStart="@dimen/std_margin_half"
+                android:background="@drawable/selectable_element_background"
+                android:textColor="@color/flat_button_text_color_positive"/>
 
             <TextView
-                android:id="@+id/card_loc"
-                android:layout_width="match_parent"
+                android:id="@+id/card_button_two"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/std_text_size"
-                android:textColor="@color/subtitle_black"
-                android:layout_marginBottom="@dimen/std_margin"
-                android:layout_marginLeft="@dimen/std_margin"
-                android:layout_marginRight="@dimen/std_margin"
-                android:layout_marginStart="@dimen/std_margin"
-                android:layout_marginTop="4dp"/>
+                android:padding="@dimen/std_margin_half"
+                android:layout_marginLeft="@dimen/std_margin_half"
+                android:layout_marginStart="@dimen/std_margin_half"
+                android:layout_toRightOf="@id/card_button_one"
+                android:background="@drawable/selectable_element_background"
+                android:textColor="@color/flat_button_text_color_negative"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/card_date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/std_margin_half">
+                android:paddingRight="@dimen/std_margin"
+                android:textSize="@dimen/std_small_text_size"
+                android:textColor="@color/subtitle_black"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
 
-                <TextView
-                    android:id="@+id/card_button_one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textSize="@dimen/std_text_size"
-                    android:padding="@dimen/std_margin_half"
-                    android:layout_marginLeft="@dimen/std_margin_half"
-                    android:layout_marginStart="@dimen/std_margin_half"
-                    android:background="@drawable/selectable_element_background"
-                    android:textColor="@color/flat_button_text_color_positive"/>
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/card_button_two"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/std_text_size"
-                    android:padding="@dimen/std_margin_half"
-                    android:layout_marginLeft="@dimen/std_margin_half"
-                    android:layout_marginStart="@dimen/std_margin_half"
-                    android:layout_toRightOf="@id/card_button_one"
-                    android:background="@drawable/selectable_element_background"
-                    android:textColor="@color/flat_button_text_color_negative"/>
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/card_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="@dimen/std_margin"
-                    android:textSize="@dimen/std_small_text_size"
-                    android:textColor="@color/subtitle_black"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-</FrameLayout>
+</android.support.v7.widget.CardView>

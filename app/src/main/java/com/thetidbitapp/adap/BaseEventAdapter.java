@@ -57,8 +57,6 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 		holder.tvLoc.setText(mEvents.get(position).location());
 		holder.tvDate.setText(mEvents.get(position).datetime());
 
-		setInAnimation(holder.cv, position);
-
 	}
 
 	@Override
