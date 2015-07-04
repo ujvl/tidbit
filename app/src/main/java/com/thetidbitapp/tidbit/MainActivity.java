@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+		getSupportActionBar().setTitle(R.string.title_activity_main);
 
         Fragment feed;
         if (savedInstanceState == null) {

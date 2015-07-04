@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 
 import com.thetidbitapp.state.OnEventInteractionListener;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class EventDetailsFragment extends Fragment {
 
@@ -53,6 +56,10 @@ public class EventDetailsFragment extends Fragment {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+
+		int cardNum = (int) Math.ceil(Math.random() * 52);
+		Set<Integer> myints = new HashSet<>();
+		myints.add(cardNum);
 		if (item.getItemId() == R.id.action_going) {
 			mListener.onChooseGoing(mEventId);
 			return true;
