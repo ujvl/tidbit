@@ -51,7 +51,7 @@
                 android:hint="@string/hint_title"
                 android:textSize="@dimen/std_med_text_size"
                 app:met_baseColor="@color/black"
-                app:met_primaryColor="@color/sec_bright"
+                app:met_primaryColor="@color/selected_et_color"
                 app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_singleLineEllipsis="true"
@@ -66,7 +66,7 @@
                 android:hint="@string/hint_location"
                 android:textSize="@dimen/std_med_text_size"
                 app:met_baseColor="@color/black"
-                app:met_primaryColor="@color/sec_bright"
+                app:met_primaryColor="@color/selected_et_color"
                 app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_singleLineEllipsis="true"
@@ -139,8 +139,7 @@
                 android:layout_weight="0.5"
                 android:text="@string/time"
                 android:textSize="@dimen/std_med_text_size"
-                android:gravity="center"
-                app:rd_enable="true"/>
+                android:gravity="center"/>
 
         </LinearLayout>
 
@@ -151,7 +150,7 @@
                 android:textSize="@dimen/std_med_text_size"
                 android:layout_marginTop="@dimen/std_margin_half"
                 app:met_baseColor="@color/black"
-                app:met_primaryColor="@color/sec_bright"
+                app:met_primaryColor="@color/selected_et_color"
                 app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_singleLineEllipsis="true"
@@ -171,7 +170,7 @@
                     android:textSize="@dimen/std_med_text_size"
                     android:hint="@string/hint_food"
                     app:met_baseColor="@color/black"
-                    app:met_primaryColor="@color/sec_bright"
+                    app:met_primaryColor="@color/selected_et_color"
                     app:met_errorColor="@color/error_color"
                     app:met_floatingLabel="highlight"
                     app:met_singleLineEllipsis="true"
@@ -202,7 +201,7 @@
                 android:textSize="@dimen/std_med_text_size"
                 android:hint="@string/description"
                 app:met_baseColor="@color/black"
-                app:met_primaryColor="@color/sec_bright"
+                app:met_primaryColor="@color/selected_et_color"
                 app:met_errorColor="@color/error_color"
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelAlwaysShown="true"

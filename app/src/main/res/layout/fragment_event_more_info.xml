@@ -66,10 +66,15 @@
                       android:text="Who" />
 
             <TextView style="@style/LinLayoutItemStyle"
-                android:text="Organized by Org name\nNumber going"/>
+                      android:text="Number going"/>
+
+            <TextView style="@style/MoreInfoHeadingStyle"
+                      android:text="Oraganized by" />
+
+            <TextView style="@style/LinLayoutItemStyle"
+                android:text="Organized name"/>
 
         </LinearLayout>
-
 
     </RelativeLayout>
 

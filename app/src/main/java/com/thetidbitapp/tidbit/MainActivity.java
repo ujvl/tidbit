@@ -7,9 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                replaceAndCommit(new OverflowFragment());
+                addAndCommit(new OverflowFragment());
                 break;
             case R.id.action_notif:
                 break;
@@ -136,12 +136,12 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
     @Override
     public void onFABClick() {
-        replaceAndCommit(new NewEventFragment());
+        addAndCommit(new NewEventFragment());
     }
 
     @Override
     public void onCardClick(String id) {
-        replaceAndCommit(EventDetailsFragment.newInstance(id));
+        addAndCommit(EventDetailsFragment.newInstance(id));
     }
 
     @Override
@@ -170,12 +170,12 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
 	@Override
 	public void onConnectionSuspended(int i) {
-		Log.e("ON CONNECTION SUSPENDED", "NOOOO :(");
+		Toast.makeText(this, "Noo... location API connection suspended", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
-		Log.e("ON CONNECTION FAILED", "EVEN WORSE :((((");
+		Toast.makeText(this, "Noo... location API connection failed", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -190,9 +190,9 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 	 *
 	 */
 
-	private void replaceAndCommit(Fragment fragment) {
+	private void addAndCommit(Fragment fragment) {
 		getSupportFragmentManager().beginTransaction()
-				.addToBackStack(null).replace(R.id.container_main, fragment, FRAG_TAG).commit();
+				.addToBackStack(null).add(R.id.container_main, fragment, FRAG_TAG).commit();
 	}
 
 	private void shouldDisplayHomeUp() {

@@ -80,7 +80,7 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 
 		mEventRecycler.addOnScrollListener(new OnRecyclerScrollListener());
 		mRefresher.setOnRefreshListener(this);
-        mRefresher.setColorSchemeResources(R.color.sec_brighter);
+        mRefresher.setColorSchemeResources(R.color.sec_darker);
         mRefresher.setProgressViewOffset(false, 0, 250);
 
         return root;
@@ -88,14 +88,14 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 
 	@Override
     public void onRefresh() {
-        setupRecycler();
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				mRefresher.setRefreshing(false);
+				setupRecycler();
+				onItemsChanged();
 			}
 		}, 2500);
-		onItemsChanged();
     }
 
 	@Override
