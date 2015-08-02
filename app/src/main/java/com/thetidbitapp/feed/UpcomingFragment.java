@@ -1,7 +1,5 @@
 package com.thetidbitapp.feed;
 
-import android.content.Context;
-
 import com.thetidbitapp.adap.BaseEventAdapter;
 import com.thetidbitapp.adap.DefaultEventAdapter;
 import com.thetidbitapp.model.Event;
@@ -24,8 +22,8 @@ public class UpcomingFragment extends BaseEventsFragment {
 	}
 
 	@Override
-	public BaseEventAdapter getEventAdapter(List<Event> events, Context context) {
-		return new DefaultEventAdapter(events, context);
+	public BaseEventAdapter getEventAdapter(List<Event> events) {
+		return new DefaultEventAdapter(events, getActivity());
 	}
 
 	@Override

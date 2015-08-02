@@ -47,10 +47,9 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 	/**
 	 * Creates and returns an instance of AbstractEventAdapter
 	 * @param events a list of events
-	 * @param context application context
-	 * @return contextually relevant instance of AbstractEventAdapter
+	 * @return relevant instance of AbstractEventAdapter
 	 */
-	public abstract BaseEventAdapter getEventAdapter(List<Event> events, Context context);
+	public abstract BaseEventAdapter getEventAdapter(List<Event> events);
 
 	/**
 	 * Returns the Fragment's position in the parent ViewPager
@@ -155,7 +154,7 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 	 */
 	private void setupRecycler() {
 		mEvents = getEvents();
-		mEventAdapter = getEventAdapter(mEvents, getActivity());
+		mEventAdapter = getEventAdapter(mEvents);
 		mEventAdapter.setOnItemClickListener(this);
 		mEventAdapter.setOnItemsChangeListener(this);
 		mEventRecycler.setAdapter(mEventAdapter);

@@ -1,7 +1,5 @@
 package com.thetidbitapp.feed;
 
-import android.content.Context;
-
 import com.thetidbitapp.adap.BaseEventAdapter;
 import com.thetidbitapp.adap.SavedEventAdapter;
 import com.thetidbitapp.model.Event;
@@ -24,8 +22,8 @@ public class SavedFragment extends BaseEventsFragment {
 	}
 
 	@Override
-	public BaseEventAdapter getEventAdapter(List<Event> events, Context context) {
-		return new SavedEventAdapter(events, context);
+	public BaseEventAdapter getEventAdapter(List<Event> events) {
+		return new SavedEventAdapter(events, getActivity());
 	}
 
 	@Override

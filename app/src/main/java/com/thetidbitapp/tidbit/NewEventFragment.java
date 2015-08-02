@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.AccessToken;
@@ -37,7 +39,6 @@ import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 
 public class NewEventFragment extends Fragment implements View.OnClickListener,
@@ -172,6 +173,7 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
     public void onResume() {
         super.onResume();
         getActivity().setTitle("New Event");
+		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("New Event");
     }
 
 	/**

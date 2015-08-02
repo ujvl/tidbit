@@ -1,7 +1,5 @@
 package com.thetidbitapp.feed;
 
-import android.content.Context;
-
 import com.thetidbitapp.adap.BaseEventAdapter;
 import com.thetidbitapp.adap.UserEventAdapter;
 import com.thetidbitapp.model.Event;
@@ -24,8 +22,8 @@ public class UsersPostsFragment extends BaseEventsFragment {
 	}
 
 	@Override
-	public BaseEventAdapter getEventAdapter(List<Event> events, Context context) {
-		return new UserEventAdapter(events, context);
+	public BaseEventAdapter getEventAdapter(List<Event> events) {
+		return new UserEventAdapter(events, getActivity());
 	}
 
 	@Override
