@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="secondary">#ff00f0f5</color>
-    <color name="sec_brighter">#ff00faff</color>
-    <color name="sec_bright">#ff00f6fb</color>
-    <color name="sec_dark">#ff26e8f5</color>
-    <color name="sec_darker">#ff3090e7</color>
-    <color name="sec_darkest">#ff0069e7</color>
+	<color name="secondary">#ff00f0f5</color>
+	<color name="sec_brighter">#ff00faff</color>
+	<color name="sec_bright">#ff00f6fb</color>
+	<color name="sec_dark">#ff26e8f5</color>
+	<color name="sec_darker">#ff3090e7</color>
+	<color name="sec_darkest">#ff0069e7</color>
 
-    <color name="theme_light_gray">#ff708985</color>
-    <color name="theme_gray">#4E5F5C</color>
-    <color name="theme_gray_dark">#ff364240</color>
+	<color name="theme_light_gray">#ff708985</color>
+	<color name="theme_gray">#4E5F5C</color>
+	<color name="theme_gray_dark">#ff364240</color>
 
-    <color name="primary">#ffff6868</color>
-    <color name="prim_bright">#ffff6868</color>
-    <color name="prim_dark">#ffff6868</color>
-    <color name="prim_darker">#ffff7978</color>
-    <color name="prim_darkest">#ffff6868</color>
+	<color name="primary">#ffff6868</color>
+	<color name="prim_bright">#ffff6868</color>
+	<color name="prim_dark">#ffff6868</color>
+	<color name="prim_darker">#ffff7978</color>
+	<color name="prim_darkest">#ffff6868</color>
 
-    <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
-    <color name="green">#ff00de14</color>
-    <color name="red">#ffb70300</color>
+	<color name="white">#ffffff</color>
+	<color name="black">#000000</color>
+	<color name="green">#ff00de14</color>
+	<color name="red">#ffb70300</color>
 
-    <color name="title_black">#ff222222</color>
-    <color name="subtitle_black">#ff767676</color>
+	<color name="title_black">#ff222222</color>
+	<color name="subtitle_black">#ff767676</color>
 
-    <color name="mdtp_accent_color">@color/sec_darkest</color>
-    <color name="mdtp_accent_color_dark">@color/sec_darkest</color>
-    <color name="progress_circle_color">@color/sec_darkest</color>
-    <color name="selected_et_color">@color/sec_darkest</color>
+	<color name="mdtp_accent_color">@color/sec_darkest</color>
+	<color name="mdtp_accent_color_dark">@color/sec_darkest</color>
+	<color name="progress_circle_color">@color/sec_darkest</color>
+	<color name="selected_et_color">@color/sec_darkest</color>
 
-    <color name="fab_color">@color/sec_darkest</color>
+	<color name="fab_color">@color/sec_darkest</color>
 
 </resources>

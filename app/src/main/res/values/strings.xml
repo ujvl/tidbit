@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Forkast</string>
-    <string name="app_name_lowercase">forkast</string>
-    <string name="title_activity_main">@string/app_name</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_initial">@string/app_name</string>
+	<string name="app_name">Forkast</string>
+	<string name="app_name_lowercase">forkast</string>
+	<string name="title_activity_main">@string/app_name</string>
+	<string name="action_settings">Settings</string>
+	<string name="title_activity_initial">@string/app_name</string>
 
-    <string name="sign_in">Sign in</string>
-    <string name="fb_login">Login with Facebook</string>
+	<string name="sign_in">Sign in</string>
+	<string name="fb_login">Login with Facebook</string>
 
-    <!-- Headers -->
-    <string name="settings_heading">Settings</string>
-    <string name="share_heading">Share the love</string>
-    <string name="important_heading">Important stuff</string>
+	<!-- Headers -->
+	<string name="settings_heading">Settings</string>
+	<string name="share_heading">Share the love</string>
+	<string name="important_heading">Important stuff</string>
 
-    <!-- Overflow Items -->
-    <string name="profile_setting">Profile</string>
-    <string name="notif_setting">Notifications</string>
-    <string name="share">Share Tidbit</string>
-    <string name="rate">Rate Tidbit</string>
-    <string name="like">Like us on Facebook</string>
-    <string name="feedback">Give us feedback</string>
-    <string name="about">About</string>
-    <string name="rules">Rules</string>
-    <string name="contact">Contact us</string>
-    <string name="sign_out">Sign out</string>
+	<!-- Overflow Items -->
+	<string name="profile_setting">Profile</string>
+	<string name="notif_setting">Notifications</string>
+	<string name="share">Share Tidbit</string>
+	<string name="rate">Rate Tidbit</string>
+	<string name="like">Like us on Facebook</string>
+	<string name="feedback">Give us feedback</string>
+	<string name="about">About</string>
+	<string name="rules">Rules</string>
+	<string name="contact">Contact us</string>
+	<string name="sign_out">Sign out</string>
 
-    <!-- Profile Items -->
-    <string name="users_posts">Your posts</string>
-    <string name="saved_posts">Saved posts</string>
-    
-    <!--   fb  -->
-    <string name="facebook_app_id">980180495326106</string>
-    <string name="fb_field_result_keys">id,name,email</string>
-    <string name="fb_field_permissions">public_profile,email,user_events</string>
-    <string name="fb_field_id">id</string>
-    <string name="fb_field_name">name</string>
-    <string name="fb_field_email">email</string>
-    <string name="fb_fields_key">fields</string>
-    <string name="fb_ev_fields">
-        id,start_time,end_time,name,description,cover,owner,place
-    </string>
-    <string name="fb_event_chooser_title">Import a Facebook event</string>
+	<!-- Profile Items -->
+	<string name="users_posts">Your posts</string>
+	<string name="saved_posts">Saved posts</string>
 
-    <!-- menu item text -->
-    <string name="action_notif">Notifications</string>
-    <string name="action_profile">Profile</string>
-    <string name="action_done">Done</string>
-    <string name="action_import">Import from Facebook</string>
+	<!--   fb  -->
+	<string name="facebook_app_id">980180495326106</string>
+	<string name="fb_field_result_keys">id,name,email</string>
+	<string name="fb_field_permissions">public_profile,email,user_events</string>
+	<string name="fb_field_id">id</string>
+	<string name="fb_field_name">name</string>
+	<string name="fb_field_email">email</string>
+	<string name="fb_fields_key">fields</string>
+	<string name="fb_ev_fields">
+		id,start_time,end_time,name,description,cover,owner,place
+	</string>
+	<string name="fb_event_chooser_title">Import a Facebook event</string>
 
-    <!--hints-->
-    <string name="hint_organizer">Event Organizer (optional)</string>
-    <string name="hint_title">Event title</string>
-    <string name="hint_location">Event location</string>
-    <string name="hint_food">Food at event</string>
-    <string name="to">To</string>
-    <string name="from">From</string>
-    <string name="date">Date</string>
-    <string name="time">Time</string>
-    <string name="free">Free</string>
-    <string name="description">Description</string>
+	<!-- menu item text -->
+	<string name="action_notif">Notifications</string>
+	<string name="action_profile">Profile</string>
+	<string name="action_done">Done</string>
+	<string name="action_import">Import from Facebook</string>
 
-    <string name="event_details">Event Details</string>
+	<!--hints-->
+	<string name="hint_organizer">Event Organizer (optional)</string>
+	<string name="hint_title">Event title</string>
+	<string name="hint_location">Event location</string>
+	<string name="hint_food">Food at event</string>
+	<string name="to">To</string>
+	<string name="from">From</string>
+	<string name="date">Date</string>
+	<string name="time">Time</string>
+	<string name="free">Free</string>
+	<string name="description">Description</string>
 
-    <!-- Actions -->
-    <string name="going">GOING</string>
-    <string name="not_going">NOT GOING</string>
-    <string name="cancel_ev">CANCEL EVENT</string>
-    <string name="okay">OKAY</string>
-    <string name="cancel">CANCEL</string>
+	<string name="event_details">Event Details</string>
 
-    <!-- Warnings -->
-    <string name="connect_error">Stahp, no internet connection available.</string>
+	<!-- Actions -->
+	<string name="going">GOING</string>
+	<string name="not_going">NOT GOING</string>
+	<string name="cancel_ev">CANCEL EVENT</string>
+	<string name="okay">OKAY</string>
+	<string name="cancel">CANCEL</string>
+
+	<!-- Warnings -->
+	<string name="connect_error">Stahp, no internet connection available.</string>
 
 
 </resources>

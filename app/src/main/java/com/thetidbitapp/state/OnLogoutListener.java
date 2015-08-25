@@ -5,6 +5,6 @@ package com.thetidbitapp.state;
  */
 public interface OnLogoutListener {
 
-    public void onLogout();
+	public void onLogout();
 
 }

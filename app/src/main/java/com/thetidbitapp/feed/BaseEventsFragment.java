@@ -25,18 +25,18 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 													SwipeRefreshLayout.OnRefreshListener,
 													BaseEventAdapter.OnInteractionListener {
 
-    public interface OnEventListInteractionListener {
-        public void onScrollUp();
-        public void onScrollDown();
-        public void onCardClick(CharSequence id);
+	public interface OnEventListInteractionListener {
+		public void onScrollUp();
+		public void onScrollDown();
+		public void onCardClick(CharSequence id);
 		public void onItemsChanged(int position);
-    }
+	}
 
 	private OnEventListInteractionListener mListener;
 	private SwipeRefreshLayout mRefresher;
 	private RecyclerView mEventRecycler;
-    private BaseEventAdapter mEventAdapter;
-    private List<Event> mEvents;
+	private BaseEventAdapter mEventAdapter;
+	private List<Event> mEvents;
 
 	/**
 	 * Fetches events from server
@@ -57,36 +57,36 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 	 */
 	public abstract int getViewPagerPosition();
 
-    public BaseEventsFragment() { }
+	public BaseEventsFragment() { }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final View root = inflater.inflate(R.layout.fragment_events, container, false);
+		final View root = inflater.inflate(R.layout.fragment_events, container, false);
 		mEventRecycler = (RecyclerView) root.findViewById(R.id.events_recycler);
 		mEventRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
 		mRefresher = (SwipeRefreshLayout) root.findViewById(R.id.tidbit_list_swipe_refresh);
 
 		setupRecycler();
-        // Load content simulation
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+		// Load content simulation
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
 				root.findViewById(R.id.tidbit_progress_circle).setVisibility(View.GONE);
 				root.findViewById(R.id.tidbit_list_swipe_refresh).setVisibility(View.VISIBLE);
-            }
-        }, 2500);
+			}
+		}, 2500);
 
 		mEventRecycler.addOnScrollListener(new OnRecyclerScrollListener());
 		mRefresher.setOnRefreshListener(this);
-        mRefresher.setColorSchemeResources(R.color.sec_darker);
-        mRefresher.setProgressViewOffset(false, 0, 250);
+		mRefresher.setColorSchemeResources(R.color.sec_darker);
+		mRefresher.setProgressViewOffset(false, 0, 250);
 
-        return root;
-    }
+		return root;
+	}
 
 	@Override
-    public void onRefresh() {
+	public void onRefresh() {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -95,7 +95,7 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 				onItemsChanged();
 			}
 		}, 2500);
-    }
+	}
 
 	@Override
 	public void onReload() {
@@ -134,20 +134,20 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 	}
 
 	@Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnEventListInteractionListener) getParentFragment();
-        } catch (ClassCastException e) {
-            throw new ClassCastException("parent fragment must implement Listener");
-        }
-    }
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mListener = (OnEventListInteractionListener) getParentFragment();
+		} catch (ClassCastException e) {
+			throw new ClassCastException("parent fragment must implement Listener");
+		}
+	}
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
 
 	/**
 	 * Sets up the RecyclerView of the fragment

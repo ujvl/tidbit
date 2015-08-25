@@ -18,35 +18,35 @@ import java.util.Set;
 
 public class EventDetailsFragment extends Fragment {
 
-    private static final String EVENT_ID = "event id";
+	private static final String EVENT_ID = "event id";
 
-    private String mEventId;
+	private String mEventId;
 
-    private OnEventInteractionListener mListener;
+	private OnEventInteractionListener mListener;
 
-    public static EventDetailsFragment newInstance(String id) {
-        EventDetailsFragment fragment = new EventDetailsFragment();
-        Bundle args = new Bundle();
-        args.putString(EVENT_ID, id);
-        fragment.setArguments(args);
-        return fragment;
-    }
+	public static EventDetailsFragment newInstance(String id) {
+		EventDetailsFragment fragment = new EventDetailsFragment();
+		Bundle args = new Bundle();
+		args.putString(EVENT_ID, id);
+		fragment.setArguments(args);
+		return fragment;
+	}
 
-    public EventDetailsFragment() { }
+	public EventDetailsFragment() { }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mEventId = getArguments().getString(EVENT_ID);
-        }
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		if (getArguments() != null) {
+			mEventId = getArguments().getString(EVENT_ID);
+		}
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_event_more_info, container, false);
-        return root;
-    }
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View root = inflater.inflate(R.layout.fragment_event_more_info, container, false);
+		return root;
+	}
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -71,15 +71,15 @@ public class EventDetailsFragment extends Fragment {
 		return super.onOptionsItemSelected(item);
 	}
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnEventInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException("activity must implement listener");
-        }
-    }
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mListener = (OnEventInteractionListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException("activity must implement listener");
+		}
+	}
 
 	@Override
 	public void onResume() {
@@ -88,9 +88,9 @@ public class EventDetailsFragment extends Fragment {
 	}
 
 	@Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
 
 }

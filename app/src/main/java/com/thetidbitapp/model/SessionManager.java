@@ -14,32 +14,32 @@ import com.thetidbitapp.tidbit.R;
  */
 public class SessionManager {
 
-    private final SharedPreferences mPrefs;
+	private final SharedPreferences mPrefs;
 	private final Gson mJsonConverter;
-    private final Context mContext;
+	private final Context mContext;
 
-    public SessionManager(Context context) {
-        mPrefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
-        mContext = context;
+	public SessionManager(Context context) {
+		mPrefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+		mContext = context;
 		mJsonConverter = new Gson();
-    }
+	}
 
-    public SharedPreferences.Editor editor() {
-        return mPrefs.edit();
-    }
+	public SharedPreferences.Editor editor() {
+		return mPrefs.edit();
+	}
 
-    public void setLoggedIn(boolean isLoggedIn) {
-        editor().putBoolean(mContext.getString(R.string.prefs_logged_in_key), isLoggedIn).apply();
-    }
+	public void setLoggedIn(boolean isLoggedIn) {
+		editor().putBoolean(mContext.getString(R.string.prefs_logged_in_key), isLoggedIn).apply();
+	}
 
 	public void setAccessToken(AccessToken token) {
 		String tokenStr = mJsonConverter.toJson(token);
 		editor().putString(mContext.getString(R.string.prefs_access_token_key), tokenStr).apply();
 	}
 
-    public boolean isLoggedIn() {
-        return mPrefs.getBoolean(mContext.getString(R.string.prefs_logged_in_key), false);
-    }
+	public boolean isLoggedIn() {
+		return mPrefs.getBoolean(mContext.getString(R.string.prefs_logged_in_key), false);
+	}
 
 	public void updateLocation(Location location) {
 		String locStr = mJsonConverter.toJson(location);

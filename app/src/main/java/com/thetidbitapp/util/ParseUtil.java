@@ -38,7 +38,7 @@ public final class ParseUtil {
 			for (int i = 0; i < data.length(); i++) {
 				JSONObject fbEventJson = data.getJSONObject(i);
 				events.put(fbEventJson.getString(NAME_KEY), new FBEvent(fbEventJson));
- 			}
+			}
 		}
 		catch(JSONException e) {
 			e.printStackTrace();

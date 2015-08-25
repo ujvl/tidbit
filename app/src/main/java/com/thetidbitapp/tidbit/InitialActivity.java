@@ -13,25 +13,25 @@ import org.json.JSONObject;
 
 public class InitialActivity extends AppCompatActivity implements FBLoginFragment.OnLoginListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_initial);
-        FacebookSdk.sdkInitialize(getApplicationContext());
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_initial);
+		FacebookSdk.sdkInitialize(getApplicationContext());
 
-        if (new SessionManager(this).isLoggedIn()) {
+		if (new SessionManager(this).isLoggedIn()) {
 			proceedToApp();
-        }
+		}
 
-        FBLoginFragment login = (savedInstanceState == null) ? new FBLoginFragment() :
-                (FBLoginFragment) getSupportFragmentManager().findFragmentById(R.id.container_initial);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container_initial, login).commit();
+		FBLoginFragment login = (savedInstanceState == null) ? new FBLoginFragment() :
+				(FBLoginFragment) getSupportFragmentManager().findFragmentById(R.id.container_initial);
+		getSupportFragmentManager().beginTransaction().replace(R.id.container_initial, login).commit();
 
-    }
+	}
 
-    @Override
-    public void onLogin(JSONObject response) {
+	@Override
+	public void onLogin(JSONObject response) {
 
 		try {
 			SessionManager sessionManager = new SessionManager(this);
@@ -44,7 +44,7 @@ public class InitialActivity extends AppCompatActivity implements FBLoginFragmen
 		catch (JSONException e) {
 			Log.e("InitialActivity", "Error finding fields");
 		}
-    }
+	}
 
 	private void proceedToApp() {
 		startActivity(new Intent(this, MainActivity.class));

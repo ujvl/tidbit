@@ -28,16 +28,16 @@
 			android:id="@+id/login_button"
 			android:drawableLeft="@drawable/com_facebook_button_icon"
 			android:drawablePadding="@dimen/std_margin"
-            android:background="@color/prim_darkest"
+			android:background="@color/prim_darkest"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:padding="@dimen/std_margin"
-            android:textColor="@drawable/login_button_text_color"
+			android:textColor="@drawable/login_button_text_color"
 			android:text="@string/fb_login"
 			android:layout_alignParentBottom="true"
 			android:layout_centerHorizontal="true"
 			android:layout_marginBottom="@dimen/std_margin"
-            android:elevation="0dp"/>
+			android:elevation="0dp"/>
 
 	</RelativeLayout>
 

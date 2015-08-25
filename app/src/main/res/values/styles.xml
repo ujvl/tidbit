@@ -1,74 +1,74 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/prim_dark</item>
-        <item name="colorAccent">@color/sec_bright</item>
-    </style>
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/prim_dark</item>
+		<item name="colorAccent">@color/sec_bright</item>
+	</style>
 
-    <style name="TabBarStyle" parent="Material.Widget.TabPageIndicator.Light">
-        <item name="android:textAppearance">@style/TabTextAppearance</item>
-    </style>
+	<style name="TabBarStyle" parent="Material.Widget.TabPageIndicator.Light">
+		<item name="android:textAppearance">@style/TabTextAppearance</item>
+	</style>
 
-    <style name="TabTextAppearance" parent="@style/Base.TextAppearance.AppCompat.Subhead">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@drawable/tab_text_color</item>
-    </style>
+	<style name="TabTextAppearance" parent="@style/Base.TextAppearance.AppCompat.Subhead">
+		<item name="android:textSize">12sp</item>
+		<item name="android:textColor">@drawable/tab_text_color</item>
+	</style>
 
-    <style name="ToolBarStyle" parent="Theme.AppCompat.Light">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">@color/white</item>
-        <item name="actionMenuTextColor">@color/white</item>
-    </style>
+	<style name="ToolBarStyle" parent="Theme.AppCompat.Light">
+		<item name="android:textColor">@color/black</item>
+		<item name="android:textColorPrimary">@color/white</item>
+		<item name="android:textColorSecondary">@color/white</item>
+		<item name="actionMenuTextColor">@color/white</item>
+	</style>
 
-    <style name="HeadingStyle" parent="@android:style/TextAppearance.Medium">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/theme_gray_dark</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/std_text_size</item>
-    </style>
+	<style name="HeadingStyle" parent="@android:style/TextAppearance.Medium">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textColor">@color/theme_gray_dark</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">@dimen/std_text_size</item>
+	</style>
 
-    <style name="OverflowHeadingStyle" parent="@style/HeadingStyle">
-        <item name="android:layout_marginTop">@dimen/std_margin</item>
-        <item name="android:layout_marginBottom">@dimen/std_margin</item>
-        <item name="android:layout_marginLeft">@dimen/std_margin</item>
-    </style>
+	<style name="OverflowHeadingStyle" parent="@style/HeadingStyle">
+		<item name="android:layout_marginTop">@dimen/std_margin</item>
+		<item name="android:layout_marginBottom">@dimen/std_margin</item>
+		<item name="android:layout_marginLeft">@dimen/std_margin</item>
+	</style>
 
-    <style name="MoreInfoHeadingStyle" parent="@style/HeadingStyle">
-        <item name="android:layout_marginTop">@dimen/std_margin</item>
-        <item name="android:layout_marginBottom">@dimen/std_margin</item>
-    </style>
+	<style name="MoreInfoHeadingStyle" parent="@style/HeadingStyle">
+		<item name="android:layout_marginTop">@dimen/std_margin</item>
+		<item name="android:layout_marginBottom">@dimen/std_margin</item>
+	</style>
 
-    <style name="TidbitContentStyle" parent="@android:style/TextAppearance.Medium">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:textColor">@color/theme_gray</item>
-        <item name="android:textSize">@dimen/std_text_size</item>
-    </style>
+	<style name="TidbitContentStyle" parent="@android:style/TextAppearance.Medium">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:textColor">@color/theme_gray</item>
+		<item name="android:textSize">@dimen/std_text_size</item>
+	</style>
 
-    <style name="LinLayoutItemStyle" parent="@android:style/TextAppearance.Medium">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/std_med_text_size</item>
-    </style>
+	<style name="LinLayoutItemStyle" parent="@android:style/TextAppearance.Medium">
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:textColor">@color/black</item>
+		<item name="android:textSize">@dimen/std_med_text_size</item>
+	</style>
 
-    <style name="FieldStyle">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/std_med_text_size</item>
-        <item name="android:layout_marginLeft">@dimen/std_margin</item>
-        <item name="et_labelEnable">true</item>
-        <item name="et_dividerColor">@color/theme_light_gray</item>
-        <item name="et_dividerErrorColor">#ffff0000</item>
-        <item name="et_dividerHeight">1dp</item>
-        <item name="et_dividerPadding">8dp</item>
-        <item name="et_labelPadding">8dp</item>
-        <item name="et_labelTextSize">@dimen/std_small_text_size</item>
-        <item name="et_labelTextColor">@color/sec_bright</item>
-    </style>
+	<style name="FieldStyle">
+		<item name="android:textColor">@color/black</item>
+		<item name="android:textSize">@dimen/std_med_text_size</item>
+		<item name="android:layout_marginLeft">@dimen/std_margin</item>
+		<item name="et_labelEnable">true</item>
+		<item name="et_dividerColor">@color/theme_light_gray</item>
+		<item name="et_dividerErrorColor">#ffff0000</item>
+		<item name="et_dividerHeight">1dp</item>
+		<item name="et_dividerPadding">8dp</item>
+		<item name="et_labelPadding">8dp</item>
+		<item name="et_labelTextSize">@dimen/std_small_text_size</item>
+		<item name="et_labelTextColor">@color/sec_bright</item>
+	</style>
 
 </resources>

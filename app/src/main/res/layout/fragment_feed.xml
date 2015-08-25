@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/feed_pager"
-        tools:context="TidbitFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+	<android.support.v4.view.ViewPager
+		android:id="@+id/feed_pager"
+		tools:context="TidbitFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
 
-    <com.rey.material.widget.TabPageIndicator
-        style="@style/TabBarStyle"
-        android:id="@+id/feed_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/prim_darkest"
-        app:tpi_indicatorColor="@color/white"
-        app:tpi_indicatorHeight="4dp"
-        app:tpi_mode="fixed"
-        app:tpi_tabRipple="@drawable/ripple"/>
+	<com.rey.material.widget.TabPageIndicator
+		style="@style/TabBarStyle"
+		android:id="@+id/feed_tabs"
+		android:layout_width="match_parent"
+		android:layout_height="48dp"
+		android:background="@color/prim_darkest"
+		app:tpi_indicatorColor="@color/white"
+		app:tpi_indicatorHeight="4dp"
+		app:tpi_mode="fixed"
+		app:tpi_tabRipple="@drawable/ripple"/>
 
-    <!--<com.balysv.materialripple.MaterialRippleLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/map_button_ripple"
-        app:mrl_rippleOverlay="true"
-        app:mrl_rippleHover="true"
-        app:mrl_rippleColor="@color/black"
-        app:mrl_rippleDuration="700"
-        app:mrl_rippleFadeDuration="200"
-        android:layout_gravity="center_horizontal|bottom">
+	<!--<com.balysv.materialripple.MaterialRippleLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/map_button_ripple"
+		app:mrl_rippleOverlay="true"
+		app:mrl_rippleHover="true"
+		app:mrl_rippleColor="@color/black"
+		app:mrl_rippleDuration="700"
+		app:mrl_rippleFadeDuration="200"
+		android:layout_gravity="center_horizontal|bottom">
 
-        <ImageButton
-            android:id="@+id/map_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:background="@color/prim_darkest"
-            android:src="@drawable/ic_map_white_24dp" />
+		<ImageButton
+			android:id="@+id/map_button"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="12dp"
+			android:background="@color/prim_darkest"
+			android:src="@drawable/ic_map_white_24dp" />
 
-    </com.balysv.materialripple.MaterialRippleLayout>-->
+	</com.balysv.materialripple.MaterialRippleLayout>-->
 
-    <com.rey.material.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/std_margin"
-        android:layout_marginEnd="@dimen/std_margin"
-        android:layout_marginBottom="@dimen/std_margin"
-        android:layout_gravity="right|bottom"
-        app:fab_iconSrc="@drawable/ic_action_new"
-        app:fab_elevation="@dimen/fab_elev"
-        app:fab_backgroundColor="@color/fab_color"
-        app:rd_style="@drawable/ripple"
-        app:rd_rippleType="wave"/>
+	<com.rey.material.widget.FloatingActionButton
+		android:id="@+id/fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="@dimen/std_margin"
+		android:layout_marginEnd="@dimen/std_margin"
+		android:layout_marginBottom="@dimen/std_margin"
+		android:layout_gravity="right|bottom"
+		app:fab_iconSrc="@drawable/ic_action_new"
+		app:fab_elevation="@dimen/fab_elev"
+		app:fab_backgroundColor="@color/fab_color"
+		app:rd_style="@drawable/ripple"
+		app:rd_rippleType="wave"/>
 
 </android.support.design.widget.CoordinatorLayout>

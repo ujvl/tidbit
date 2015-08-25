@@ -44,67 +44,67 @@ import java.util.Map;
 public class NewEventFragment extends Fragment implements View.OnClickListener,
 														  GraphRequest.Callback  {
 
-    private OnSubmitListener mListener;
+	private OnSubmitListener mListener;
 
-    private Button mFromDateButton, mToDateButton;
+	private Button mFromDateButton, mToDateButton;
 	private Button mFromTimeButton, mToTimeButton;
-    private FloatingActionButton mFABUpload;
-    private ImageView mCoverImage;
+	private FloatingActionButton mFABUpload;
+	private ImageView mCoverImage;
 
-    private static final int IMAGE_REQUEST = 1;
+	private static final int IMAGE_REQUEST = 1;
 
-    public interface OnSubmitListener {
-        public void onSubmit();
-    }
+	public interface OnSubmitListener {
+		public void onSubmit();
+	}
 
-    public NewEventFragment() { }
+	public NewEventFragment() { }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setHasOptionsMenu(true);
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_create_event, container, false);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View root = inflater.inflate(R.layout.fragment_create_event, container, false);
 
-        mFromDateButton = (Button) root.findViewById(R.id.from_date_button);
+		mFromDateButton = (Button) root.findViewById(R.id.from_date_button);
 		mToDateButton = (Button) root.findViewById(R.id.to_date_button);
-        mFromTimeButton = (Button) root.findViewById(R.id.from_time_button);
-        mToTimeButton = (Button) root.findViewById(R.id.to_time_button);
-        mFABUpload = (FloatingActionButton) root.findViewById(R.id.fab_upload);
-        mCoverImage = (ImageView) root.findViewById(R.id.create_event_cover);
+		mFromTimeButton = (Button) root.findViewById(R.id.from_time_button);
+		mToTimeButton = (Button) root.findViewById(R.id.to_time_button);
+		mFABUpload = (FloatingActionButton) root.findViewById(R.id.fab_upload);
+		mCoverImage = (ImageView) root.findViewById(R.id.create_event_cover);
 
-        mFABUpload.setOnClickListener(this);
-        mCoverImage.setOnClickListener(this);
+		mFABUpload.setOnClickListener(this);
+		mCoverImage.setOnClickListener(this);
 
-        setupButtonListener(mFromDateButton, true);
+		setupButtonListener(mFromDateButton, true);
 		setupButtonListener(mToDateButton, true);
-        setupButtonListener(mFromTimeButton, false);
-        setupButtonListener(mToTimeButton, false);
+		setupButtonListener(mFromTimeButton, false);
+		setupButtonListener(mToTimeButton, false);
 
-        return root;
-    }
+		return root;
+	}
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_new_event, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.menu_new_event, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_done) {
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.action_done) {
 			submit();
-            return true;
-        }
+			return true;
+		}
 		if (item.getItemId() == R.id.action_import) {
 			getEventListFromFacebook();
 			return true;
 		}
-        return super.onOptionsItemSelected(item);
-    }
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	public void onCompleted(GraphResponse graphResponse) {
@@ -124,57 +124,57 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 		.show();
 	}
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_REQUEST);
-    }
+	@Override
+	public void onClick(View v) {
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		startActivityForResult(Intent.createChooser(intent, "Select Picture"), IMAGE_REQUEST);
+	}
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
+		if (requestCode == IMAGE_REQUEST && resultCode == Activity.RESULT_OK) {
 
-            try {
-                Uri selectedImageUri = data.getData();
-                ParcelFileDescriptor pfd = getActivity()
+			try {
+				Uri selectedImageUri = data.getData();
+				ParcelFileDescriptor pfd = getActivity()
 						.getContentResolver().openFileDescriptor(selectedImageUri, "r");
-                FileDescriptor imageSource = pfd.getFileDescriptor();
-                Bitmap cover = BitmapFactory.decodeFileDescriptor(imageSource);
-                mCoverImage.setImageBitmap(cover);
-            } catch(FileNotFoundException e) {
-                e.printStackTrace();
-            }
+				FileDescriptor imageSource = pfd.getFileDescriptor();
+				Bitmap cover = BitmapFactory.decodeFileDescriptor(imageSource);
+				mCoverImage.setImageBitmap(cover);
+			} catch(FileNotFoundException e) {
+				e.printStackTrace();
+			}
 
-        }
+		}
 
-    }
+	}
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnSubmitListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException("Parent must implement listener");
-        }
-    }
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mListener = (OnSubmitListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException("Parent must implement listener");
+		}
+	}
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+	@Override
+	public void onDetach() {
+		super.onDetach();
+		mListener = null;
+	}
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().setTitle("New Event");
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActivity().setTitle("New Event");
 		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("New Event");
-    }
+	}
 
 	/**
 	 * Fills as many fields as possible

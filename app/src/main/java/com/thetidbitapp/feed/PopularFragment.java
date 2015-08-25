@@ -14,13 +14,13 @@ import java.util.List;
  */
 public class PopularFragment extends BaseEventsFragment {
 
-    @Override
-    public List<Event> getEvents() {
-        ArrayList<Event> cards = new ArrayList<>();
-        for (int i = 0; i < 15; i++)
-            cards.add(new Event("" + i, "Some event", new Date(), "Doe Library", "Sushi", 293));
-        return cards;
-    }
+	@Override
+	public List<Event> getEvents() {
+		ArrayList<Event> cards = new ArrayList<>();
+		for (int i = 0; i < 15; i++)
+			cards.add(new Event("" + i, "Some event", new Date(), "Doe Library", "Sushi", 293));
+		return cards;
+	}
 
 	@Override
 	public BaseEventAdapter getEventAdapter(List<Event> events) {

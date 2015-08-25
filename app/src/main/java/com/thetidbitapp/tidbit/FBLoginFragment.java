@@ -32,34 +32,34 @@ public class FBLoginFragment extends Fragment implements FacebookCallback<LoginR
 		public void onLogin(JSONObject result);
 	}
 
-    private OnLoginListener mListener;
-    private CallbackManager callbackManager;
+	private OnLoginListener mListener;
+	private CallbackManager callbackManager;
 	private LoginManager mLoginManager;
 	private View mRootView;
 
 	private static final String FIELDS_KEY = "fields";
 
-    public FBLoginFragment() { }
+	public FBLoginFragment() { }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mRootView = inflater.inflate(R.layout.fragment_fblogin, container, false);
-        mLoginManager = LoginManager.getInstance();
+		mRootView = inflater.inflate(R.layout.fragment_fblogin, container, false);
+		mLoginManager = LoginManager.getInstance();
 
-        Button loginButton = (Button) mRootView.findViewById(R.id.login_button);
-        loginButton.setOnClickListener(this);
+		Button loginButton = (Button) mRootView.findViewById(R.id.login_button);
+		loginButton.setOnClickListener(this);
 
-        callbackManager = CallbackManager.Factory.create();
+		callbackManager = CallbackManager.Factory.create();
 		mLoginManager.registerCallback(callbackManager, this);
 
-        return mRootView;
-    }
+		return mRootView;
+	}
 
 	/**
 	 * Fired on completion of login request,
@@ -111,11 +111,11 @@ public class FBLoginFragment extends Fragment implements FacebookCallback<LoginR
 		);
 	}
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		callbackManager.onActivityResult(requestCode, resultCode, data);
+	}
 
 	@Override
 	public void onAttach(Activity activity) {
