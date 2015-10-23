@@ -18,7 +18,7 @@ public class PopularFragment extends BaseEventsFragment {
 	public List<Event> getEvents() {
 		ArrayList<Event> cards = new ArrayList<>();
 		for (int i = 0; i < 15; i++)
-			cards.add(new Event("" + i, "Some event", new Date(), "Doe Library", "Sushi", 293));
+			cards.add(new Event("" + i, "Tesla Tech Talk", new Date(), "Soda Hall", "Sushi", 293));
 		return cards;
 	}
 

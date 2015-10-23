@@ -17,7 +17,7 @@ public class UpcomingFragment extends BaseEventsFragment {
 	public List<Event> getEvents() {
 		ArrayList<Event> cards = new ArrayList<>();
 		for (int i = 0; i < 15; i++)
-			cards.add(new Event("" + i, "Hey buddy", new Date(), "Doe Library, VA", "Sushi", 293));
+			cards.add(new Event("" + i, "Cal Day", new Date(), "Doe Library, Berkeley", "Donuts", 293));
 		return cards;
 	}
 
