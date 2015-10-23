@@ -5,8 +5,8 @@ Complete UI and functionality, just need to replace placeholder data with calls 
 
 Browse events near you that offer free food --
 
-![browse](https://github.com/ujvl/tidbit/blob/master/app/src/main/res/drawable/screenie2.png =100x80)
+![browse](https://github.com/ujvl/tidbit/blob/master/app/src/main/res/drawable/screenie2.png)
 
 Create & share new events in your area --
 
-![create](https://github.com/ujvl/tidbit/blob/master/app/src/main/res/drawable/screenie1.png =100x80)
+![create](https://github.com/ujvl/tidbit/blob/master/app/src/main/res/drawable/screenie1.png)
