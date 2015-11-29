@@ -14,7 +14,7 @@ public final class InternetUtil {
 	/**
 	 * Checks if phone is connected to the internet
 	 * @param context current context
-	 * @return true if phone is connected to internet, else false
+	 * @return whether device is connected to internet
 	 */
 	public static boolean isOnline(Context context) {
 		ConnectivityManager cm =
