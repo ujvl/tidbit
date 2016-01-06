@@ -14,7 +14,7 @@ import java.util.List;
 public class UpcomingFragment extends BaseEventsFragment {
 
 	@Override
-	public List<Event> getEvents() {
+	public synchronized List<Event> getEvents() {
 		ArrayList<Event> cards = new ArrayList<>();
 		for (int i = 0; i < 15; i++)
 			cards.add(new Event("" + i, "Cal Day", new Date(), "Doe Library, Berkeley", "Donuts", 293));

@@ -135,11 +135,6 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
     }
 
     @Override
-    public void onFABClick() {
-        addAndCommit(new NewEventFragment());
-    }
-
-    @Override
     public void onCardClick(String id) {
         addAndCommit(EventDetailsFragment.newInstance(id));
     }
@@ -170,12 +165,12 @@ public class MainActivity extends AppCompatActivity implements OnConnectionFaile
 
 	@Override
 	public void onConnectionSuspended(int i) {
-		Toast.makeText(this, "Noo... location API connection suspended", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Location API connection suspended!", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
-		Toast.makeText(this, "Noo... location API connection failed", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Location API connection failed!", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import java.util.List;
 public class PopularFragment extends BaseEventsFragment {
 
 	@Override
-	public List<Event> getEvents() {
+	public synchronized List<Event> getEvents() {
 		ArrayList<Event> cards = new ArrayList<>();
 		for (int i = 0; i < 15; i++)
 			cards.add(new Event("" + i, "Tesla Tech Talk", new Date(), "Soda Hall", "Sushi", 293));

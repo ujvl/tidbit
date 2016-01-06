@@ -17,6 +17,7 @@ import com.thetidbitapp.adap.BaseEventAdapter;
 import com.thetidbitapp.adap.FeedPagerAdapter;
 import com.thetidbitapp.model.Event;
 import com.thetidbitapp.tidbit.R;
+import com.thetidbitapp.util.InternetUtil;
 
 import java.util.List;
 
@@ -26,10 +27,10 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 													BaseEventAdapter.OnInteractionListener {
 
 	public interface OnEventListInteractionListener {
-		public void onScrollUp();
-		public void onScrollDown();
-		public void onCardClick(CharSequence id);
-		public void onItemsChanged(int position);
+		void onScrollUp();
+		void onScrollDown();
+		void onCardClick(CharSequence id);
+		void onItemsChanged(int position);
 	}
 
 	private OnEventListInteractionListener mListener;
@@ -111,6 +112,17 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 		}, 2500);
 	}
 
+	/**
+	 * Sets up the RecyclerView of the fragment
+	 */
+	private void setupRecycler() {
+		mEvents = getEvents();
+		mEventAdapter = getEventAdapter(mEvents);
+		mEventAdapter.setOnItemClickListener(this);
+		mEventAdapter.setOnItemsChangeListener(this);
+		mEventRecycler.setAdapter(mEventAdapter);
+	}
+
 	@Override
 	public void onClick(View view) {
 		int itemPosition = mEventRecycler.getChildAdapterPosition(view);
@@ -126,16 +138,12 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 
 	@Override
 	public void onNoConnectivityReported() {
-		Snackbar snackbar = Snackbar.make(
-				getView(),
-				getString(R.string.connect_error),
-				Snackbar.LENGTH_SHORT);
-		snackbar.show();
+		InternetUtil.showNoInternetSnackBar(getView(), this);
 	}
 
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
+	public void onAttach(Context c) {
+		super.onAttach(c);
 		try {
 			mListener = (OnEventListInteractionListener) getParentFragment();
 		} catch (ClassCastException e) {
@@ -147,17 +155,6 @@ public abstract class BaseEventsFragment extends Fragment implements View.OnClic
 	public void onDetach() {
 		super.onDetach();
 		mListener = null;
-	}
-
-	/**
-	 * Sets up the RecyclerView of the fragment
-	 */
-	private void setupRecycler() {
-		mEvents = getEvents();
-		mEventAdapter = getEventAdapter(mEvents);
-		mEventAdapter.setOnItemClickListener(this);
-		mEventAdapter.setOnItemsChangeListener(this);
-		mEventRecycler.setAdapter(mEventAdapter);
 	}
 
 	/**

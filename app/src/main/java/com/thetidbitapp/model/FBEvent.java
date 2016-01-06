@@ -7,8 +7,14 @@ import org.json.JSONObject;
  */
 public class FBEvent {
 
+    private String food;
+
 	public FBEvent(JSONObject json) {
 
 	}
+
+    public void setFood(String s) {
+        this.food = s;
+    }
 
 }

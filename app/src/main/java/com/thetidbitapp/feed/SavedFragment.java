@@ -14,7 +14,7 @@ import java.util.List;
 public class SavedFragment extends BaseEventsFragment {
 
 	@Override
-	public List<Event> getEvents() {
+	public synchronized List<Event> getEvents() {
 		ArrayList<Event> cards = new ArrayList<>();
 		for (int i = 0; i < 15; i++)
 			cards.add(new Event("" + i, "Startup Fair", new Date(), "RSF, Bancroft Way", "Papa Johns", 293));

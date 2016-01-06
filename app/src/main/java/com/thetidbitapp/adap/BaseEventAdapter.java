@@ -33,8 +33,8 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 	private OnInteractionListener mInteractionListener;
 
 	public interface OnInteractionListener {
-		public void onItemsChanged();
-		public void onNoConnectivityReported();
+		void onItemsChanged();
+		void onNoConnectivityReported();
 	}
 
 	public BaseEventAdapter(List<Event> events, Context c) {
@@ -210,7 +210,6 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 		protected abstract void onSecondBtnClick();
 
 		/**
-		 * Notifies user if not connected to internet
 		 * @return true if connected to internet, false otherwise
 		 */
 		protected boolean checkInternetConnectivity() {

@@ -14,7 +14,7 @@ import java.util.List;
 public class UsersPostsFragment extends BaseEventsFragment {
 
 	@Override
-	public List<Event> getEvents() {
+	public synchronized List<Event> getEvents() {
 		ArrayList<Event> cards = new ArrayList<>();
 		for (int i = 0; i < 15; i++)
 			cards.add(new Event("" + i, "Google Infosession", new Date(), "The Woz, Soda Hall", "Pizza", 293));

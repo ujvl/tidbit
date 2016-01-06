@@ -42,7 +42,10 @@
 	<string name="fb_ev_fields">
 		id,start_time,end_time,name,description,cover,owner,place
 	</string>
+
+	<!-- Dialog titles -->
 	<string name="fb_event_chooser_title">Import a Facebook event</string>
+	<string name="choose_food">Choose food at event</string>
 
 	<!-- menu item text -->
 	<string name="action_notif">Notifications</string>
@@ -67,12 +70,14 @@
 	<!-- Actions -->
 	<string name="going">GOING</string>
 	<string name="not_going">NOT GOING</string>
+	<string name="submit">SUBMIT</string>
+    <string name="next">NEXT</string>
 	<string name="cancel_ev">CANCEL EVENT</string>
 	<string name="okay">OKAY</string>
 	<string name="cancel">CANCEL</string>
 
 	<!-- Warnings -->
-	<string name="connect_error">Stahp, no internet connection available.</string>
+	<string name="connect_error">No internet connection available!</string>
 
 
 </resources>

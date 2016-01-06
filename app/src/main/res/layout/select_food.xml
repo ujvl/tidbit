@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/field_food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_food"
+        android:textSize="@dimen/std_med_text_size"
+        app:met_baseColor="@color/black"
+        app:met_primaryColor="@color/selected_et_color"
+        app:met_errorColor="@color/error_color"
+        app:met_floatingLabel="highlight"
+        app:met_singleLineEllipsis="true"
+        app:met_maxCharacters="50"
+        app:met_floatingLabelAlwaysShown="true"
+        app:met_textColorHint="@color/white"
+        app:met_floatingLabelPadding="8dp"/>
+
+</LinearLayout>

@@ -8,10 +8,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.facebook.AccessToken;
@@ -37,7 +34,6 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Map;
 
@@ -203,7 +199,7 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 			request.executeAsync();
 		}
 		else {
-			showNoInternetSnackBar();
+			InternetUtil.showNoInternetSnackBar(getView(), this);
 		}
 	}
 
@@ -215,7 +211,7 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 			mListener.onSubmit();
 		}
 		else {
-			showNoInternetSnackBar();
+			InternetUtil.showNoInternetSnackBar(getView(), this);
 		}
 	}
 
@@ -241,8 +237,7 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 					now.get(Calendar.MONTH),
 					now.get(Calendar.DAY_OF_MONTH)
 			);
-		}
-		else {
+		} else {
 			picker = TimePickerDialog.newInstance(
 					new TimePickerDialog.OnTimeSetListener() {
 						@Override
@@ -263,10 +258,6 @@ public class NewEventFragment extends Fragment implements View.OnClickListener,
 			}
 		});
 
-	}
-
-	private void showNoInternetSnackBar() {
-		Snackbar.make(getView(), getString(R.string.connect_error), Snackbar.LENGTH_SHORT).show();
 	}
 
 }
