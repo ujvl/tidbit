@@ -14,32 +14,32 @@ import java.util.List;
  */
 public class SavedEventAdapter extends BaseEventAdapter<SavedEventAdapter.SavedEventViewHolder> {
 
-	public SavedEventAdapter(List<Event> events, Context context) {
-		super(events, context);
-	}
+    public SavedEventAdapter(List<Event> events, Context context) {
+        super(events, context);
+    }
 
 
-	@Override
-	protected SavedEventViewHolder getViewHolder(View itemView) {
-		return new SavedEventViewHolder(itemView);
-	}
+    @Override
+    protected SavedEventViewHolder createViewHolder(View itemView) {
+        return new SavedEventViewHolder(itemView);
+    }
 
-	public class SavedEventViewHolder extends BaseEventAdapter.EventViewHolder {
+    public class SavedEventViewHolder extends BaseEventAdapter.EventViewHolder {
 
-		public SavedEventViewHolder(View itemView) {
-			super(itemView);
-			btnOne.setTextColor(mContext.getResources().getColor(R.color.theme_light_gray));
-			btnOne.setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
-		}
+        public SavedEventViewHolder(View itemView) {
+            super(itemView);
+            btnOne.setTextColor(mContext.getResources().getColor(R.color.theme_light_gray));
+            btnOne.setBackgroundColor(mContext.getResources().getColor(R.color.transparent));
+        }
 
-		@Override
-		protected void onFirstBtnClick() { /* Do nothing */ }
+        @Override
+        protected void onFirstBtnClick() { /* Do nothing */ }
 
-		@Override
-		protected void onSecondBtnClick() {
-			if (checkInternetConnectivity()) {
-				removeLeftwards(itemView, getAdapterPosition());
-			}
-		}
-	}
+        @Override
+        protected void onSecondBtnClick() {
+            if (checkInternetConnectivity()) {
+                removeLeftwards(itemView, getAdapterPosition());
+            }
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.thetidbitapp.tidbit;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -68,9 +70,17 @@ public class FBLoginFragment extends Fragment implements FacebookCallback<LoginR
 	 */
 	@Override
 	public void onSuccess(LoginResult loginResult) {
+
+        AccessToken tok = loginResult.getAccessToken();
+
 		Bundle params = new Bundle();
-		new SessionManager(getActivity()).setAccessToken(loginResult.getAccessToken());
-		GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), this);
+		new SessionManager(getActivity()).setAccessToken(tok);
+		GraphRequest request = GraphRequest.newMeRequest(tok, this);
+
+        Log.e("FBLoginFragment", "ACCESS TOKEN PRINTED BELOW --------------------------");
+        Log.e("FBLoginFragment", tok.getToken());
+        Log.e("FBLoginFragment", "Expires: " + tok.getExpires().toString());
+
 		params.putString(FIELDS_KEY, getActivity().getString(R.string.fb_field_result_keys));
 		request.setParameters(params);
 		request.executeAsync();
@@ -93,11 +103,16 @@ public class FBLoginFragment extends Fragment implements FacebookCallback<LoginR
 	 */
 	@Override
 	public void onCompleted(JSONObject result, GraphResponse response) {
-		mRootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
+
+        Log.e("FBLoginFragment", "PRINTING JSONObject RETURNED -------------------------");
+        Log.e("FBLoginFragment", result.toString());
+        Log.e("FBLoginFragment", "PRINTING GraphResponse RETURNED -------------------------");
+        Log.e("FBLoginFragment", response.getRawResponse());
+
+        mRootView.findViewById(R.id.login_layout).setVisibility(View.GONE);
 		new SessionManager(getActivity()).setLoggedIn(true);
 		mListener.onLogin(result);
 	}
-
 
 	/**
 	 * Fired on click of the Login with facebook button
@@ -118,10 +133,10 @@ public class FBLoginFragment extends Fragment implements FacebookCallback<LoginR
 	}
 
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
+	public void onAttach(Context c) {
+		super.onAttach(c);
 		try {
-			mListener = (OnLoginListener) activity;
+			mListener = (OnLoginListener) c;
 		} catch (ClassCastException e) {
 			throw new ClassCastException("Activity must implement listener");
 		}

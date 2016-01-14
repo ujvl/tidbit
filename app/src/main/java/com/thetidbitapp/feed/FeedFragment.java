@@ -35,6 +35,8 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         BaseEventsFragment.OnEventListInteractionListener,
         ViewPager.OnPageChangeListener, GraphRequest.Callback {
 
+    private final static int NUM_PAGES = 3;
+
     private OnFeedInteractionListener mListener;
     private FloatingActionButton mFab;
     private TabPageIndicator mTabStrip;
@@ -43,7 +45,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     private FeedPagerAdapter mAdapter;
 
     private boolean hidden;
-    private final boolean[] needToRefresh = new boolean[4];
+    private final boolean[] needToRefresh = new boolean[NUM_PAGES];
 
     public interface OnFeedInteractionListener {
         public void onCardClick(String id);
@@ -72,7 +74,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
         mPager = (ViewPager) root.findViewById(R.id.feed_pager);
         mPager.setAdapter(mAdapter);
         mPager.addOnPageChangeListener(this);
-        mPager.setOffscreenPageLimit(3);
+        mPager.setOffscreenPageLimit(NUM_PAGES - 1);
 
         mTabStrip = (TabPageIndicator) root.findViewById(R.id.feed_tabs);
         mTabStrip.setOnPageChangeListener(this);
@@ -103,7 +105,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
     public void onItemsChanged(int position) {
         /** TODO Need to put in a more scalable fix here later **/
         for (int i = 0; i < needToRefresh.length; i++) {
-            if (i != position && position != 3 && i != 3 && i != 2) {
+            if (position != i) {
                 needToRefresh[i] = true;
             }
         }
@@ -149,27 +151,27 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
             .items(events.keySet().toArray(new CharSequence[0]))
             .positiveText(R.string.next)
             .negativeText(R.string.cancel)
-			.itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
-				@Override
-				public boolean onSelection(MaterialDialog d, View v, int which, CharSequence option) {
-					showFoodDialog(events.get(option));
-					return true;
-				}
-			})
-		    .show();
+            .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                @Override
+                public boolean onSelection(MaterialDialog d, View v, int which, CharSequence option) {
+                    showFoodDialog(events.get(option));
+                    return true;
+                }
+            })
+            .show();
     }
 
-	/**
-	 * Shows the dialog that requests the food option
-	 * for the event
-	 * @param event Event imported from Facebook
-	 */
-	private void showFoodDialog(final FBEvent event) {
-		new MaterialDialog.Builder(getActivity())
-			.title(R.string.choose_food)
-			.positiveText(R.string.submit)
-			.negativeText(R.string.cancel)
-			.customView(R.layout.select_food, true)
+    /**
+     * Shows the dialog that requests the food option
+     * for the event
+     * @param event Event imported from Facebook
+     */
+    private void showFoodDialog(final FBEvent event) {
+        new MaterialDialog.Builder(getActivity())
+            .title(R.string.choose_food)
+            .positiveText(R.string.submit)
+            .negativeText(R.string.cancel)
+            .customView(R.layout.select_food, true)
             .onPositive(new MaterialDialog.SingleButtonCallback() {
                 @Override
                 public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -183,8 +185,8 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
                     }
                 }
             })
-			.show();
-	}
+            .show();
+    }
 
     // TODO change to adding event instead of re-fetching from server
 
@@ -194,7 +196,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
      */
     private void submitNewEventToServer(FBEvent event) {
         // TODO async task to submit event to server
-        boolean success = false;
+        boolean success = true;
 
         if (!success) {
             return;
@@ -263,8 +265,7 @@ public class FeedFragment extends Fragment implements FloatingActionButton.OnCli
 
     /**
      * Hacky way to construct fragment tag for ViewPager DO NOT EDIT...
-     * Sundar Pichai, if you ever read this, pls provide a convenience
-     * method to get the current instance of a page
+     * Get your shit together Google and give convenient access method for this
      * @param pos position of Fragment to get tag of
      * @return tag of the fragment at pos
      */

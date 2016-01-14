@@ -46,7 +46,7 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 	public E onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tidbit_card, parent, false);
 		view.setOnClickListener(mClickListener);
-		E evh = getViewHolder(view);
+		E evh = createViewHolder(view);
 		return evh;
 	}
 
@@ -106,7 +106,7 @@ public abstract class BaseEventAdapter<E extends BaseEventAdapter.EventViewHolde
 	 * @param v the View that the ViewHolder controls
 	 * @return an instance of the ViewHolder on v
 	 */
-	protected abstract E getViewHolder(View v);
+	protected abstract E createViewHolder(View v);
 
 	/**
 	 * Removes the item at position

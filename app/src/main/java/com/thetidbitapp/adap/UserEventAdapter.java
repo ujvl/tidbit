@@ -18,7 +18,7 @@ public class UserEventAdapter extends BaseEventAdapter<UserEventAdapter.UserEven
 	}
 
 	@Override
-	protected UserEventViewHolder getViewHolder(View itemView) {
+	protected UserEventViewHolder createViewHolder(View itemView) {
 		return new UserEventViewHolder(itemView);
 	}
 
